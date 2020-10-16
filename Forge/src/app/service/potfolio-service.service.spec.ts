@@ -1,0 +1,16 @@
+import { TestBed } from '@angular/core/testing';
+
+import { PotfolioServiceService } from './potfolio-service.service';
+
+describe('PotfolioServiceService', () => {
+  let service: PotfolioServiceService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(PotfolioServiceService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
