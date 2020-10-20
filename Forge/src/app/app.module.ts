@@ -18,6 +18,9 @@ import { SkillsComponent } from './skills/skills.component';
 import { WorkExperienceComponent } from './work-experience/work-experience.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AdminPortViewComponent } from './admin-port-view/admin-port-view.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule} from '@angular/material/card';
+import { RichTextEditorAllModule, ToolbarService} from '@syncfusion/ej2-angular-richtexteditor';
 
 @NgModule({
   declarations: [
@@ -42,9 +45,11 @@ import { AdminPortViewComponent } from './admin-port-view/admin-port-view.compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    BrowserAnimationsModule,
+    MatCardModule,
+    RichTextEditorAllModule
   ],
-  providers: [],
+  providers: [ToolbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
