@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "Forge"
+  "defaultProject": "Forge",
+  "cli": {
+    "analytics": false
+  }
 }

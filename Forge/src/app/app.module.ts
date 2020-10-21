@@ -21,6 +21,8 @@ import { AdminPortViewComponent } from './admin-port-view/admin-port-view.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule} from '@angular/material/card';
 import { RichTextEditorAllModule, ToolbarService} from '@syncfusion/ej2-angular-richtexteditor';
+import { MatIconModule } from '@angular/material/icon';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { RichTextEditorAllModule, ToolbarService} from '@syncfusion/ej2-angular-
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatCardModule,
-    RichTextEditorAllModule
+    RichTextEditorAllModule,
+    MatIconModule,
+    ChartsModule
   ],
   providers: [ToolbarService],
   bootstrap: [AppComponent]
