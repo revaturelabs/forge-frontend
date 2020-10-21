@@ -2,12 +2,16 @@ import { Component, DebugElement, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 
+
 @Component({
   selector: 'app-industry-equivalency',
   templateUrl: './industry-equivalency.component.html',
   styleUrls: ['./industry-equivalency.component.css']
 })
 export class IndustryEquivalencyComponent implements OnInit {
+
+  skill: string;
+  experience: number;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -29,9 +33,17 @@ export class IndustryEquivalencyComponent implements OnInit {
   ];
 
   addLabel(){
+    if (this.skill != undefined && this.experience != undefined && this.skill != "" && this.experience != 0){
+      let data = this.barChartData[0].data;
+      this.barChartLabels.push(this.skill);
+      data.push(this.experience);
+    }
+  }
+
+  subtractLabel(){
     let data = this.barChartData[0].data;
-    this.barChartLabels.push("Skill");
-    data.push(0);
+    this.barChartLabels.pop();
+    data.pop();
   }
 
   constructor() { }
