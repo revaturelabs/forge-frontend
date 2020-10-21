@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DebugElement, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 
@@ -11,6 +11,13 @@ export class IndustryEquivalencyComponent implements OnInit {
 
   barChartOptions: ChartOptions = {
     responsive: true,
+    scales : {
+      yAxes: [{
+         ticks: {
+            min: 0
+          }
+      }]
+    }
   };
   barChartLabels: Label[] = ['Java','HTML','SQL'];
   barChartType: ChartType = 'bar';
@@ -18,8 +25,14 @@ export class IndustryEquivalencyComponent implements OnInit {
   barChartPlugins = [];
 
   barChartData: ChartDataSets[] = [
-    { data: [14,12,10,0], label: 'Months Experience' }
+    { data: [14,12,10], label: 'Months Experience' }
   ];
+
+  addLabel(){
+    let data = this.barChartData[0].data;
+    this.barChartLabels.push("Skill");
+    data.push(0);
+  }
 
   constructor() { }
 
