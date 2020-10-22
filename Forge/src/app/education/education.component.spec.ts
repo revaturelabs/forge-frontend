@@ -37,15 +37,20 @@ describe('EducationComponent', () => {
     errors = university.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeTruthy();
-    expect(errors['maxlength']).toBeFalsy();
-    
+    //expect(errors['whitespace']).toBeFalse();
+
+    // Set university to something incorrect white space
+    university.setValue("    ");
+    errors = university.errors || {};
+    expect(errors['required']).toBeFalsy();
+    expect(errors['minlength']).toBeFalsy();
+    expect(errors['whitespace']).toBeTrue();
 
     // Set university to something correct
     university.setValue("My University is great");
     errors = university.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeFalsy();
-    expect(errors['maxlength']).toBeFalsy();
   });
 
   it('major field validity', () => {
@@ -61,38 +66,37 @@ describe('EducationComponent', () => {
     errors = major.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeTruthy();
-    expect(errors['maxlength']).toBeFalsy();
 
+    // Set major to something incorrect white space
+    major.setValue("    ");
+    errors = major.errors || {};
+    expect(errors['required']).toBeFalsy();
+    expect(errors['minlength']).toBeFalsy();
+    expect(errors['whitespace']).toBeTrue();
     
     // Set major to something correct
     major.setValue("Art");
     errors = major.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeFalsy();
-    expect(errors['maxlength']).toBeFalsy();
+
   });
 
   it('minor field validity', () => {
     let errors = {};
     let minor = component.portfolioForm.controls['minor'];
 
-    //minor field is required
-    errors = minor.errors || {};
-    expect(errors['required']).toBeFalsy();
-
     // Set minor to something incorrect min length 3
     minor.setValue("At");
     errors = minor.errors || {};
-    expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeTruthy();
-    expect(errors['maxlength']).toBeFalsy();
+ 
 
     // Set minor to something correct
     minor.setValue("Art");
     errors = minor.errors || {};
-    expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeFalsy();
-    expect(errors['maxlength']).toBeFalsy();
+
   });
 
 

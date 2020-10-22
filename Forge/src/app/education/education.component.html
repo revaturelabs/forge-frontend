@@ -1,13 +1,16 @@
 <div class="container">
+    <div class="row">
+        <h2 class="in">Education</h2>
+    </div>
+    
     <form [formGroup]="portfolioForm" (ngSubmit)="onSubmit()">
-
         <!--Degree-->
         <div class="form-group row">
             <label for="degree" class="col-3 col-form-label">Degree <span style="color:red;">*</span></label>
             <div class="col-9">
                 <select class="select-degree form-control" id ="degree"  formControlName ="degree" > 
                     <option  disabled >Select a Degree</option>
-                    <option *ngFor="let degree of degrees"  [value]="degree">{{degree}}</option>
+                    <option *ngFor="let degree of degrees">{{degree}}</option>
                 </select>
             </div>
         </div>
@@ -19,11 +22,11 @@
               <input class="form-control" type="text"  formControlName="university"
               placeholder="Select University">
 
-                <div *ngIf="portfolioForm.controls['university'].errors?.minlength" class="alert alert-danger" role="alert">
+                <div class="errorMessege" *ngIf="portfolioForm.controls['university'].touched && portfolioForm.controls['university'].errors?.minlength">
                     must be at least 3 characters long.
                 </div>
-                <div *ngIf="portfolioForm.controls['university'].errors?.maxlength" class="alert alert-danger" role="alert">
-                    must be at less than 40 characters long.
+                <div class="errorMessege" *ngIf="portfolioForm.controls['university'].touched && portfolioForm.controls['university'].hasError('whitespace')">
+                    Please enter a valid university
                 </div>
             </div>
         </div>
@@ -43,15 +46,12 @@
             <div class="col-9">
               <input class="form-control" type="text"  formControlName ="major" placeholder="Enter a Major">
 
-                <div *ngIf="portfolioForm.controls['major'].errors?.minlength" class="invalid-feedback">
+                <div class="errorMessege" *ngIf="portfolioForm.controls['major'].touched && portfolioForm.controls['major'].errors?.minlength">
                     must be at least 3 characters long.
                 </div>
-                <div *ngIf="portfolioForm.controls['major'].errors?.maxlength" class="invalid-feedback">
-                    must be at less than 40 characters long.
+                <div class="errorMessege" *ngIf="portfolioForm.controls['major'].touched && portfolioForm.controls['major'].hasError('whitespace')">
+                    Please enter a valid major
                 </div>
-                <!-- <div *ngIf="portfolioForm.controls['major'].hasError('whitespace')" class="alert alert-danger" role="alert">
-                    Please enter valid data
-                </div> -->
             </div>
         </div>
 
@@ -60,11 +60,11 @@
             <label for="major" class="col-3 col-form-label">Minor</label>
             <div class="col-9" >
               <input class="form-control" type="text"  formControlName ="minor" placeholder="Enter a Minor">
-                <div *ngIf="portfolioForm.controls['minor'].errors?.minlength" >
+                <div class="errorMessege" *ngIf="portfolioForm.controls['minor'].touched && portfolioForm.controls['minor'].errors?.minlength" >
                     must be at least 3 characters long.
                 </div>
-                <div *ngIf="portfolioForm.controls['minor'].errors?.maxlength" class="alert alert-danger" role="alert">
-                    must be at less than 40 characters long.
+                <div class="errorMessege" *ngIf="portfolioForm.controls['minor'].touched && portfolioForm.controls['minor'].hasError('whitespace')">
+                    Please enter a valid minor or leave empty
                 </div>
             </div>
         </div>

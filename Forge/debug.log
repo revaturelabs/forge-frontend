@@ -22,3 +22,6 @@
 [1021/142954.714:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1021/143836.802:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-40981294\Crashpad\attachments\bd131505-181c-4912-97cb-7998cdd0eea1: The system cannot find the path specified. (0x3)
 [1021/145838.503:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-9619171\Crashpad\attachments\6d18d138-4f4f-49db-9d82-4cdc6e3eae5e: The system cannot find the path specified. (0x3)
+[1021/224455.288:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-2030619\Crashpad\attachments\548cf4e5-1809-4a9f-b7bb-e79e96a0b5fc: The system cannot find the path specified. (0x3)
+[1021/232906.607:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1021/232931.226:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-8027664\Crashpad\attachments\de56d801-5ec1-4b8a-b6a1-fec455e6733e: The system cannot find the path specified. (0x3)
