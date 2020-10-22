@@ -5,8 +5,8 @@
     <mat-icon class="add-button" type="button" value="Add skill" (click)="addLabel()" aria-hidden="false" aria-label="add button">add</mat-icon>
   </div>
   <div>
-    <input [(ngModel)]="skill" placeholder="Skill">
-    <input [(ngModel)]="experience" placeholder="Experience (in Months)">
+    <input class="skill" [(ngModel)]="skill" placeholder="Skill">
+    <input class="experience" [(ngModel)]="experience" placeholder="Experience (in Months)">
   </div>
   <div class="chart-wrapper">
       <canvas baseChart height="20" width="50"
