@@ -19,6 +19,7 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
 import { ProjectsComponent } from './projects/projects.component';
 import { AdminPortViewComponent } from './admin-port-view/admin-port-view.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,6 @@ import { AdminPortViewComponent } from './admin-port-view/admin-port-view.compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
