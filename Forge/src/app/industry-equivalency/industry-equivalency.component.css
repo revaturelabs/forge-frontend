@@ -4,3 +4,24 @@
     max-width: 800px;
     border: 5px solid rgba(141, 131, 131, 0.692) ;
 }
+
+.add-button {
+    float: right;
+}
+
+.subtract-button {
+    float: right;
+}
+
+mat-icon:hover {
+    background-color: rgba(141, 131, 131, 0.692);
+    cursor: pointer;
+}
+
+.in {
+    display: inline-block;
+}
+
+input {
+    margin-right: 1%;
+}
