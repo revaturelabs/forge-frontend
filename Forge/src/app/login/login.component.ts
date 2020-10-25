@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';   
-import { AuthService } from '../auth-service.service'
+import { AuthService } from '../service/auth-service.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';  
 import {User} from '../user';
-import { RegisterUserService } from '../reg-user-service.service';
+import { RegisterUserService } from '../service/reg-user-service.service';
 
 
 
@@ -36,9 +36,19 @@ returnUrl: string;
     email: ['', Validators.required],  
     password: ['', Validators.required] 
   });
+  this.regService.getUsers().subscribe(
+    data=>{
+      this.model=data;
+      console.log(data);
+    }
+
+
+
+
+  );
   
   this.returnUrl='./user-home';
-  this.authService.logout();
+  this.authService.logoutRequest();
   console.log(localStorage.getItem('token'));
   }
 
@@ -46,11 +56,7 @@ returnUrl: string;
 
   login() {
 
-    this.regService.getUsers().subscribe(
-      data=>{
-        this.model=data;
-      }
-    );
+ 
 
 
     console.log(this.model);  
@@ -62,12 +68,19 @@ returnUrl: string;
        return;  
     }  
     else {  
-    
+
+
+
+
       for (let i: number = 0; i < this.model.length; i++) {
        if (this.f.email.value == this.model[i]["email"] && this.f.password.value == this.model[i]["password"]) {  
           console.log("Login successful");            
-          localStorage.setItem('isLoggedIn', "true");  
-          localStorage.setItem('token', JSON.stringify(this.model[i]));  
+          this.authService.loginRequest(this.model[i]).subscribe(
+            data => {
+              console.log(data);
+            }
+          );
+          console.log(this.model[i]);
           this.router.navigate([this.returnUrl]);  
           this.loginError='';
        }  

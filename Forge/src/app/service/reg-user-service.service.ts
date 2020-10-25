@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {User} from './User';
+import {User} from '../User';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class RegisterUserService {
 
 
   sendRegUser(User: User): Observable<User>{
-    return this.httpClient.post<User>("http://localhost:8100/admin/createUser", User);
+    return this.httpClient.post<User>("http://localhost:8200/admin/createUser", User);
 
 
 
@@ -22,7 +22,7 @@ export class RegisterUserService {
   }
 
   getUsers(): Observable<User []>{
-    return this.httpClient.get<User []>("http://localhost:8100/admin/getAllUsers");
+    return this.httpClient.get<User []>("http://localhost:8200/admin/getAllUsers");
   }
 
   
