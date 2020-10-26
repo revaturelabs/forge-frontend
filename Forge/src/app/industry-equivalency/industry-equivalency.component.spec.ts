@@ -24,6 +24,15 @@ describe('IndustryEquivalencyComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should call save', () => {
+    spyOn(component, 'save');
+
+    let button: HTMLSelectElement = fixture.debugElement.query(By.css('.save-button')).nativeElement;
+    button.click();
+
+    expect(component.save).toHaveBeenCalled();
+  });
+
   it('should call addLabel', () => {
     spyOn(component, 'addLabel');
 
