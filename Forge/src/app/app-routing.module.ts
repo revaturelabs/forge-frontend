@@ -14,11 +14,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent,  },
   { path:'registration', component: RegistrationComponent },
   { path:'user-home', component: UserHomeComponent},
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  {path:'project', component: ProjectsComponent },
-  {path:'aboutMe', component: AboutMeComponent },
-  {path:'portfolio', component: PortfolioComponent },
-  {path:'navbar', component: NavbarComponent, canActivate : [AuthGuard] },
+  { path:'', component: LoginComponent},
+  { path:'project', component: ProjectsComponent },
+  { path:'aboutMe', component: AboutMeComponent },
+  { path:'portfolio', component: PortfolioComponent },
+  { path:'navbar', component: NavbarComponent},
 ];
 
 

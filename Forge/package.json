@@ -15,9 +15,7 @@
     "@angular/cdk": "^10.2.5",
     "@angular/material": "^10.2.5",
     "@angular/router": "~10.1.1",
-
     "g": "^2.0.1",
-
     "@syncfusion/ej2-angular-popups": "^18.3.35",
     "@syncfusion/ej2-angular-richtexteditor": "^18.3.42",
     "angular-bootstrap-md": "^10.0.0",

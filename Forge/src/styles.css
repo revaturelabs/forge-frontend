@@ -2,3 +2,11 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.navbar{
+    background-color: chocolate;
+}
+
+body{
+    background-color: rgba(58, 55, 55, 0.425);
+}
