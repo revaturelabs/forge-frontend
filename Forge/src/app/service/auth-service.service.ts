@@ -26,7 +26,7 @@ export class AuthService {
     return this.myHttpClient.get<string>('http://localhost:8200/session/logout',
     {withCredentials:true}
     );
-
+    
 
     
   }
@@ -40,11 +40,13 @@ export class AuthService {
   }
 
 
-  }
+  logout():void{
 
-  constructor() { }
-  logout(): void{
+    localStorage.removeItem('token');
     localStorage.setItem('isLoggedIn', 'false');
+
     
   }
+
+  
 }

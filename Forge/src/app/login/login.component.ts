@@ -31,7 +31,9 @@ message: string;
 returnUrl: string;  
 
   ngOnInit() {  
-  
+
+    this.authService.logout();
+    console.log(localStorage.getItem('token'));
     this.loginForm = this.formBuilder.group({  
     email: ['', Validators.required],  
     password: ['', Validators.required] 
@@ -80,6 +82,9 @@ returnUrl: string;
               console.log(data);
             }
           );
+          localStorage.setItem('loggedIn', "true");
+          localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
+          console.log(localStorage.getItem('token'));
           console.log(this.model[i]);
           this.router.navigate([this.returnUrl]);  
           this.loginError='';

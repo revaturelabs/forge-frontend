@@ -26,7 +26,7 @@
             </a>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
               <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-              <a routerLink="/logout" routerLinkActive="active" class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+              <a routerLink="/login" routerLinkActive="active" (click)="logout()"  class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
             </div>
           </li>
     
