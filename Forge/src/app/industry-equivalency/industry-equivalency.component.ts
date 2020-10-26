@@ -13,6 +13,8 @@ export class IndustryEquivalencyComponent implements OnInit {
   skill: string;
   experience: number;
 
+  
+
   barChartOptions: ChartOptions = {
     responsive: true,
     scales : {
