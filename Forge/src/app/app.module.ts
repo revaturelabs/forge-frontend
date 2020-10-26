@@ -18,6 +18,14 @@ import { SkillsComponent } from './skills/skills.component';
 import { WorkExperienceComponent } from './work-experience/work-experience.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AdminPortViewComponent } from './admin-port-view/admin-port-view.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule} from '@angular/material/card';
+import { RichTextEditorAllModule, ToolbarService} from '@syncfusion/ej2-angular-richtexteditor';
+import { MatIconModule } from '@angular/material/icon';
+import { ChartsModule } from 'ng2-charts';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MDBBootstrapModule} from 'angular-bootstrap-md';
+import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -34,7 +42,8 @@ import { AdminPortViewComponent } from './admin-port-view/admin-port-view.compon
     SkillsComponent,
     WorkExperienceComponent,
     ProjectsComponent,
-    AdminPortViewComponent
+    AdminPortViewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +51,17 @@ import { AdminPortViewComponent } from './admin-port-view/admin-port-view.compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    BrowserAnimationsModule,
+    MatCardModule,
+    RichTextEditorAllModule,
+    MatIconModule,
+    ChartsModule,
+    NavbarModule,
+    WavesModule,
+    ButtonsModule,
+    MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  providers: [ToolbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

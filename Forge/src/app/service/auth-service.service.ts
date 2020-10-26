@@ -42,3 +42,9 @@ export class AuthService {
 
   }
 
+  constructor() { }
+  logout(): void{
+    localStorage.setItem('isLoggedIn', 'false');
+    
+  }
+}

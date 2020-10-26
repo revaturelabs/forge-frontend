@@ -1,1 +1,77 @@
-<p>education works!</p>
+<div class="container">
+    <div class="row">
+        <h2 class="in">Education</h2>
+    </div>
+    
+    <form [formGroup]="portfolioForm" (ngSubmit)="onSubmit()">
+        <!--Degree-->
+        <div class="form-group row">
+            <label for="degree" class="col-3 col-form-label">Degree <span style="color:red;">*</span></label>
+            <div class="col-9">
+                <select class="select-degree form-control" id ="degree"  formControlName ="degree" > 
+                    <option  disabled >Select a Degree</option>
+                    <option *ngFor="let degree of degrees">{{degree}}</option>
+                </select>
+            </div>
+        </div>
+
+        <!--University-->
+        <div class="form-group row">  
+            <label for="university" class="col-3 col-form-label">University <span style="color:red;">*</span></label>
+            <div class="col-9">
+              <input class="form-control" type="text"  formControlName="university"
+              placeholder="Select University">
+
+                <div class="errorMessege" *ngIf="portfolioForm.controls['university'].touched && portfolioForm.controls['university'].errors?.minlength">
+                    must be at least 3 characters long.
+                </div>
+                <div class="errorMessege" *ngIf="portfolioForm.controls['university'].touched && portfolioForm.controls['university'].hasError('whitespace')">
+                    Please enter a valid university
+                </div>
+            </div>
+        </div>
+
+        <!-- Graduation date -->
+        <div class="form-group row">
+            <label for="graduationDate" class="col-3 col-form-label">Graduation Date <span style="color:red;">*</span></label>
+            <div class="col-9">
+                <input type="month" class="form-control"  formControlName="graduationDate" 
+                [min] = "mindate | date:'y-MM'" [max] = "maxdate | date:'y-MM'"  >
+            </div>
+        </div>
+
+        <!--Major-->
+        <div class="form-group row">  
+            <label for="major" class="col-3 col-form-label">Major <span style="color:red;">*</span></label>
+            <div class="col-9">
+              <input class="form-control" type="text"  formControlName ="major" placeholder="Enter a Major">
+
+                <div class="errorMessege" *ngIf="portfolioForm.controls['major'].touched && portfolioForm.controls['major'].errors?.minlength">
+                    must be at least 3 characters long.
+                </div>
+                <div class="errorMessege" *ngIf="portfolioForm.controls['major'].touched && portfolioForm.controls['major'].hasError('whitespace')">
+                    Please enter a valid major
+                </div>
+            </div>
+        </div>
+
+        <!--Minor-->
+        <div class="form-group row">  
+            <label for="major" class="col-3 col-form-label">Minor</label>
+            <div class="col-9" >
+              <input class="form-control" type="text"  formControlName ="minor" placeholder="Enter a Minor">
+                <div class="errorMessege" *ngIf="portfolioForm.controls['minor'].touched && portfolioForm.controls['minor'].errors?.minlength" >
+                    must be at least 3 characters long.
+                </div>
+                <div class="errorMessege" *ngIf="portfolioForm.controls['minor'].touched && portfolioForm.controls['minor'].hasError('whitespace')">
+                    Please enter a valid minor or leave empty
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" [disabled]="!portfolioForm.valid">Save</button>
+        </div>
+    </form>
+
+</div>

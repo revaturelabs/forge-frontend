@@ -1,0 +1,38 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg">
+    
+    <mdb-navbar-brand>
+        <a class="navbar-brand">Revature</a>
+    </mdb-navbar-brand>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link waves-light" mdbWavesEffect>
+                Contact
+                    <span class="sr-only">
+                        (current)
+                    </span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect> Settings</a>
+          </li>
+          
+          
+          <li class="nav-item dropdown" dropdown>
+            <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light">
+               Profile
+                <span class="caret"></span>
+            </a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+              <a routerLink="/logout" routerLinkActive="active" class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+            </div>
+          </li>
+    
+        </ul>
+
+
+</mdb-navbar>
+
+<router-outlet></router-outlet>
