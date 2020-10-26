@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { ToolbarService, HtmlEditorService} from '@syncfusion/ej2-angular-richtexteditor';
@@ -22,12 +22,26 @@ export class AboutMeComponent implements OnInit {
     };
   
   form: FormGroup;
+
   submitted = false;  
+  
   constructor(
     private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
+  }
+
+  //@ViewChild ('aboutMe', {static:false}) aboutMe:any;
+  aboutMe;
+  setText(event){
+    this.aboutMe = event;
+    console.log(event.target.textContent);
+  }
+
+  save(){
+    console.log('im saved... nah');
+    console.log(this.aboutMe);
   }
 
 }
