@@ -20,6 +20,12 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
 import { ProjectsComponent } from './projects/projects.component';
 import { AdminPortViewComponent } from './admin-port-view/admin-port-view.component';
 // import { ChartsModule } from 'ng2-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardHeader, MatCardModule} from '@angular/material/card';
+import { RichTextEditorAllModule, ToolbarService} from '@syncfusion/ej2-angular-richtexteditor';
+import { MatIconModule } from '@angular/material/icon';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -47,8 +53,13 @@ import { AdminPortViewComponent } from './admin-port-view/admin-port-view.compon
     DragDropModule,
     // ChartsModule
 
+    BrowserAnimationsModule,
+    MatCardModule,
+    RichTextEditorAllModule,
+    MatIconModule,
+    ChartsModule
   ],
-  providers: [],
+  providers: [ToolbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
