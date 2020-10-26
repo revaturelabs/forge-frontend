@@ -22,7 +22,9 @@ export class AboutMeComponent implements OnInit {
     };
   
   form: FormGroup;
+
   submitted = false;  
+  
   constructor(
     private formBuilder: FormBuilder,
   ) { }

@@ -1,1 +1,14 @@
+.container{
+    margin: auto;
+    margin-top: 10px;
+    max-width: 800px;
+    border: 5px solid rgba(141, 131, 131, 0.692) ;
+}
 
+.errorMessege{
+    color:#FF0000;
+}
+
+.add-button {
+    float: right;
+}
