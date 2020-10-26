@@ -1,1 +1,33 @@
-<p>registration works!</p>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+
+        
+ 
+      
+      <form [formGroup]="regForm" class="wrapper fadeInDown">
+    
+        
+            <input type="text" id="defaultRegisterFormEmail" class="fadeIn second" formControlName="email" placeholder="">        
+        
+            <p>{{emailError}}</p>
+        
+            <input type="password" id="defaultRegisterFormPassword" class="fadeIn third"  formControlName="password" placeholder="Password">
+       
+        
+            <p>{{passwordError}}</p>
+
+            <input type="firstname" id="defaultRegisterFormFirstName" class="fadeIn third"  formControlName="firstname" placeholder="First Name">
+
+            <input type="lastname" id="defaultRegisterFormLastName" class="fadeIn third"  formControlName="lastname" placeholder="Last Name">
+         
+        
+         
+           
+
+            <input type="button" (click)="packageAndShip()" routerLink='/login' class="fadeIn fifth" value="Register">    
+
+        </form>
+
+    </div>
+
+</div>

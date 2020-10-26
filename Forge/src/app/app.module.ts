@@ -23,7 +23,9 @@ import { MatCardHeader, MatCardModule} from '@angular/material/card';
 import { RichTextEditorAllModule, ToolbarService} from '@syncfusion/ej2-angular-richtexteditor';
 import { MatIconModule } from '@angular/material/icon';
 import { ChartsModule } from 'ng2-charts';
-
+import { NavbarComponent } from './navbar/navbar.component';
+import { MDBBootstrapModule} from 'angular-bootstrap-md';
+import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { ChartsModule } from 'ng2-charts';
     SkillsComponent,
     WorkExperienceComponent,
     ProjectsComponent,
-    AdminPortViewComponent
+    AdminPortViewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,11 @@ import { ChartsModule } from 'ng2-charts';
     MatCardModule,
     RichTextEditorAllModule,
     MatIconModule,
-    ChartsModule
+    ChartsModule,
+    NavbarModule,
+    WavesModule,
+    ButtonsModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [ToolbarService],
   bootstrap: [AppComponent]
