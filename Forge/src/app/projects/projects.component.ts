@@ -47,6 +47,9 @@ export class ProjectsComponent implements OnInit {
   
   onSubmit(){
     this.submitted = true;
+  }
 
+  save(){
+    console.log('this isnt saving')
   }
 }
