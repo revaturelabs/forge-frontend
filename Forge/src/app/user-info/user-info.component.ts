@@ -10,7 +10,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class UserInfoComponent implements OnInit {
 
   @Input() inputUserInfo: []; // decorate the property with @Input()
-  @Output() updateUserInfo = new EventEmitter<FormGroup>();
+  @Output() updateUserInfo = new EventEmitter<any>();
 
   constructor(private modalService: NgbModal) { }
 
@@ -42,6 +42,7 @@ export class UserInfoComponent implements OnInit {
   onSubmit(){
     console.log('in on submit')
     this.updateUserInfo.emit(this.userForm.value);
+    
     this.userForm.reset();
   }
 

@@ -13,7 +13,7 @@ export class RegisterUserService {
 
 
   sendRegUser(User: User): Observable<User>{
-    return this.httpClient.post<User>("http://localhost:8200/admin/createUser", User);
+    return this.httpClient.post<User>("http://localhost:8200/service/createUser", User);
 
 
 
@@ -22,7 +22,7 @@ export class RegisterUserService {
   }
 
   getUsers(): Observable<User []>{
-    return this.httpClient.get<User []>("http://localhost:8200/admin/getAllUsers");
+    return this.httpClient.get<User []>("http://localhost:8200/service/getAllUsers");
   }
 
   

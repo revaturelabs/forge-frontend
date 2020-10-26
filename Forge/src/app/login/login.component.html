@@ -1,26 +1,30 @@
-
-
-  
-
-     
-    
-  
-      
-  
+<div class="card">
+  <h5 class="card-header">Login</h5>
+  <div class="card-body">
+    <h5 class="card-title">Please Enter Your Email and Password</h5>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <input type="text" id="login" class="fadeIn second" formControlName="email" placeholder="email">
+        <p></p>
         
         <input type="password" id="password" class="fadeIn third" formControlName="password" placeholder="password">
+      <p></p>
       
+
         <input type="submit" class="fadeIn fourth" value="Log In">
       </form>
+
+
   
       <div class="col">
         <p>{{loginError}}</p>
     </div>
+    
+    <div id="formFooter">
+      <a class="underlineHover" routerLink='/registration' >Register</a>
+    </div>
       
-  
+  </div>
+</div>
      
   
  
-  

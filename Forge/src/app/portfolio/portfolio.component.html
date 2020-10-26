@@ -2,5 +2,5 @@
 <app-user-info (updateUserInfo)="updateUserInfo($event)"></app-user-info>
 <app-about-me></app-about-me>
 <app-education (addEducation)="updateEducation($event)" [inputEducation] = "portfolio['education']"></app-education>
-<app-industry-equivalency></app-industry-equivalency>
+<app-industry-equivalency [inputIndustryEquivalency]="portfolio['industryEquivalency']"></app-industry-equivalency>
 <app-projects></app-projects>

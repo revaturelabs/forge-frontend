@@ -33,7 +33,7 @@ export class PortfolioComponent implements OnInit {
   updateUserInfo(userInfo:any){
     // this.portfolio['user'].push(userInfo);
     // this.portfolio['user'].splice(0, 1);
-    console.log('updating user info')
-    console.log(userInfo)
+    console.log('updating user info');
+    console.log(userInfo);
   }
 }
