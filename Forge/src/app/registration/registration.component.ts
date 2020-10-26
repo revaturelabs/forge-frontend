@@ -68,6 +68,7 @@ if(validSubmission)
   this.User["password"]=this.regForm.controls['password'].value;
   this.User["firstName"]=this.regForm.controls['firstname'].value;
   this.User["lastName"]=this.regForm.controls['lastname'].value;
+  this.User["is_Admin"]=false;
    
   
 
@@ -96,7 +97,8 @@ if(validSubmission)
       email:'',
       password:'',
       firstName:'',
-      lastName:''
+      lastName:'',
+      is_Admin:false
     }
     //this.regService.getListOfUsers().subscribe(data=>{
      // this.userList=data;

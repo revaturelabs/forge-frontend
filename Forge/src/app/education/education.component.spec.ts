@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { EducationComponent } from './education.component';
 
@@ -9,7 +11,7 @@ describe('EducationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EducationComponent],
-     // imports: [ReactiveFormsModule, FormGroup]
+      imports: [ReactiveFormsModule, FormsModule]
     })
     .compileComponents();
   });
