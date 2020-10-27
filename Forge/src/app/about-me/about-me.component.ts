@@ -1,6 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@syncfusion/ej2-angular-richtexteditor';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 
@@ -11,6 +9,10 @@ import { PotfolioServiceService } from '../service/potfolio-service.service';
   providers: [ToolbarService,HtmlEditorService]
 })
 export class AboutMeComponent implements OnInit {
+
+  @Input() inputAboutMe: []; // decorate the property with @Input()
+  @Output() addAboutMe = new EventEmitter<any>();
+  
   public tools: object = {
     type: 'Expand',
         items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
@@ -29,29 +31,17 @@ export class AboutMeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAboutMeInfo(1);
   }
-
-  getAboutMeInfo(id){
-    this.portfolioService.getAboutMeById(id).subscribe( (data) => {
-      this.aboutMe = data;
-      console.log(this.aboutMe);
-    })
-  }
-
-  @ViewChild ('test') 
-  test:any;
 
   setText(event){
     //this.aboutMe = event;
     console.log(event.target.textContent);
   }
 
+  @ViewChild('typeRTE') rteObj: RichTextEditorComponent;
+  
   save(){
-    //let rteValue: string = this.rteObj.value;
-    console.log('im saved... nah');
-    //console.log(this.aboutMe);
-    console.log("test", this.test.nativeElement);
+    let rteValue: string = this.rteObj.value;
+    this.addAboutMe.emit(this.rteObj.value);
   }
-
 }

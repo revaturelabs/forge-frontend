@@ -10,22 +10,11 @@ import { PotfolioServiceService } from '../service/potfolio-service.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  @Input() inputUserInfo: []; // decorate the property with @Input()
-  @Output() updateUserInfo = new EventEmitter<any>();
+  @Input() inputUserInfo: [];
 
-  constructor(private modalService: NgbModal, private portfolioService:PotfolioServiceService) { }
+  constructor() { }
 
   image ='https://i.imgflip.com/2/3txdnl.jpg';
-  // user = {
-  //   'name': 'Bob bobson',
-  //   'occupation' : 'Product Owner',
-  //   'number'   : 12345,
-  //   'email' : 'email@email.com',
-  //   'github': 'githubrepo',
-  //   'location' : 'creepy'
-  //  };
-
-  user = [];
 
    userForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]),
@@ -37,27 +26,5 @@ export class UserInfoComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.portfolioService.getUserInfoById(2).subscribe((data) =>
-    {
-      this.user = data;
-      console.log(this.user);
-    })
-  }
-
-  ngOnchanges(){
-    console.log(this.inputUserInfo)
-  }
-
-  onSubmit(){
-    console.log('in on submit')
-    this.updateUserInfo.emit(this.userForm.value);
-    
-    this.userForm.reset();
-  }
-
-  
-
-  open(content) {
-    this.modalService.open(content, { size: 'lg' });
   }
 }

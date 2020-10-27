@@ -8,17 +8,22 @@ import { Observable } from 'rxjs';
 export class PotfolioServiceService {
 
   constructor(private http: HttpClient) { }
-
-  url = "http://localhost:8200/";
+  private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
+  private url = "http://localhost:8200/";
 
   getPortfolioById(portfolioId: number): Observable<any[]>{
     console.log('getting portfolio')
     return this.http.get<any[]>(this.url + "service/getPortfolioByID/" + portfolioId)
   }
 
-  // updatePortfolioById(portfolio: any){
-  //   return this.http.put(this.url + "service/updatePortfolio", portfolio)
-  // }
+  getUserByEmail(email: string): Observable<any> {
+    return this.http.get<any>(this.getUserByEmailUrl + email);
+  }
+
+  updatePortfolio(portfolio: any){
+    console.log(portfolio)
+    return this.http.put(this.url + "service/updatePortfolio", portfolio)
+  }
 
   getUserInfoById(portfolioId: number): Observable<any[]>{
     return this.http.get<any[]>(this.url + "service/getUser?id=" + portfolioId)
