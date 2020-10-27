@@ -2,5 +2,14 @@
 <app-user-info></app-user-info>
 <app-about-me></app-about-me>
 <app-education></app-education>
+<div class="container">
+    <div>
+        <mat-card-title class="in">Skills</mat-card-title>
+        <mat-icon class="add-button" type="button" value="Add project" (click)="addSkill()" aria-hidden="false" aria-label="add button">add</mat-icon>
+    </div>
+    <div class="skillMatrix" *ngFor="let item of skills, let i=index">
+        <app-skills [skillNumber]="i"></app-skills>
+    </div>
+</div>
 <app-industry-equivalency></app-industry-equivalency>
 <app-projects></app-projects>
