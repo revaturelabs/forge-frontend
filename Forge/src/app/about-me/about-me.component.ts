@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { ToolbarService, HtmlEditorService} from '@syncfusion/ej2-angular-richtexteditor';
@@ -20,14 +20,21 @@ export class AboutMeComponent implements OnInit {
     'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
     'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
     };
+
+  value: string = "";
   
   form: FormGroup;
+
+  @ViewChild('valueTemplate') 
+  private valueTemplate: TemplateRef<any>;
+
   submitted = false;  
   constructor(
     private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
+    console.log(this.valueTemplate);
   }
 
 }
