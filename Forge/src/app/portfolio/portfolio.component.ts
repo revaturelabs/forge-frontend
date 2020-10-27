@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
-
+import { Portfolio } from '../portfolio';
 
 @Component({
   selector: 'app-portfolio',
@@ -9,7 +9,7 @@ import { PotfolioServiceService } from '../service/potfolio-service.service';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
-  portfolio: any = [];
+  portfolio: Portfolio [];
 
   constructor(private portfolioService: PotfolioServiceService) { }
 
@@ -26,8 +26,8 @@ export class PortfolioComponent implements OnInit {
   }
 
   updateEducation(education:any){
-    this.portfolio['education'].push(education);
     this.portfolio['education'].splice(0, 1);
+    this.portfolio['education'].push(education);
   }
 
   updateUserInfo(userInfo:any){

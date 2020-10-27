@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http'; 
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -51,6 +51,7 @@ import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    DragDropModule,
     BrowserAnimationsModule,
     MatCardModule,
     RichTextEditorAllModule,

@@ -82,7 +82,7 @@
         <mat-icon class="add-button" type="button"  (click)="open(content)" aria-hidden="false" aria-label="add button">add</mat-icon>
     </div>
 
-    <div *ngIf ="inputEducation !== undefined ">
+    <div *ngIf ="inputEducation !== undefined && inputEducation.length > 0 ">
         <div class="indent">
             <h5>{{inputEducation['0']['degree'] !== undefined ? inputEducation['0']['degree']: ''}} -
                 Major: {{inputEducation['0']['major'] !== undefined ? inputEducation['0']['major']: '' }} 
