@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { EducationComponent } from './education.component';
 
 describe('EducationComponent', () => {
@@ -9,7 +10,7 @@ describe('EducationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EducationComponent],
-     // imports: [ReactiveFormsModule, FormGroup]
+      imports: [ReactiveFormsModule, FormsModule]
     })
     .compileComponents();
   });
@@ -31,26 +32,28 @@ describe('EducationComponent', () => {
     //university field is required
     errors = university.errors || {};
     expect(errors['required']).toBeTruthy();
+    expect(errors['pattern']).toBeFalsy();
 
     // Set university to something incorrect minlength 3
     university.setValue("At");
     errors = university.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeTruthy();
-    //expect(errors['whitespace']).toBeFalse();
-
-    // Set university to something incorrect white space
-    university.setValue("    ");
-    errors = university.errors || {};
-    expect(errors['required']).toBeFalsy();
-    expect(errors['minlength']).toBeFalsy();
-    expect(errors['whitespace']).toBeTrue();
+    expect(errors['pattern']).toBeFalsy();
 
     // Set university to something correct
     university.setValue("My University is great");
     errors = university.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeFalsy();
+    expect(errors['pattern']).toBeFalsy();
+
+      // Set university to  something incorrect
+    university.setValue("My University @ is great");
+    errors = university.errors || {};
+    expect(errors['required']).toBeFalsy();
+    expect(errors['minlength']).toBeFalsy();
+    expect(errors['pattern']).toBeTruthy();
   });
 
   it('major field validity', () => {
@@ -60,26 +63,28 @@ describe('EducationComponent', () => {
     //major field is required
     errors = major.errors || {};
     expect(errors['required']).toBeTruthy();
+    expect(errors['pattern']).toBeFalsy();
 
     // Set major to something incorrect min length 3
     major.setValue("At");
     errors = major.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeTruthy();
+    expect(errors['pattern']).toBeFalsy();
 
-    // Set major to something incorrect white space
-    major.setValue("    ");
+    // Set major to something incorrect
+    major.setValue("!.");
     errors = major.errors || {};
     expect(errors['required']).toBeFalsy();
-    expect(errors['minlength']).toBeFalsy();
-    expect(errors['whitespace']).toBeTrue();
-    
+    expect(errors['minlength']).toBeTruthy();
+    expect(errors['pattern']).toBeTruthy();
+
     // Set major to something correct
     major.setValue("Art");
     errors = major.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeFalsy();
-
+    expect(errors['pattern']).toBeFalsy();
   });
 
   it('minor field validity', () => {
@@ -90,13 +95,19 @@ describe('EducationComponent', () => {
     minor.setValue("At");
     errors = minor.errors || {};
     expect(errors['minlength']).toBeTruthy();
- 
+    expect(errors['pattern']).toBeFalsy();
+
+    // Set minor to something incorrect
+    minor.setValue("*t");
+    errors = minor.errors || {};
+    expect(errors['minlength']).toBeTruthy();
+    expect(errors['pattern']).toBeTruthy();
 
     // Set minor to something correct
     minor.setValue("Art");
     errors = minor.errors || {};
     expect(errors['minlength']).toBeFalsy();
-
+    expect(errors['pattern']).toBeFalsy();
   });
 
 
@@ -106,19 +117,6 @@ describe('EducationComponent', () => {
 
     //Degree field is required
     errors = degree.errors || {};
-    expect(errors['required']).toBeFalsy();
-  });
-
-  it(' should change the value on selection change', () => {
-    //fixture.detectChanges;
-    let select: HTMLSelectElement = fixture.debugElement.query(By.css('.select-degree')).nativeElement;
-
-    select.value = select.options[2].value;
-    select.dispatchEvent(new Event('change'));
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      let text = select.options[select.selectedIndex].label;
-      expect(text).toBe("Bachelor's Degree");
-    });
+    expect(errors['required']).toBeTruthy();
   });
 });

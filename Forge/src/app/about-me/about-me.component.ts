@@ -1,7 +1,7 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { ToolbarService, HtmlEditorService} from '@syncfusion/ej2-angular-richtexteditor';
+import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
   selector: 'app-about-me',
@@ -25,16 +25,32 @@ export class AboutMeComponent implements OnInit {
   
   form: FormGroup;
 
-  @ViewChild('valueTemplate') 
-  private valueTemplate: TemplateRef<any>;
-
   submitted = false;  
+  
   constructor(
     private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
-    console.log(this.valueTemplate);
+   
+  }
+
+  //@ViewChild ('aboutMe', {static:false}) aboutMe:any;
+  //aboutMe;
+
+
+  // setText(event){
+  //   this.aboutMe = event;
+  //   console.log(event.target.textContent);
+  // }
+
+  @ViewChild('typeRTE') rteObj: RichTextEditorComponent;
+  @ViewChild('valueTemplate') valueTemp: any;
+
+  save(){
+    let rteValue: string = this.rteObj.value;
+    console.log('im saved... nah');
+    console.log(rteValue);
   }
 
 }
