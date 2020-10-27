@@ -11,7 +11,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class EducationComponent implements OnInit {
   
   @Input() inputEducation: []; // decorate the property with @Input()
-  @Output() addEducation = new EventEmitter<FormGroup>();
+  @Output() addEducation = new EventEmitter<any>();
 
   maxdate = new Date();
   mindate = new Date(1973, 0, 1);

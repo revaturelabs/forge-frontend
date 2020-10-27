@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent,  },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path:'aboutMe', component: AboutMeComponent },
   { path:'portfolio', component: PortfolioComponent },
   { path:'navbar', component: NavbarComponent},
+  { path:'admin-home', component: AdminHomeComponent}
 ];
 
 

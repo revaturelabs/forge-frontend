@@ -41,7 +41,6 @@ returnUrl: string;
   this.regService.getUsers().subscribe(
     data=>{
       this.model=data;
-      console.log(data);
     }
 
 
@@ -59,9 +58,6 @@ returnUrl: string;
   login() {
 
  
-
-
-    console.log(this.model);  
   
     // stop here if form is invalid  
     if (this.loginForm.invalid) {  
@@ -71,12 +67,12 @@ returnUrl: string;
     }  
     else {  
 
-
-
-
       for (let i: number = 0; i < this.model.length; i++) {
        if (this.f.email.value == this.model[i]["email"] && this.f.password.value == this.model[i]["password"]) {  
-          console.log("Login successful");            
+
+        if (this.model[i]["admin"]==true){
+
+          console.log("Admin Login successful");            
           this.authService.loginRequest(this.model[i]).subscribe(
             data => {
               console.log(data);
@@ -85,7 +81,25 @@ returnUrl: string;
           localStorage.setItem('loggedIn', "true");
           localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
           console.log(localStorage.getItem('token'));
-          console.log(this.model[i]);
+         
+          this.router.navigate(['/admin-home']);  
+          this.loginError='';
+
+        }
+        
+        else if (this.model[i]["admin"]==false)
+        
+        {
+          console.log("User Login successful");            
+          this.authService.loginRequest(this.model[i]).subscribe(
+            data => {
+              console.log(data);
+            }
+          );
+          localStorage.setItem('loggedIn', "true");
+          localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
+          console.log(localStorage.getItem('token'));
+          
           this.router.navigate([this.returnUrl]);  
           this.loginError='';
        }  
@@ -93,7 +107,7 @@ returnUrl: string;
        this.loginError='The credentials dont match any in our system, please check your username and password.' 
        }  
       }  
-    }  
-
+      }
+    }
   }
 }

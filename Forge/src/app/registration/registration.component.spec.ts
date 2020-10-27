@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RegistrationComponent } from './registration.component';
 
 describe('RegistrationComponent', () => {
@@ -13,7 +13,7 @@ describe('RegistrationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientModule, FormsModule, ReactiveFormsModule, RouterTestingModule ],
+      imports: [ HttpClientTestingModule, HttpClientModule, FormsModule, ReactiveFormsModule, RouterTestingModule ],
       declarations: [ RegistrationComponent ]
     })
     .compileComponents();

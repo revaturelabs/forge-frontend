@@ -3,6 +3,7 @@
         <mat-card-title class="in">Projects</mat-card-title>
         <!-- <input type="button" value="Add project" (click)="addProject()" class="btn btn-light"> -->
         <mat-icon class="add-button" type="button" value="Add project" (click)="addProject()" aria-hidden="false" aria-label="add button">add</mat-icon>
+        <mat-icon class="add-button" type="button" (click)="save()" aria-hidden="false" aria-label="save button">save</mat-icon> 
     </div>
     
     <div *ngFor='let project of projects, let i = index'>
