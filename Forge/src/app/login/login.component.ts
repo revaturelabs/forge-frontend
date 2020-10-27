@@ -41,6 +41,7 @@ returnUrl: string;
   this.regService.getUsers().subscribe(
     data=>{
       this.model=data;
+      console.log(data);
     }
 
 
@@ -81,7 +82,6 @@ returnUrl: string;
           localStorage.setItem('loggedIn', "true");
           localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
           console.log(localStorage.getItem('token'));
-         
           this.router.navigate(['/admin-home']);  
           this.loginError='';
 
@@ -99,7 +99,6 @@ returnUrl: string;
           localStorage.setItem('loggedIn', "true");
           localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
           console.log(localStorage.getItem('token'));
-          
           this.router.navigate([this.returnUrl]);  
           this.loginError='';
        }  
