@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@syncfusion/ej2-angular-richtexteditor';
+import { PotfolioServiceService } from '../service/potfolio-service.service';
 
 @Component({
   selector: 'app-about-me',
@@ -19,36 +20,33 @@ export class AboutMeComponent implements OnInit {
     'Outdent', 'Indent', '|',
     'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
     'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
-    };
+    }; 
   
-  form: FormGroup;
-  submitted = false;  
-  
+  aboutMe = [];
+
   constructor(
-    private formBuilder: FormBuilder,
+    private portfolioService: PotfolioServiceService,
   ) { }
 
   ngOnInit(): void {
-
-
-     console.log("test", this.test);
+    this.getAboutMeInfo(1);
   }
 
+  getAboutMeInfo(id){
+    this.portfolioService.getAboutMeById(id).subscribe( (data) => {
+      this.aboutMe = data;
+      console.log(this.aboutMe);
+    })
+  }
 
   @ViewChild ('test') 
   test:any;
-
-  ngAfterViewInit(){
-    console.log('Value on ngAfterViewInit();');
-   
-  }
 
   setText(event){
     //this.aboutMe = event;
     console.log(event.target.textContent);
   }
 
-  aboutMe:string ="hi";
   save(){
     //let rteValue: string = this.rteObj.value;
     console.log('im saved... nah');
