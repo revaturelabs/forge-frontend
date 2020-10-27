@@ -1,7 +1,8 @@
 <app-navbar></app-navbar>
-<app-user-info></app-user-info>
-<app-about-me></app-about-me>
-<app-education></app-education>
+<app-user-info [inputUserInfo]="portfolio['myUser']"></app-user-info>
+<app-about-me (addAboutMe)="updateAboutMe($event)" [inputAboutMe] = "portfolio['aboutMe']"></app-about-me>
+<app-education (addEducation)="updateEducation($event)" [inputEducation] = "portfolio['education']"></app-education>
+<app-industry-equivalency [inputIndustryEquivalency]="portfolio['industryEquivalency']"></app-industry-equivalency>
 <div class="container">
     <div>
         <mat-card-title class="in">Skills</mat-card-title>
@@ -11,5 +12,4 @@
         <app-skills [skillNumber]="i"></app-skills>
     </div>
 </div>
-<app-industry-equivalency></app-industry-equivalency>
 <app-projects></app-projects>

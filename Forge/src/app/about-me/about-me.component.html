@@ -5,6 +5,10 @@
     </div>
             
     <mat-card-content>
-        <textarea></textarea>
+        <ejs-richtexteditor #typeRTE [toolbarSettings]='tools'>
+            <ng-template #valueTemplate>
+                <p>The Rich Text Editor triggers events based on its actions. </p>
+            </ng-template>
+        </ejs-richtexteditor>
     </mat-card-content>   
 </mat-card>
