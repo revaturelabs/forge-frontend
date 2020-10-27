@@ -40,3 +40,11 @@
   .btn-login {
       background-color: #F26925;
   }
+  .align-button {
+    padding-left: 40%;
+  }
+.image-logo {
+  width: 25%;
+  height: 25%;
+  margin-bottom: 2%;
+}

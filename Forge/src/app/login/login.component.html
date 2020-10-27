@@ -32,7 +32,7 @@
               <div id="login-column" class="col-md-6">
                   <div id="login-box" class="col-md-12">
                       <form id="login-form" class="form" action="" method="post" [formGroup]="loginForm" (ngSubmit)="login()">
-                          <h3 class="text-center rev-color">Forge Login</h3>
+                              <img class="image-logo" src="/assets/img/revlogo.png" alt="">   
                           <div class="form-group">
                               <label for="username" class="rev-color">Username:</label><br>
                               <input type="text" id="login" class="form-control" formControlName="email" placeholder="email">
@@ -43,17 +43,16 @@
                               
                             </div>
                             <div class="row">
-                              <div class="col-6">
+                              <div class="col-12 align-button">
                                 <div class="form-group">
                                   <input type="submit" class="btn btn-login" value="Log In">
                                 </div>
-                              </div>
-                              <div class="col-6">
                                 <div class="form-group">
-                                  <a class="text-right" routerLink='/registration' >Register</a>
+                                  <a class="text-right" routerLink='/registration'> Register</a>
                                 </div>
                               </div>
-                            </div>                           
+                            </div> 
+                            
                         </form>
                         <div class="col">
                           <p>{{loginError}}</p>

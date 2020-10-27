@@ -47,6 +47,7 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="" method="post" [formGroup]="regForm">
+                            <img class="image-logo" src="/assets/img/revlogo.png" alt=""> 
                             <h3 class="text-center rev-color">Registration</h3>
                             <div class="form-group">
                                 <label for="username" class="rev-color">Email:</label><br>
@@ -72,7 +73,7 @@
                             </div>
 
                               <div class="row">
-                                <div class="col-12">
+                                <div class="col-12 align-button">
                                   <div class="form-group">
                                     <input type="button" (click)="packageAndShip()" routerLink='/login' class="btn btn-login" value="Register">   
                                   </div>

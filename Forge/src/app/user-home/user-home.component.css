@@ -2,3 +2,9 @@
     background-color: rgba(177, 91, 11, 0.438);
 }
 
+.btn-login {
+    background-color: #F26925;
+}
+.create-btn {
+    padding-bottom: 2%;
+}
