@@ -9,7 +9,7 @@ export class PotfolioServiceService {
 
   constructor(private http: HttpClient) { }
 
-  url = "http://localhost:8200/admin";
+  url = "http://localhost:8200/service";
 
   getPortfolioById(portfolioId: number): Observable<any[]>{
     return this.http.get<any[]>(this.url + "/getPortfolioByID/" + portfolioId)
