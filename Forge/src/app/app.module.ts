@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http'; 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +18,6 @@ import { SkillsComponent } from './skills/skills.component';
 import { WorkExperienceComponent } from './work-experience/work-experience.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AdminPortViewComponent } from './admin-port-view/admin-port-view.component';
-// import { ChartsModule } from 'ng2-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardHeader, MatCardModule} from '@angular/material/card';
 import { RichTextEditorAllModule, ToolbarService} from '@syncfusion/ej2-angular-richtexteditor';
@@ -54,8 +52,6 @@ import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    // ChartsModule
-
     BrowserAnimationsModule,
     MatCardModule,
     RichTextEditorAllModule,

@@ -4,12 +4,7 @@
         <mat-icon class="right-button" type="button" (click)="save()" aria-hidden="false" aria-label="save button">save</mat-icon>    
     </div>
             
-    <mat-card-content>
-        <ejs-richtexteditor  #typeRTE id='Description' [toolbarSettings]='tools'>
-            <ng-template #valueTemplate>
-                <p (onchange)=setText($event) >The Rich Text Editor triggers events based on its actions. </p>
-        
-            </ng-template>
-        </ejs-richtexteditor>
+    <mat-card-content [formGroup]="form">
+        <textarea></textarea>
     </mat-card-content>   
 </mat-card>

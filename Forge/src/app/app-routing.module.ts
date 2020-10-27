@@ -20,7 +20,7 @@ const routes: Routes = [
   { path:'aboutMe', component: AboutMeComponent },
   { path:'portfolio', component: PortfolioComponent },
   { path:'navbar', component: NavbarComponent},
-  {path:'admin-home', component: AdminHomeComponent}
+  { path:'admin-home', component: AdminHomeComponent}
 ];
 
 
