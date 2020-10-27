@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,8 +12,8 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
-      imports: [ HttpClientTestingModule, FormsModule, ReactiveFormsModule, RouterTestingModule ]
+      imports: [ HttpClientModule, HttpClientTestingModule, FormsModule, ReactiveFormsModule, RouterTestingModule ],
+      declarations: [ LoginComponent ]
     })
     .compileComponents();
   });
@@ -24,5 +26,14 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call login', () => {
+    spyOn(component, "login");
+
+    let button: HTMLSelectElement = fixture.debugElement.query(By.css('#loginButton')).nativeElement;
+    button.click(); 
+
+    expect(component.login).toHaveBeenCalled();
   });
 });

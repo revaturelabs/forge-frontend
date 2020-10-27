@@ -11,6 +11,9 @@ import { Portfolio } from '../portfolio';
 export class PortfolioComponent implements OnInit {
   portfolio = [];
 
+  skills: any = [];
+  skillNumber;
+
   constructor(private portfolioService: PotfolioServiceService) { }
 
   ngOnInit(): void {
@@ -73,5 +76,11 @@ export class PortfolioComponent implements OnInit {
     console.log(industryEq);
     console.log('This is the current Portfolio');
     console.log(this.portfolio);
+  }
+
+  addSkill(){
+    this.skillNumber++;
+    this.skills.push(this.skillNumber);
+    console.log(this.skillNumber);
   }
 }
