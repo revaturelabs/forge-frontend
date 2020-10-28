@@ -27,4 +27,25 @@
 [1021/145838.503:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-9619171\Crashpad\attachments\6d18d138-4f4f-49db-9d82-4cdc6e3eae5e: The system cannot find the path specified. (0x3)
 [1021/224455.288:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-2030619\Crashpad\attachments\548cf4e5-1809-4a9f-b7bb-e79e96a0b5fc: The system cannot find the path specified. (0x3)
 [1021/232906.607:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
-[1021/232931.226:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-8027664\Crashpad\attachments\de56d801-5ec1-4b8a-b6a1-fec455e6733e: The system cannot find the path specified. (0x3)
+<<<<<<< HEAD
+[1021/232931.226:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-8027664\Crashpad\attachments\de56d801-5ec1-4b8a-b6a1-fec455e6733e: The system cannot find the path specified. (0x3)[1026/153956.155:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1026/155824.669:ERROR:file_io_win.cc(171)] CreateFile C:\Users\vinish\AppData\Local\Temp\karma-8946571\Crashpad\reports\943fde4d-97d0-49ae-9299-296254881eb0.dmp: The system cannot find the path specified. (0x3)
+[1026/155824.671:ERROR:crash_report_exception_handler.cc(99)] PrepareNewCrashReport failed
+[1026/155824.943:ERROR:file_io_win.cc(171)] CreateFile C:\Users\vinish\AppData\Local\Temp\karma-8946571\Crashpad\reports\e5afdd96-2413-4c99-8a71-ea1c382b106d.dmp: The system cannot find the path specified. (0x3)
+[1026/155824.943:ERROR:crash_report_exception_handler.cc(99)] PrepareNewCrashReport failed
+[1026/155825.076:ERROR:file_io_win.cc(171)] CreateFile C:\Users\vinish\AppData\Local\Temp\karma-8946571\Crashpad\reports\0969e016-0d58-43da-97cc-612ea7b7f01b.dmp: The system cannot find the path specified. (0x3)
+[1026/155825.076:ERROR:crash_report_exception_handler.cc(99)] PrepareNewCrashReport failed
+[1026/155825.711:ERROR:file_io_win.cc(171)] CreateFile C:\Users\vinish\AppData\Local\Temp\karma-8946571\Crashpad\reports\17f38524-3ef9-47c4-b276-0d8c8f772809.dmp: The system cannot find the path specified. (0x3)
+[1026/155825.711:ERROR:crash_report_exception_handler.cc(99)] PrepareNewCrashReport failed
+[1026/162712.538:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1026/191253.145:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1026/201446.019:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+=======
+[1021/232931.226:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-8027664\Crashpad\attachments\de56d801-5ec1-4b8a-b6a1-fec455e6733e: The system cannot find the path specified. (0x3)[1026/163739.435:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1026/171325.760:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1026/173751.178:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1026/174655.324:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-64679859\Crashpad\attachments\78137fdd-146d-42c5-8f5f-b7292ff506cd: The system cannot find the path specified. (0x3)
+[1026/175729.093:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1026/175932.129:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-71739174\Crashpad\attachments\2892a630-7818-4c65-816e-232ab4892ddd: The system cannot find the path specified. (0x3)
+>>>>>>> 91966dc885daa54ecba29dc6ccf5d85240b6d28a
+[1027/155934.058:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

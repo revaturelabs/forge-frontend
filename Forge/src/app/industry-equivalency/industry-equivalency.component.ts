@@ -1,7 +1,7 @@
-import { Component, DebugElement, OnInit } from '@angular/core';
+
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
-
 
 @Component({
   selector: 'app-industry-equivalency',
@@ -9,9 +9,12 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./industry-equivalency.component.css']
 })
 export class IndustryEquivalencyComponent implements OnInit {
+  @Input() inputIndustryEquivalency: []; // decorate the property with @Input()
+  @Output() addindustryEq = new EventEmitter<any>();
 
   skill: string;
   experience: number;
+  equivalency;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -23,10 +26,12 @@ export class IndustryEquivalencyComponent implements OnInit {
       }]
     }
   };
-  barChartLabels: Label[] = ['Java','HTML','SQL'];
+
   barChartType: ChartType = 'bar';
   barChartLegend = true;
   barChartPlugins = [];
+
+  barChartLabels: Label[] = ['Java','HTML','SQL'];
 
   barChartData: ChartDataSets[] = [
     { data: [14,12,10], label: 'Months Experience' }
@@ -36,6 +41,8 @@ export class IndustryEquivalencyComponent implements OnInit {
     if (this.skill != undefined && this.experience != undefined && this.skill != "" && this.experience != 0){
       let data = this.barChartData[0].data;
       this.barChartLabels.push(this.skill);
+      let obj = {"months": this.experience, "technology": this.skill};
+      this.equivalency.push(obj);
       data.push(this.experience);
     }
   }
@@ -44,6 +51,7 @@ export class IndustryEquivalencyComponent implements OnInit {
     let data = this.barChartData[0].data;
     this.barChartLabels.pop();
     data.pop();
+    this.equivalency.pop();
   }
 
   constructor() { }
@@ -51,4 +59,39 @@ export class IndustryEquivalencyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnChanges():void{
+    if(this.inputIndustryEquivalency != undefined){
+      //console.log(this.inputIndustryEquivalency);
+      this.barChartData[0].data =this.inputIndustryEquivalency.map(item => {
+            return item['months'];
+      });
+
+      this.barChartLabels = this.inputIndustryEquivalency.map(item => {
+        return item['technology'];
+      });
+
+      this.equivalency = this.inputIndustryEquivalency;
+      console.log(this.equivalency);
+    }
+  }
+
+  save(){
+    // let data = this.barChartData[0].data;
+    // let industryEq = [];
+
+    // for  (var i = 0; i < data.length; i++){
+    //   let obj = {"months": data[i], "technology": this.barChartLabels[i]};
+    //   industryEq.push(obj);
+    // }
+    
+    // //Call service
+    // console.log('Call service not implemented');
+    // console.log(industryEq);
+    // console.log(this.equivalency);
+    this.addindustryEq.emit(this.equivalency);
+  }
+
+  getData(){
+    return this.equivalency;
+  }
 }

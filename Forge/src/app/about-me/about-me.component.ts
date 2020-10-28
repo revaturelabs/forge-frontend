@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { ToolbarService, HtmlEditorService} from '@syncfusion/ej2-angular-richtexteditor';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@syncfusion/ej2-angular-richtexteditor';
+import { PotfolioServiceService } from '../service/potfolio-service.service';
 
 @Component({
   selector: 'app-about-me',
@@ -10,6 +9,10 @@ import { ToolbarService, HtmlEditorService} from '@syncfusion/ej2-angular-richte
   providers: [ToolbarService,HtmlEditorService]
 })
 export class AboutMeComponent implements OnInit {
+
+  @Input() inputAboutMe: []; // decorate the property with @Input()
+  @Output() addAboutMe = new EventEmitter<any>();
+  
   public tools: object = {
     type: 'Expand',
         items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
@@ -19,15 +22,26 @@ export class AboutMeComponent implements OnInit {
     'Outdent', 'Indent', '|',
     'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
     'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
-    };
+    }; 
   
-  form: FormGroup;
-  submitted = false;  
-  constructor(
-    private formBuilder: FormBuilder,
-  ) { }
+  aboutMe = [];
+  content: string = "Potatoes";
+
+  constructor() { }
 
   ngOnInit(): void {
+
+  }
+  ngOnChanges(){
+    this.content = this.inputAboutMe['description'];
   }
 
+  save(){
+    this.addAboutMe.emit(this.content);
+    console.log(this.content);
+  }
+
+  getData(){
+    return this.content;
+  }
 }

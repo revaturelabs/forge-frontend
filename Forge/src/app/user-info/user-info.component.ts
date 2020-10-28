@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
-import { UserServiceService } from '../service/user-service.service';
-
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { PotfolioServiceService } from '../service/potfolio-service.service';
 
 @Component({
   selector: 'app-user-info',
@@ -10,38 +10,21 @@ import { UserServiceService } from '../service/user-service.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  constructor(private userservice: UserServiceService) { }
+  @Input() inputUserInfo: [];
+
+  constructor() { }
 
   image ='https://i.imgflip.com/2/3txdnl.jpg';
 
-
-  user = {
-    'name': 'Bob bobson',
-    'occupation' : 'Product Owner',
-    'number'   : 12345,
-    'email' : 'email@email.com',
-    'github': 'githubrepo',
-    'location' : 'creepy'
-   };
-
-   
-
-
-  
-
-
-
-
-
+   userForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]),
+    occupation: new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern('[a-zA-Z ]*')] ),
+    number: new FormControl('', [Validators.required, Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{4}')]),
+    email: new FormControl('', [Validators.required]),
+    github: new FormControl(''),
+    image: new FormControl('')
+  });
 
   ngOnInit(): void {
-    
- 
-}
-  
-  
-
-
-
-
+  }
 }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http'; 
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +23,9 @@ import { MatCardHeader, MatCardModule} from '@angular/material/card';
 import { RichTextEditorAllModule, ToolbarService} from '@syncfusion/ej2-angular-richtexteditor';
 import { MatIconModule } from '@angular/material/icon';
 import { ChartsModule } from 'ng2-charts';
-
+import { NavbarComponent } from './navbar/navbar.component';
+import { MDBBootstrapModule} from 'angular-bootstrap-md';
+import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { ChartsModule } from 'ng2-charts';
     SkillsComponent,
     WorkExperienceComponent,
     ProjectsComponent,
-    AdminPortViewComponent
+    AdminPortViewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -48,11 +51,16 @@ import { ChartsModule } from 'ng2-charts';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    DragDropModule,
     BrowserAnimationsModule,
     MatCardModule,
     RichTextEditorAllModule,
     MatIconModule,
-    ChartsModule
+    ChartsModule,
+    NavbarModule,
+    WavesModule,
+    ButtonsModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [ToolbarService],
   bootstrap: [AppComponent]
