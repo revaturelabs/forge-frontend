@@ -16,3 +16,7 @@
     </div>
 </div>
 <app-projects (updateProject)="updateProject($event)" [inputProject]="portfolio['projects']"></app-projects>
+
+<div class="d-flex justify-content-center">
+    <button type="button" (click)="submitPortfolio()" class="btn btn-secondary" routerLink="/user-home">Submit</button>
+</div>

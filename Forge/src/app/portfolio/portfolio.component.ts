@@ -40,6 +40,10 @@ export class PortfolioComponent implements OnInit {
     }
   }
 
+  submitPortfolio(){
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
+  }
+
   getPortfolio(portfolioId){
     this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
       this.portfolio = data;
