@@ -81,6 +81,10 @@ export class PortfolioComponent implements OnInit {
   addSkill(){
     this.skillNumber++;
     this.skills.push(this.skillNumber);
-    console.log(this.skillNumber);
+  }
+
+  removeSkill(){
+    this.skillNumber--;
+    this.skills.pop();
   }
 }

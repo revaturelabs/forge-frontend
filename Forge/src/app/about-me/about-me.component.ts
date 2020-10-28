@@ -30,8 +30,7 @@ export class AboutMeComponent implements OnInit {
     private portfolioService: PotfolioServiceService,
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   setText(event){
     //this.aboutMe = event;
