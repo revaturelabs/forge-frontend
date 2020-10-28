@@ -40,4 +40,8 @@ export class EducationComponent implements OnInit {
   open(content) {
     this.modalService.open(content, { size: 'lg' });
   }
+
+  getData(){
+    return this.portfolioForm;
+  }
 }
