@@ -45,23 +45,10 @@ export class PortfolioComponent implements OnInit {
   //       this.portfolioService.updatePortfolio(this.portfolio).subscribe();
   //     });
   // }
-
-  updatePortfolio(){
-    let user;
-    this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
-      (data) => {
-        user = data;
-        this.portfolio['myUser'] = user;
-        
-        console.log("Updated portfolio information: " + JSON.stringify(this.portfolio));
-        console.log(this.portfolio)
-        this.portfolioService.updatePortfolio(this.portfolio).subscribe();
-      });
-  }
+  
   updateEducation(education:any){
     this.portfolio['education'].splice(0, 1);
     this.portfolio['education'].push(education);
-    this.updatePortfolio();
   }
 
   updateAboutMe(aboutMeInfo:any){
