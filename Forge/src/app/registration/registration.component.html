@@ -57,25 +57,23 @@
                             <div class="form-group">
                                 <label for="password" class="rev-color">Password:</label><br>
                                 <input type="password" id="defaultRegisterFormPassword" class="form-control"  formControlName="password" placeholder="Password">
-                                <p>{{passwordError}}</p> 
+                                <p>{{passwordError}}</p>
                             </div>
 
                             <div class="form-group">
-                                <label for="password" class="rev-color">Firstname:</label><br>
-                                <input type="lastname" id="defaultRegisterFormLastName" class="form-control"  formControlName="lastname" placeholder="Last Name">
-                                <p>{{passwordError}}</p> 
+                                <label for="firstname" class="rev-color">Firstname:</label><br>
+                                <input type="firstname" id="defaultRegisterFormFirstName" class="form-control"  formControlName="firstname" placeholder="First Name">
                             </div>
 
                             <div class="form-group">
-                                <label for="password" class="rev-color">Lastname:</label><br>
+                                <label for="lastname" class="rev-color">Lastname:</label><br>
                                 <input type="lastname" id="defaultRegisterFormLastName" class="form-control"  formControlName="lastname" placeholder="Last Name">
-                                <p>{{passwordError}}</p> 
                             </div>
 
                               <div class="row">
                                 <div class="col-12 align-button">
                                   <div class="form-group">
-                                    <input type="button" (click)="packageAndShip()" routerLink='/login' class="btn btn-login" value="Register">   
+                                    <input type="button" id="registerButton" (click)="packageAndShip()" routerLink='/login' class="btn btn-login" value="Register">   
                                   </div>
                                 </div>
                               </div>                            
