@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Portfolio } from '../portfolio/portfolioModel';
 import { AuthService } from '../service/auth-service.service';
+import { UserServiceService } from 'src/app/service/user-service.service';
+import { UserHome } from 'src/app/user-home/userModel';
 
 @Component({
   selector: 'app-user-home',
@@ -8,22 +11,20 @@ import { AuthService } from '../service/auth-service.service';
 })
 export class UserHomeComponent implements OnInit {
 
-  constructor(private authService:AuthService) { }
+  portfolios: Portfolio[] = [];
+  constructor(private authService:AuthService, private userService: UserServiceService) { }
 
   ngOnInit(): void {
 
-this.authService.infoRequest().subscribe(
-  
-  data=>{console.log(data);
+    this.authService.infoRequest().subscribe(
+      data=>{console.log(data);
+        this.userService.setId(data.userId);
 
-
-});
+        this.userService.getPortfolios().subscribe(data =>
+          {for(let element of data){
+            this.portfolios.push(element);
+          }
+        });
+    });
   }
-
-  
-
-
-
-
-
 }
