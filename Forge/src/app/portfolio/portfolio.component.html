@@ -1,6 +1,16 @@
 <app-navbar></app-navbar>
-<app-user-info (updateUserInfo)="updateUserInfo($event)"></app-user-info>
-<app-about-me></app-about-me>
+<app-user-info [inputUserInfo]="portfolio['myUser']"></app-user-info>
+<app-about-me (addAboutMe)="updateAboutMe($event)" [inputAboutMe] = "portfolio['aboutMe']"></app-about-me>
 <app-education (addEducation)="updateEducation($event)" [inputEducation] = "portfolio['education']"></app-education>
 <app-industry-equivalency [inputIndustryEquivalency]="portfolio['industryEquivalency']"></app-industry-equivalency>
+<div class="container">
+    <div>
+        <mat-card-title class="in">Skills</mat-card-title>
+        <mat-icon class="remove-button" type="button" value="Remove project" (click)="removeSkill()" aria-hidden="false" aria-label="remove button">remove</mat-icon>
+        <mat-icon class="add-button" type="button" value="Add project" (click)="addSkill()" aria-hidden="false" aria-label="add button">add</mat-icon>
+    </div>
+    <div class="skillMatrix" *ngFor="let item of skills, let i=index">
+        <app-skills [skillNumber]="i"></app-skills>
+    </div>
+</div>
 <app-projects></app-projects>

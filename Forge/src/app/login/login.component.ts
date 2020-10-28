@@ -59,9 +59,6 @@ returnUrl: string;
   login() {
 
  
-
-
-    console.log(this.model);  
   
     // stop here if form is invalid  
     if (this.loginForm.invalid) {  
@@ -85,7 +82,6 @@ returnUrl: string;
           localStorage.setItem('loggedIn', "true");
           localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
           console.log(localStorage.getItem('token'));
-          console.log(this.model[i]);
           this.router.navigate(['/admin-home']);  
           this.loginError='';
 
@@ -103,7 +99,6 @@ returnUrl: string;
           localStorage.setItem('loggedIn', "true");
           localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
           console.log(localStorage.getItem('token'));
-          console.log(this.model[i]);
           this.router.navigate([this.returnUrl]);  
           this.loginError='';
        }  

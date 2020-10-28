@@ -79,4 +79,8 @@ export class IndustryEquivalencyComponent implements OnInit {
     //Call service
     console.log('Call service not implemented');
   }
+
+  getData(){
+    return [this.barChartLabels, this.barChartData[0].data];
+  }
 }

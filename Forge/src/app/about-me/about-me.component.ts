@@ -1,7 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@syncfusion/ej2-angular-richtexteditor';
+import { PotfolioServiceService } from '../service/potfolio-service.service';
 
 @Component({
   selector: 'app-about-me',
@@ -10,6 +9,10 @@ import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@sync
   providers: [ToolbarService,HtmlEditorService]
 })
 export class AboutMeComponent implements OnInit {
+
+  @Input() inputAboutMe: []; // decorate the property with @Input()
+  @Output() addAboutMe = new EventEmitter<any>();
+  
   public tools: object = {
     type: 'Expand',
         items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
@@ -19,41 +22,34 @@ export class AboutMeComponent implements OnInit {
     'Outdent', 'Indent', '|',
     'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
     'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
-    };
+    }; 
   
-  form: FormGroup;
-  submitted = false;  
-  
+  aboutMe = [];
+  content: string = "Potatoes";
+
   constructor(
-    private formBuilder: FormBuilder,
+    private portfolioService: PotfolioServiceService,
   ) { }
 
-  ngOnInit(): void {
-
-
-     console.log("test", this.test);
-  }
-
-
-  @ViewChild ('test') 
-  test:any;
-
-  ngAfterViewInit(){
-    console.log('Value on ngAfterViewInit();');
-   
-  }
+  ngOnInit(): void {}
 
   setText(event){
     //this.aboutMe = event;
     console.log(event.target.textContent);
   }
 
-  aboutMe:string ="hi";
+  @ViewChild('typeRTE') rteObj: RichTextEditorComponent;
+  
   save(){
-    //let rteValue: string = this.rteObj.value;
-    console.log('im saved... nah');
-    //console.log(this.aboutMe);
-    console.log("test", this.test.nativeElement);
+    let rteValue: string = this.rteObj.value;
+    this.addAboutMe.emit(this.rteObj.value);
   }
 
+  check(){
+    console.log(this.content);
+  }
+
+  getData(){
+    return this.content;
+  }
 }

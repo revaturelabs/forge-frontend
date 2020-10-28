@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
-
+import { Portfolio } from '../portfolio';
 
 @Component({
   selector: 'app-portfolio',
@@ -9,31 +9,82 @@ import { PotfolioServiceService } from '../service/potfolio-service.service';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
-  portfolio: any = [];
+  portfolio = [];
+
+  skills: any = [];
+  skillNumber;
 
   constructor(private portfolioService: PotfolioServiceService) { }
 
   ngOnInit(): void {
-    this.getPortfolio();
+    this.getPortfolio(1);
   }
 
-  getPortfolio(){
-    this.portfolioService.getPortfolioById(1).subscribe((data) =>{
+  getPortfolio(portfolioId){
+    this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
       this.portfolio = data;
-      //this.portfolio.push(this.user);
-      console.log(this.portfolio);
+      let user;
+
+      this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
+        (data) => {
+          user = data;
+          this.portfolio['myUser'] = user;
+          console.log(this.portfolio);
+        });
     })
   }
 
+  // updatePortfolio(status: string){
+  //   let user;
+  //   this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
+  //     (data) => {
+  //       user = data;
+  //       this.portfolio['myUser'] = user;
+        
+  //       console.log("Updated portfolio information: " + JSON.stringify(this.portfolio));
+  //       this.portfolioService.updatePortfolio(this.portfolio).subscribe();
+  //     });
+  // }
+
+  updatePortfolio(){
+    let user;
+    this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
+      (data) => {
+        user = data;
+        this.portfolio['myUser'] = user;
+        
+        console.log("Updated portfolio information: " + JSON.stringify(this.portfolio));
+        console.log(this.portfolio)
+        this.portfolioService.updatePortfolio(this.portfolio).subscribe();
+      });
+  }
   updateEducation(education:any){
-    this.portfolio['education'].push(education);
     this.portfolio['education'].splice(0, 1);
+    this.portfolio['education'].push(education);
+    this.updatePortfolio();
   }
 
-  updateUserInfo(userInfo:any){
-    // this.portfolio['user'].push(userInfo);
-    // this.portfolio['user'].splice(0, 1);
-    console.log('updating user info');
-    console.log(userInfo);
+  updateAboutMe(aboutMeInfo:any){
+    console.log('updating about me info');
+    console.log(aboutMeInfo);
+    console.log('This is the current Portfolio');
+    console.log(this.portfolio);
+  }
+
+  updateIndustryEq(industryEq:any){
+    console.log('updating industryEq');
+    console.log(industryEq);
+    console.log('This is the current Portfolio');
+    console.log(this.portfolio);
+  }
+
+  addSkill(){
+    this.skillNumber++;
+    this.skills.push(this.skillNumber);
+  }
+
+  removeSkill(){
+    this.skillNumber--;
+    this.skills.pop();
   }
 }

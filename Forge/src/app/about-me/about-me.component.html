@@ -2,9 +2,9 @@
     <div>
         <mat-card-title class="in">About Me</mat-card-title>
         <mat-icon class="right-button" type="button" (click)="save()" aria-hidden="false" aria-label="save button">save</mat-icon>    
-    </div>
-            
-    <mat-card-content [formGroup]="form">
-        <textarea></textarea>
+    </div>   
+    <mat-card-content>
+        <textarea [(ngModel)]="content"></textarea>
     </mat-card-content>   
+    <mat-icon type="button" (click)="check()" aria-hidden="false" aria-label="check button">home</mat-icon>
 </mat-card>

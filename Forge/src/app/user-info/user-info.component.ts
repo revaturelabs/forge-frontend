@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { PotfolioServiceService } from '../service/potfolio-service.service';
 
 @Component({
   selector: 'app-user-info',
@@ -9,20 +10,11 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class UserInfoComponent implements OnInit {
 
-  @Input() inputUserInfo: []; // decorate the property with @Input()
-  @Output() updateUserInfo = new EventEmitter<any>();
+  @Input() inputUserInfo: [];
 
-  constructor(private modalService: NgbModal) { }
+  constructor() { }
 
   image ='https://i.imgflip.com/2/3txdnl.jpg';
-  user = {
-    'name': 'Bob bobson',
-    'occupation' : 'Product Owner',
-    'number'   : 12345,
-    'email' : 'email@email.com',
-    'github': 'githubrepo',
-    'location' : 'creepy'
-   };
 
    userForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]),
@@ -33,21 +25,6 @@ export class UserInfoComponent implements OnInit {
     image: new FormControl('')
   });
 
-  ngOnInit(): void {}
-
-  ngOnchanges(){
-    console.log(this.inputUserInfo)
+  ngOnInit(): void {
   }
-
-  onSubmit(){
-    console.log('in on submit')
-    this.updateUserInfo.emit(this.userForm.value);
-    
-    this.userForm.reset();
-  }
-
-  open(content) {
-    this.modalService.open(content, { size: 'lg' });
-  }
-  
 }
