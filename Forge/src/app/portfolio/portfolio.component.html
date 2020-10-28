@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
-<app-user-info [inputUserInfo]="portfolio['myUser']"></app-user-info>
-<app-about-me (addAboutMe)="updateAboutMe($event)" [inputAboutMe] = "portfolio['aboutMe']"></app-about-me>
+<div *ngIf= "portfolio['myUser'] != undefined">
+    <app-user-info [inputUserInfo]="portfolio['myUser']"></app-user-info>
+</div>
+<app-about-me  (addAboutMe)="updateAboutMe($event)"   [inputAboutMe] = "portfolio['aboutMe']"></app-about-me>
 <app-education (addEducation)="updateEducation($event)" [inputEducation] = "portfolio['education']"></app-education>
 <app-industry-equivalency [inputIndustryEquivalency]="portfolio['industryEquivalency']"></app-industry-equivalency>
 <div class="container">

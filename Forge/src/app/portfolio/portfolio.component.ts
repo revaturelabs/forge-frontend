@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
-import { Portfolio } from '../portfolio';
+import { Portfolio } from '../models/portfolio';
+import { Education } from '../models/education';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-portfolio',
@@ -9,15 +11,20 @@ import { Portfolio } from '../portfolio';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
-  portfolio = [];
+  portfolio:Object;
 
   skills: any = [];
   skillNumber;
 
-  constructor(private portfolioService: PotfolioServiceService) { }
+  constructor(private portfolioService: PotfolioServiceService,private router: Router) { 
+
+  }
 
   ngOnInit(): void {
-    this.getPortfolio(1);
+    let url:string = this.router.url;
+    let splitUrl =  url.split('/');
+    this.getPortfolio(splitUrl[splitUrl.length -1]);
+    this.portfolioService.setPortfolio(this.portfolio);
   }
 
   getPortfolio(portfolioId){
@@ -33,29 +40,17 @@ export class PortfolioComponent implements OnInit {
         });
     })
   }
-
-  // updatePortfolio(status: string){
-  //   let user;
-  //   this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
-  //     (data) => {
-  //       user = data;
-  //       this.portfolio['myUser'] = user;
-        
-  //       console.log("Updated portfolio information: " + JSON.stringify(this.portfolio));
-  //       this.portfolioService.updatePortfolio(this.portfolio).subscribe();
-  //     });
-  // }
   
   updateEducation(education:any){
+    education['id'] = this.portfolio['education']['0']['id'];
     this.portfolio['education'].splice(0, 1);
     this.portfolio['education'].push(education);
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
   }
 
   updateAboutMe(aboutMeInfo:any){
-    console.log('updating about me info');
-    console.log(aboutMeInfo);
-    console.log('This is the current Portfolio');
-    console.log(this.portfolio);
+    this.portfolio['aboutMe']['description'] = aboutMeInfo;
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
   }
 
   updateIndustryEq(industryEq:any){
@@ -64,7 +59,7 @@ export class PortfolioComponent implements OnInit {
     console.log('This is the current Portfolio');
     console.log(this.portfolio);
   }
-
+  
   addSkill(){
     this.skillNumber++;
     this.skills.push(this.skillNumber);

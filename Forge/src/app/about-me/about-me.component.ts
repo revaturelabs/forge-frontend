@@ -27,25 +27,17 @@ export class AboutMeComponent implements OnInit {
   aboutMe = [];
   content: string = "Potatoes";
 
-  constructor(
-    private portfolioService: PotfolioServiceService,
-  ) { }
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
-  setText(event){
-    //this.aboutMe = event;
-    console.log(event.target.textContent);
+  }
+  ngOnChanges(){
+    this.content = this.inputAboutMe['description'];
   }
 
-  @ViewChild('typeRTE') rteObj: RichTextEditorComponent;
-  
   save(){
-    let rteValue: string = this.rteObj.value;
-    this.addAboutMe.emit(this.rteObj.value);
-  }
-
-  check(){
+    this.addAboutMe.emit(this.content);
     console.log(this.content);
   }
 

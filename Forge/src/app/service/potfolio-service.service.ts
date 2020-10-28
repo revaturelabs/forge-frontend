@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Portfolio } from '../portfolio/portfolioModel';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,23 @@ export class PotfolioServiceService {
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
   private url = "http://localhost:8200/";
 
-  getPortfolioById(portfolioId: number): Observable<any[]>{
+  aboutMeDescription:string;
+  currPortfolio: Object;
+
+
+  setAboutMe(aboutme: string){
+    console.log(aboutme);
+    this.aboutMeDescription = aboutme;
+  }
+
+  setPortfolio(portfolio: Object){
+    console.log(portfolio);
+    this.currPortfolio = portfolio;
+  }
+
+  getPortfolioById(portfolioId: number): Observable<Object>{
     console.log('getting portfolio')
-    return this.http.get<any[]>(this.url + "service/getPortfolioByID/" + portfolioId)
+    return this.http.get<Object>(this.url + "service/getPortfolioByID/" + portfolioId)
   }
 
   getUserByEmail(email: string): Observable<any> {

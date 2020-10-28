@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Education } from '../models/education';
+import { PotfolioServiceService } from '../service/potfolio-service.service';
 
 @Component({
   selector: 'app-education',
@@ -36,12 +39,8 @@ export class EducationComponent implements OnInit {
   }
 
   constructor(private modalService: NgbModal) {}
-
+  
   open(content) {
     this.modalService.open(content, { size: 'lg' });
-  }
-
-  getData(){
-    return this.portfolioForm;
   }
 }
