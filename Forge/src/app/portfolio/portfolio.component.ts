@@ -15,16 +15,29 @@ export class PortfolioComponent implements OnInit {
 
   skills: any = [];
   skillNumber;
+  portfolioid;
 
   constructor(private portfolioService: PotfolioServiceService,private router: Router) { 
-
+    let url:string = this.router.url;
+    let splitUrl =  url.split('/');
+    this.portfolioid = splitUrl[splitUrl.length -1];
   }
 
   ngOnInit(): void {
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
     this.getPortfolio(splitUrl[splitUrl.length -1]);
-    this.portfolioService.setPortfolio(this.portfolio);
+    //this.portfolioService.setPortfolio(this.portfolio);
+  }
+  setSkillsMatrix(){
+    console.log('calling ser skills')
+    if(this.portfolio != undefined){
+      let skillMatrixlength = this.portfolio['skillMatrix'].length;
+        for(var i = 0; i < skillMatrixlength; i++ ){
+          this.skills.push(i);
+        }
+        console.log(this.skills);
+    }
   }
 
   getPortfolio(portfolioId){
@@ -39,6 +52,7 @@ export class PortfolioComponent implements OnInit {
           console.log(this.portfolio);
         });
     })
+    this.setSkillsMatrix();
   }
   
   updateEducation(education:any){
@@ -54,11 +68,29 @@ export class PortfolioComponent implements OnInit {
   }
 
   updateIndustryEq(industryEq:any){
-    console.log('updating industryEq');
+    let projectLength = this.portfolio['industryEquivalency'].length;
+
     console.log(industryEq);
+
+    this.portfolio['industryEquivalency'].splice(0,projectLength-1);
+    this.portfolio['industryEquivalency'] = industryEq;
+  
     console.log('This is the current Portfolio');
     console.log(this.portfolio);
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
   }
+  
+  updateProject(projects){
+    let projectLength = this.portfolio['projects'].length;
+    this.portfolio['projects'].splice(0,projectLength-1);
+    this.portfolio['projects'] = projects;
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
+    setTimeout(() => this.getPortfolio(this.portfolioid), 500);
+
+    console.log(projects);
+    console.log(this.portfolio);
+  }
+
   
   addSkill(){
     this.skillNumber++;

@@ -4,7 +4,7 @@
 </div>
 <app-about-me  (addAboutMe)="updateAboutMe($event)"   [inputAboutMe] = "portfolio['aboutMe']"></app-about-me>
 <app-education (addEducation)="updateEducation($event)" [inputEducation] = "portfolio['education']"></app-education>
-<app-industry-equivalency [inputIndustryEquivalency]="portfolio['industryEquivalency']"></app-industry-equivalency>
+<app-industry-equivalency (addindustryEq)="updateIndustryEq($event)" [inputIndustryEquivalency]="portfolio['industryEquivalency']"></app-industry-equivalency>
 <div class="container">
     <div>
         <mat-card-title class="in">Skills</mat-card-title>
@@ -15,4 +15,4 @@
         <app-skills [skillNumber]="i"></app-skills>
     </div>
 </div>
-<app-projects></app-projects>
+<app-projects (updateProject)="updateProject($event)" [inputProject]="portfolio['projects']"></app-projects>

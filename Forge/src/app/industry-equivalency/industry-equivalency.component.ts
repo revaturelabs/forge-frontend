@@ -10,9 +10,11 @@ import { Label } from 'ng2-charts';
 })
 export class IndustryEquivalencyComponent implements OnInit {
   @Input() inputIndustryEquivalency: []; // decorate the property with @Input()
+  @Output() addindustryEq = new EventEmitter<any>();
 
   skill: string;
   experience: number;
+  equivalency;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -39,6 +41,8 @@ export class IndustryEquivalencyComponent implements OnInit {
     if (this.skill != undefined && this.experience != undefined && this.skill != "" && this.experience != 0){
       let data = this.barChartData[0].data;
       this.barChartLabels.push(this.skill);
+      let obj = {"months": this.experience, "technology": this.skill};
+      this.equivalency.push(obj);
       data.push(this.experience);
     }
   }
@@ -47,6 +51,7 @@ export class IndustryEquivalencyComponent implements OnInit {
     let data = this.barChartData[0].data;
     this.barChartLabels.pop();
     data.pop();
+    this.equivalency.pop();
   }
 
   constructor() { }
@@ -56,7 +61,7 @@ export class IndustryEquivalencyComponent implements OnInit {
 
   ngOnChanges():void{
     if(this.inputIndustryEquivalency != undefined){
-      console.log(this.inputIndustryEquivalency);
+      //console.log(this.inputIndustryEquivalency);
       this.barChartData[0].data =this.inputIndustryEquivalency.map(item => {
             return item['months'];
       });
@@ -64,23 +69,29 @@ export class IndustryEquivalencyComponent implements OnInit {
       this.barChartLabels = this.inputIndustryEquivalency.map(item => {
         return item['technology'];
       });
+
+      this.equivalency = this.inputIndustryEquivalency;
+      console.log(this.equivalency);
     }
   }
 
   save(){
-    let data = this.barChartData[0].data;
-    let industryEq = [];
+    // let data = this.barChartData[0].data;
+    // let industryEq = [];
 
-    for  (var i = 0; i < data.length; i++){
-      let obj = {"months": data[i], "technology": this.barChartLabels[i]};
-      industryEq.push(obj);
-    }
-
-    //Call service
-    console.log('Call service not implemented');
+    // for  (var i = 0; i < data.length; i++){
+    //   let obj = {"months": data[i], "technology": this.barChartLabels[i]};
+    //   industryEq.push(obj);
+    // }
+    
+    // //Call service
+    // console.log('Call service not implemented');
+    // console.log(industryEq);
+    // console.log(this.equivalency);
+    this.addindustryEq.emit(this.equivalency);
   }
 
   getData(){
-    return [this.barChartLabels, this.barChartData[0].data];
+    return this.equivalency;
   }
 }

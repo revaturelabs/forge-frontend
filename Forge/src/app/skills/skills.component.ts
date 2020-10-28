@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, MultiDataSet, SingleDataSet } from 'ng2-charts';
@@ -18,6 +18,9 @@ export class SkillsComponent implements OnInit {
   skillList = [];
   monthArr = [];
   skillArr = [];
+  
+  ngOnInit(): void {
+  }
 
   // doughnutChartOptions: ChartOptions = {
   //   responsive: true,
@@ -88,10 +91,6 @@ export class SkillsComponent implements OnInit {
     this.skillArr.splice(event, 1);
     this.monthArr.splice(event, 1);
     this.doughnutChartMethod();
-  }
-
-  ngOnInit(): void {
-  
   }
 
   getData() {
