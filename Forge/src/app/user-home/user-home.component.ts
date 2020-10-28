@@ -18,18 +18,13 @@ export class UserHomeComponent implements OnInit {
 
     this.authService.infoRequest().subscribe(
       data=>{console.log(data);
+        this.userService.setId(data.userId);
+
+        this.userService.getPortfolios().subscribe(data =>
+          {for(let element of data){
+            this.portfolios.push(element);
+          }
+        });
     });
-
-    this.userService.getPortfolios().subscribe(data =>
-      {for(let element of data){
-        this.portfolios.push(element);
-      }});
   }
-
-  
-
-
-
-
-
 }

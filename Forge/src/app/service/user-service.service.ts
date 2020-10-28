@@ -7,16 +7,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserServiceService {
+  private id: number = 0;
 
   /*PLEASE NOTE HARDCODED USER ID !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-  private getPortfoliosUrl: string = "http://localhost:8200/service/getPortfolio/?id=" + this.id; 
+  private getPortfoliosUrl: string = "http://localhost:8200/service/getPortfolio/?id=";
+  
+  constructor(private http: HttpClient) {}
 
-  
-  constructor(private http: HttpClient, private id: number) { 
-  
-  }
   getPortfolios(): Observable<Portfolio[]>{
-    return this.http.get<Portfolio[]>(this.getPortfoliosUrl);
+    console.log(this.id);
+    return this.http.get<Portfolio[]>(this.getPortfoliosUrl + this.id);
   }
 
+  setId(id: number): void {
+    this.id = id;
+  }
 }
