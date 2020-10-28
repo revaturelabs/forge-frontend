@@ -94,4 +94,8 @@ export class SkillsComponent implements OnInit {
   
   }
 
+  getData() {
+    return this.skillList;
+  }
+
 }

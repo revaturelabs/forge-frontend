@@ -25,6 +25,7 @@ export class AboutMeComponent implements OnInit {
     }; 
   
   aboutMe = [];
+  content: string = "Potatoes";
 
   constructor(
     private portfolioService: PotfolioServiceService,
@@ -42,5 +43,13 @@ export class AboutMeComponent implements OnInit {
   save(){
     let rteValue: string = this.rteObj.value;
     this.addAboutMe.emit(this.rteObj.value);
+  }
+
+  check(){
+    console.log(this.content);
+  }
+
+  getData(){
+    return this.content;
   }
 }

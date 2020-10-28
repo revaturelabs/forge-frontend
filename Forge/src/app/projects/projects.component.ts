@@ -29,18 +29,28 @@ export class ProjectsComponent implements OnInit {
   }
 
   projects = [];
-  projectNumber=0;  
+  projectComponents = [];
+  projectNumber=0;
 
   addProject(){
     this.projectNumber++;
     this.projects.push(this.projectNumber);
+    this.projectComponents.push(
+      {
+        "name":"Enter Project Name",
+        "responsibilities":"Enter Project Responsibilities",
+        "technologies":"Enter Project Technologies"
+      }
+    );
     console.log(this.projectNumber);
     console.log(this.projects);
+    console.log(this.projectComponents);
   }
 
   deleteProject(index){
     console.log(index);
     this.projects.splice(index,1);
+    this.projectComponents.splice(index,1);
     console.log(this.projectNumber);
     console.log(this.projects);
   }
@@ -51,5 +61,10 @@ export class ProjectsComponent implements OnInit {
 
   save(){
     console.log('this isnt saving')
+  }
+
+  getData(){
+    console.log(this.projectComponents);
+    return this.projectComponents;
   }
 }
