@@ -8,10 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class UserServiceService {
 
-  private getPortfoliosUrl: string = "http://localhost:8200/service/getAllPortfolios";
+  /*PLEASE NOTE HARDCODED USER ID !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+  private getPortfoliosUrl: string = "http://localhost:8200/service/getPortfolio/?id=" + this.id; 
 
-  constructor(private http: HttpClient) { 
-
+  
+  constructor(private http: HttpClient, private id: number) { 
+  
   }
   getPortfolios(): Observable<Portfolio[]>{
     return this.http.get<Portfolio[]>(this.getPortfoliosUrl);
