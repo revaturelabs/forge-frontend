@@ -32,6 +32,7 @@ import { AdminEducationComponent } from './admin-education/admin-education.compo
 import { AdminIndustryEquivalnecyComponent } from './admin-industry-equivalnecy/admin-industry-equivalnecy.component';
 import { AdminSkillsComponent } from './admin-skills/admin-skills.component';
 import { AdminProjectsComponent } from './admin-projects/admin-projects.component';
+import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AdminProjectsComponent } from './admin-projects/admin-projects.componen
     AdminEducationComponent,
     AdminIndustryEquivalnecyComponent,
     AdminSkillsComponent,
-    AdminProjectsComponent
+    AdminProjectsComponent,
+    NavbarAdminComponent
   ],
   imports: [
     BrowserModule,

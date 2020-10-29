@@ -13,24 +13,24 @@
                 <mat-card-title>Project Name</mat-card-title>
             </mat-card-header>    
             <mat-card-content>
-                <textarea [(ngModel)]="projectComponents[i].name"></textarea>
+                <textarea [(ngModel)]="projectComponents[i].name" readonly></textarea>
             </mat-card-content>   
     
             <mat-card-header>
                 <mat-card-title>Role / Responsibilities</mat-card-title>
             </mat-card-header>    
             <mat-card-content>
-                <textarea [(ngModel)]="projectComponents[i].responsibilities"></textarea>
+                <textarea [(ngModel)]="projectComponents[i].responsibilities" readonly></textarea>
             </mat-card-content>  
     
             <mat-card-header>
                 <mat-card-title>Technologies</mat-card-title>
             </mat-card-header>    
             <mat-card-content>
-                <textarea [(ngModel)]="projectComponents[i].technologies"></textarea>
+                <textarea [(ngModel)]="projectComponents[i].technologies" readonly></textarea>
             </mat-card-content>
             <!-- <input type="button" value="Delete project" (click)="deleteProject(i)"> -->
-            <mat-icon type="button" value="Delete project" (click)="deleteProject(i)" aria-hidden="false" aria-label="delete button">delete</mat-icon>
+            <!-- <mat-icon type="button" value="Delete project" (click)="deleteProject(i)" aria-hidden="false" aria-label="delete button">delete</mat-icon> -->
         </div>
     </div>      
 </mat-card>
