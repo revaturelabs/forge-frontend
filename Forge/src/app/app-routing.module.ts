@@ -18,7 +18,7 @@ const routes: Routes = [
   { path:'', component: LoginComponent},
   { path:'project', component: ProjectsComponent },
   { path:'aboutMe', component: AboutMeComponent },
-  { path:'portfolio/:id', component: PortfolioComponent },
+  { path:'portfolio', component: PortfolioComponent },
   { path:'navbar', component: NavbarComponent},
   { path:'admin-home', component: AdminHomeComponent}
 ];
