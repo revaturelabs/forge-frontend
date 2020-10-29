@@ -1,22 +1,16 @@
-<div *ngIf="currentPortfolio != undefined"> 
-    <div *ngIf="currentPortfolio['status'] == 'Pending'" class="form-group">
-     <textarea class="form-control" [(ngModel)]="feedbackInfo" placeholder="Feedback Here...." name="textform"></textarea>
-     <button class="btn btn-success" (click)='approveOrDeny("Approved")'>Approve</button>
-     <button class="btn btn-danger" (click)='approveOrDeny("Denied")'>Deny</button>
+<app-navbar></app-navbar>
+<app-admin-user-info></app-admin-user-info>
+<app-admin-about-me></app-admin-about-me>
+<app-admin-education></app-admin-education>
+<app-admin-industry-equivalnecy></app-admin-industry-equivalnecy>
+<div class="container">
+    <div>
+        <mat-card-title class="in">Skills</mat-card-title>
+        <mat-icon class="remove-button" type="button" value="Remove project" (click)="removeSkill()" aria-hidden="false" aria-label="remove button">remove</mat-icon>
+        <mat-icon class="add-button" type="button" value="Add project" (click)="addSkill()" aria-hidden="false" aria-label="add button">add</mat-icon>
     </div>
-  </div> 
-  
-     <div class= "container">
-       <div class= "row">
-        <ul>
-          <li><b></b></li>
-          <li><b>About Me</b></li>
-          <li><b>Education</b></li>
-          <li><b>Industry Equivalency</b></li>
-          <li><b>Skills</b></li>
-          <li><b>Work Experiences</b></li>
-          <li><b>Projects</b></li>
-        </ul>
-       </div>
-     </div>
-  
+    <div class="skillMatrix" *ngFor="let item of skills, let i=index">
+        <app-admin-skills [skillNumber]="i"></app-admin-skills>
+    </div>
+</div>
+<app-admin-projects (updateProject)="updateProject($event)" [inputProject]="portfolio['projects']"></app-admin-projects>

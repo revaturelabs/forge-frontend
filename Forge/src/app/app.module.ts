@@ -26,6 +26,12 @@ import { ChartsModule } from 'ng2-charts';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MDBBootstrapModule} from 'angular-bootstrap-md';
 import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
+import { AdminUserInfoComponent } from './admin-user-info/admin-user-info.component';
+import { AdminAboutMeComponent } from './admin-about-me/admin-about-me.component';
+import { AdminEducationComponent } from './admin-education/admin-education.component';
+import { AdminIndustryEquivalnecyComponent } from './admin-industry-equivalnecy/admin-industry-equivalnecy.component';
+import { AdminSkillsComponent } from './admin-skills/admin-skills.component';
+import { AdminProjectsComponent } from './admin-projects/admin-projects.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +49,13 @@ import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
     WorkExperienceComponent,
     ProjectsComponent,
     AdminPortViewComponent,
-    NavbarComponent
+    NavbarComponent,
+    AdminUserInfoComponent,
+    AdminAboutMeComponent,
+    AdminEducationComponent,
+    AdminIndustryEquivalnecyComponent,
+    AdminSkillsComponent,
+    AdminProjectsComponent
   ],
   imports: [
     BrowserModule,

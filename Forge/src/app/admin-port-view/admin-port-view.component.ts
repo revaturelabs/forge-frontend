@@ -1,79 +1,107 @@
-import { identifierName } from '@angular/compiler';
-import { Component, Injectable, OnInit } from '@angular/core';
-import { AdminHomeComponent } from '../admin-home/admin-home.component';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminServiceService } from '../service/admin-service.service';
-
+import { PotfolioServiceService } from '../service/potfolio-service.service';
 
 @Component({
   selector: 'app-admin-port-view',
   templateUrl: './admin-port-view.component.html',
   styleUrls: ['./admin-port-view.component.css']
 })
-
-@Injectable({
-  providedIn: 'root'
-})
 export class AdminPortViewComponent implements OnInit {
-  /*
-  *where the feedback string is going
-  *and current portfolio variable
-  */
-  feedbackInfo: string= '';
-  currentPortfolio: Object;
- 
-  constructor(private router: Router, private adminService: AdminServiceService) {
-    let url: string = this.router.url;
-    let splitURL: string[] = url.split('/');
-    this.setCurrentPortfolio(splitURL[splitURL.length - 1]); 
+  portfolio:Object;
+
+  skills: any = [];
+  skillNumber;
+  portfolioid;
+
+  constructor(private portfolioService: PotfolioServiceService,private router: Router) { 
+    let url:string = this.router.url;
+    let splitUrl =  url.split('/');
+    this.portfolioid = splitUrl[splitUrl.length -1];
   }
 
   // sets to be called everytime
   ngOnInit(): void {
- 
+    let url:string = this.router.url;
+    let splitUrl =  url.split('/');
+    this.getPortfolio(splitUrl[splitUrl.length -1]);
+    //this.portfolioService.setPortfolio(this.portfolio);
+  }
+  setSkillsMatrix(){
+    console.log('calling ser skills')
+    if(this.portfolio != undefined){
+      let skillMatrixlength = this.portfolio['skillMatrix'].length;
+        for(var i = 0; i < skillMatrixlength; i++ ){
+          this.skills.push(i);
+        }
+        console.log(this.skills);
+    }
   }
 
-// puts the feedback string with the accept button
- approveOrDeny(status: string){
-   this.currentPortfolio['status'] = status;
-   let user;
-   this.adminService.getUserByEmail(this.currentPortfolio['belongsTo']).subscribe(
-     (data) => {
-       user = data;
-       this.currentPortfolio['myUser'] = user;
-       var emailToSend = {
-        "userFirstName": user['firstName'],
-        "userEmail": user['email'],
-        "portfolioStatus": this.currentPortfolio['status'],
-        "feedBack": this.feedbackInfo,
-        "portfolioId": this.currentPortfolio['id']
-      }
+  submitPortfolio(){
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
+  }
 
-      console.log("Updated portfolio information: " + JSON.stringify(this.currentPortfolio));
-      this.adminService.updatePortfolio(this.currentPortfolio).subscribe(
-        (data) => console.log(data)
-      );
-      
-      //console.log("Email object to send: " + JSON.stringify(emailToSend));
-      //console.log("Portfolio belongs to: " + this.currentPortfolio['belongsTo']);
-   
-      this.adminService.sendEmail(emailToSend).subscribe();
+  getPortfolio(portfolioId){
+    this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
+      this.portfolio = data;
+      let user;
 
-      }
-   );
-   
+      this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
+        (data) => {
+          user = data;
+          this.portfolio['myUser'] = user;
+          console.log(this.portfolio);
+        });
+    })
+    this.setSkillsMatrix();
+  }
+  
+  updateEducation(education:any){
+    education['id'] = this.portfolio['education']['0']['id'];
+    this.portfolio['education'].splice(0, 1);
+    this.portfolio['education'].push(education);
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
+  }
 
-   
-   
- }
+  updateAboutMe(aboutMeInfo:any){
+    this.portfolio['aboutMe']['description'] = aboutMeInfo;
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
+  }
 
- setCurrentPortfolio(portfolioID): string {
-    this.adminService.getPortfolioByID(portfolioID).subscribe( (data) =>
-      {
-        this.currentPortfolio = data;  
-        //console.log(this.currentPortfolio);
-      })
-    return null; 
- }
- 
+  updateIndustryEq(industryEq:any){
+    let projectLength = this.portfolio['industryEquivalency'].length;
+
+    console.log(industryEq);
+
+    this.portfolio['industryEquivalency'].splice(0,projectLength-1);
+    this.portfolio['industryEquivalency'] = industryEq;
+  
+    console.log('This is the current Portfolio');
+    console.log(this.portfolio);
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
+  }
+  
+  updateProject(projects){
+    let projectLength = this.portfolio['projects'].length;
+    this.portfolio['projects'].splice(0,projectLength-1);
+    this.portfolio['projects'] = projects;
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
+    setTimeout(() => this.getPortfolio(this.portfolioid), 500);
+
+    console.log(projects);
+    console.log(this.portfolio);
+  }
+
+  
+  addSkill(){
+    this.skillNumber++;
+    this.skills.push(this.skillNumber);
+  }
+
+  removeSkill(){
+    this.skillNumber--;
+    this.skills.pop();
+  }
 }
+
