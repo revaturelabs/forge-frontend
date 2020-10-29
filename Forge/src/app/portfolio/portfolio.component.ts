@@ -24,11 +24,17 @@ export class PortfolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let url:string = this.router.url;
-    let splitUrl =  url.split('/');
-    this.getPortfolio(splitUrl[splitUrl.length -1]);
+    console.log(this.portfolioid);
+    if(this.portfolioid =='portfolio'){
+      console.log("Creating portfolio");
+      this.createPortfolio();
+    }else{
+      console.log("we have an id");
+      this.getPortfolio(this.portfolioid);
+    }
     //this.portfolioService.setPortfolio(this.portfolio);
   }
+
   setSkillsMatrix(){
     console.log('calling ser skills')
     if(this.portfolio != undefined){
@@ -44,17 +50,16 @@ export class PortfolioComponent implements OnInit {
     this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
   }
 
+  createPortfolio(){
+    this.portfolioService.createPortfolioServ().subscribe( (data) =>{
+      console.log(data);
+      this.portfolio = data;
+    })
+  }
+
   getPortfolio(portfolioId){
     this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
       this.portfolio = data;
-      let user;
-
-      this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
-        (data) => {
-          user = data;
-          this.portfolio['myUser'] = user;
-          console.log(this.portfolio);
-        });
     })
     this.setSkillsMatrix();
   }

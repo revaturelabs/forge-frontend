@@ -26,8 +26,6 @@ const routes: Routes = [
   {path: 'viewPortfolio/:id', component: AdminPortViewComponent}
 ];
 
-
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
