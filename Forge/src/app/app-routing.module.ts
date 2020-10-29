@@ -14,16 +14,16 @@ import { AdminPortViewComponent } from './admin-port-view/admin-port-view.compon
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent,  },
-  { path:'registration', component: RegistrationComponent },
-  { path:'user-home', component: UserHomeComponent},
+  { path:'registration', component: RegistrationComponent},
+  { path:'user-home', component: UserHomeComponent, canActivate: [AuthGuard]},
   { path:'', component: LoginComponent},
-  { path:'project', component: ProjectsComponent },
-  { path:'aboutMe', component: AboutMeComponent },
-  { path:'portfolio', component: PortfolioComponent },
-  { path:'portfolio/:id', component: PortfolioComponent },
-  { path:'navbar', component: NavbarComponent},
-  { path:'admin-home', component: AdminHomeComponent},
-  {path: 'viewPortfolio/:id', component: AdminPortViewComponent}
+  { path:'project', component: ProjectsComponent, canActivate: [AuthGuard]},
+  { path:'aboutMe', component: AboutMeComponent, canActivate: [AuthGuard]},
+  { path:'portfolio', component: PortfolioComponent, canActivate: [AuthGuard]},
+  { path:'portfolio/:id', component: PortfolioComponent, canActivate: [AuthGuard]},
+  { path:'navbar', component: NavbarComponent, canActivate: [AuthGuard]},
+  { path:'admin-home', component: AdminHomeComponent, canActivate: [AuthGuard]},
+  { path: 'viewPortfolio/:id', component: AdminPortViewComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

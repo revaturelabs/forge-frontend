@@ -22,7 +22,7 @@ export class EducationComponent implements OnInit {
   degrees:string[] = ["Associate's Degree", "Bachelor's Degree", "Master's Degree", "PhD"];
 
   portfolioForm = new FormGroup({
-    degree: new FormControl("", Validators.required),
+    degree: new FormControl("Select a Degree", Validators.required),
     university: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')] ),
     graduation: new FormControl('', Validators.required),
     major: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]),

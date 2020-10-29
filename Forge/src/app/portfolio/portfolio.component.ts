@@ -60,6 +60,14 @@ export class PortfolioComponent implements OnInit {
   getPortfolio(portfolioId){
     this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
       this.portfolio = data;
+      let user;
+
+      this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
+        (data) => {
+          user = data;
+          this.portfolio['myUser'] = user;
+          console.log(this.portfolio);
+        });
     })
     this.setSkillsMatrix();
   }

@@ -17,3 +17,7 @@ mat-icon:hover {
 .in {
     display: inline-block;
 }
+
+textarea {
+    width: 700px;
+}

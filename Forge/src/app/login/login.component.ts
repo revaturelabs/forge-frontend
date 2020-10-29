@@ -49,7 +49,7 @@ returnUrl: string;
 
   );
   
-  this.returnUrl='./user-home';
+  //this.returnUrl='./user-home';
   this.authService.logoutRequest();
   console.log(localStorage.getItem('token'));
   }
@@ -79,10 +79,10 @@ returnUrl: string;
               console.log(data);
             }
           );
-          localStorage.setItem('loggedIn', "true");
+          localStorage.setItem('isLoggedIn', "true");
           localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
           console.log(localStorage.getItem('token'));
-          this.router.navigate(['/admin-home']);  
+          this.router.navigateByUrl('/admin-home');  
           this.loginError='';
 
         }
@@ -94,12 +94,13 @@ returnUrl: string;
           this.authService.loginRequest(this.model[i]).subscribe(
             data => {
               console.log(data);
+              this.router.navigateByUrl('/user-home');
             }
           );
-          localStorage.setItem('loggedIn', "true");
+          localStorage.setItem('isLoggedIn', "true");
           localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
           console.log(localStorage.getItem('token'));
-          this.router.navigate([this.returnUrl]);  
+          this.router.navigateByUrl('/user-home');  
           this.loginError='';
        }  
     else {  
