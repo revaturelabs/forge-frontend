@@ -38,7 +38,7 @@ export class AboutMeComponent implements OnInit {
 
   save(){
     this.addAboutMe.emit(this.content);
-    console.log(this.content);
+    //console.log(this.content);
   }
 
   getData(){

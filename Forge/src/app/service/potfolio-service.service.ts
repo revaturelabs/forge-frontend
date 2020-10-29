@@ -16,9 +16,9 @@ export class PotfolioServiceService {
   currPortfolio: Object;
 
   createPortfolioServ():Observable<any[]>{
-    console.log("creating portfolio in service");
+    //console.log("creating portfolio in service");
     let userId = localStorage.getItem('token');
-    console.log(userId);
+    //console.log(userId);
     return this.http.get<any>(this.url + "service/createPortfolio?userId="+ userId);
   }
   
@@ -27,7 +27,7 @@ export class PotfolioServiceService {
   }
 
   getPortfolioById(portfolioId: number): Observable<Object>{
-    console.log('getting portfolio')
+    //console.log('getting portfolio')
     return this.http.get<Object>(this.url + "service/getPortfolioByID/" + portfolioId);
   }
 
@@ -36,7 +36,7 @@ export class PotfolioServiceService {
   }
 
   updatePortfolio(portfolio: any){
-    console.log(portfolio)
+    //console.log(portfolio)
     return this.http.put(this.url + "service/updatePortfolio", portfolio)
   }
 
@@ -46,7 +46,7 @@ export class PotfolioServiceService {
   }
 
   getAboutMeById(portfolioId: number): Observable<any[]>{
-    console.log('getting about me info')
+    //console.log('getting about me info')
     return this.http.get<any[]>(this.url + "update/getaboutMe?id=" + portfolioId)
   }
 

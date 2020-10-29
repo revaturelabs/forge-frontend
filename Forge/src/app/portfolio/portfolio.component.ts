@@ -24,25 +24,25 @@ export class PortfolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.portfolioid);
+    //console.log(this.portfolioid);
     if(this.portfolioid =='portfolio'){
-      console.log("Creating portfolio");
+      //console.log("Creating portfolio");
       this.createPortfolio();
     }else{
-      console.log("we have an id");
+      //console.log("we have an id");
       this.getPortfolio(this.portfolioid);
     }
     //this.portfolioService.setPortfolio(this.portfolio);
   }
 
   setSkillsMatrix(){
-    console.log('calling ser skills')
+    //console.log('calling ser skills')
     if(this.portfolio != undefined){
       let skillMatrixlength = this.portfolio['skillMatrix'].length;
         for(var i = 0; i < skillMatrixlength; i++ ){
           this.skills.push(i);
         }
-        console.log(this.skills);
+        //console.log(this.skills);
     }
   }
 
@@ -52,7 +52,7 @@ export class PortfolioComponent implements OnInit {
 
   createPortfolio(){
     this.portfolioService.createPortfolioServ().subscribe( (data) =>{
-      console.log(data);
+      //console.log(data);
       this.portfolio = data;
     })
   }
@@ -66,7 +66,7 @@ export class PortfolioComponent implements OnInit {
         (data) => {
           user = data;
           this.portfolio['myUser'] = user;
-          console.log(this.portfolio);
+          //console.log(this.portfolio);
         });
     })
     this.setSkillsMatrix();
@@ -87,13 +87,13 @@ export class PortfolioComponent implements OnInit {
   updateIndustryEq(industryEq:any){
     let projectLength = this.portfolio['industryEquivalency'].length;
 
-    console.log(industryEq);
+    //console.log(industryEq);
 
     this.portfolio['industryEquivalency'].splice(0,projectLength-1);
     this.portfolio['industryEquivalency'] = industryEq;
   
-    console.log('This is the current Portfolio');
-    console.log(this.portfolio);
+    //console.log('This is the current Portfolio');
+    //console.log(this.portfolio);
     this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
   }
   
@@ -104,8 +104,8 @@ export class PortfolioComponent implements OnInit {
     this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
     setTimeout(() => this.getPortfolio(this.portfolioid), 500);
 
-    console.log(projects);
-    console.log(this.portfolio);
+    //console.log(projects);
+    //console.log(this.portfolio);
   }
 
   

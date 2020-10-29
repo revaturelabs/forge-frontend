@@ -62,7 +62,7 @@ for (let i: number = 0; i < this.model.length; i++) {
 
 if(validSubmission)
 {
-  console.log(this.User);
+  //console.log(this.User);
   this.User["userId"]=0;
   this.User["email"]=this.regForm.controls['email'].value;
   this.User["password"]=this.regForm.controls['password'].value;
@@ -91,7 +91,7 @@ if(validSubmission)
       data=>{
         this.model=data;
       });
-    console.log(localStorage.getItem('token'));
+    //console.log(localStorage.getItem('token'));
    this.User={
       userId:0,
       email:'',

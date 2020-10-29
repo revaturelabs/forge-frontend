@@ -37,7 +37,7 @@ export class AdminUserInfoComponent implements OnInit {
       this.portfolioService.getUserByEmail(this.belongsTo).subscribe(
         (data) => {
           this.inputUserInfo = data;
-          console.log(this.inputUserInfo);
+          //console.log(this.inputUserInfo);
         });
     }
   }

@@ -71,7 +71,7 @@ export class IndustryEquivalencyComponent implements OnInit {
       });
 
       this.equivalency = this.inputIndustryEquivalency;
-      console.log(this.equivalency);
+      //console.log(this.equivalency);
     }
   }
 

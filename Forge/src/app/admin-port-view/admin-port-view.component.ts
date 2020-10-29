@@ -27,18 +27,18 @@ export class AdminPortViewComponent implements OnInit {
   ngOnInit(): void {
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
-    console.log("Split URL: " + splitUrl);
+    //console.log("Split URL: " + splitUrl);
     this.getPortfolio(this.portfolioid);
     //this.portfolioService.setPortfolio(this.portfolio);
   }
   setSkillsMatrix(){
-    console.log('calling ser skills')
+    //console.log('calling ser skills')
     if(this.portfolio != undefined){
       let skillMatrixlength = this.portfolio['skillMatrix'].length;
         for(var i = 0; i < skillMatrixlength; i++ ){
           this.skills.push(i);
         }
-        console.log(this.skills);
+        //console.log(this.skills);
     }
   }
 
@@ -50,7 +50,7 @@ export class AdminPortViewComponent implements OnInit {
     this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
       this.portfolio = data;
       //let user;
-      console.log("PORTFOLIO DATA: " + JSON.stringify(data));
+      //console.log("PORTFOLIO DATA: " + JSON.stringify(data));
       /*this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
         (data) => {
           user = data;
@@ -76,13 +76,13 @@ export class AdminPortViewComponent implements OnInit {
   updateIndustryEq(industryEq:any){
     let projectLength = this.portfolio['industryEquivalency'].length;
 
-    console.log(industryEq);
+    //console.log(industryEq);
 
     this.portfolio['industryEquivalency'].splice(0,projectLength-1);
     this.portfolio['industryEquivalency'] = industryEq;
   
-    console.log('This is the current Portfolio');
-    console.log(this.portfolio);
+    //console.log('This is the current Portfolio');
+    //console.log(this.portfolio);
     this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
   }
   
@@ -93,8 +93,8 @@ export class AdminPortViewComponent implements OnInit {
     this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
     setTimeout(() => this.getPortfolio(this.portfolioid), 500);
 
-    console.log(projects);
-    console.log(this.portfolio);
+    //console.log(projects);
+    //console.log(this.portfolio);
   }
 
   
@@ -123,9 +123,9 @@ export class AdminPortViewComponent implements OnInit {
          "portfolioId": this.portfolio['id']
        }
  
-       console.log("Updated portfolio information: " + JSON.stringify(this.portfolio));
+       //console.log("Updated portfolio information: " + JSON.stringify(this.portfolio));
        this.adminService.updatePortfolio(this.portfolio).subscribe(
-         (data) => console.log(data)
+         (data) => console.log("")
        );
        
        //console.log("Email object to send: " + JSON.stringify(emailToSend));

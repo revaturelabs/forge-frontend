@@ -19,7 +19,7 @@ export class UserHomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.authService.infoRequest().subscribe(
-      data=>{console.log(data);
+      data=>{/*console.log(data)*/;
         this.userService.setId(data.userId);
 
         this.userService.getPortfolios().subscribe(data =>

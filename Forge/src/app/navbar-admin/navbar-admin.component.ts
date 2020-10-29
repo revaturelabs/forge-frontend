@@ -19,7 +19,7 @@ export class NavbarAdminComponent implements OnInit {
     localStorage.removeItem('token');   
     this.AuthService.logoutRequest().subscribe(
      data => {
-     console.log(data);});
+     console.log("");});
     
     }
 

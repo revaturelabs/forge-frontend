@@ -56,9 +56,9 @@ export class ProjectsComponent implements OnInit {
         this.projects.push(this.projectNumber);
       }
     }
-    console.log(this.projectComponents);
-    console.log(this.projectNumber);
-    console.log(this.inputProject)
+    //console.log(this.projectComponents);
+    //console.log(this.projectNumber);
+    //console.log(this.inputProject)
   }
 
   addProject(){
@@ -72,18 +72,18 @@ export class ProjectsComponent implements OnInit {
       }
     );
     this.updateProject.emit(this.projectComponents);
-    console.log("THIS IS WHAT I NEED" , this.inputProject);
+    //console.log("THIS IS WHAT I NEED" , this.inputProject);
     // console.log(this.projectNumber);
     // console.log(this.projects);
-    console.log(this.projectComponents);
+    //console.log(this.projectComponents);
   }
 
   deleteProject(index){
-    console.log(index);
+    //console.log(index);
     this.projects.splice(index,1);
     this.projectComponents.splice(index,1);
-    console.log(this.projectNumber);
-    console.log(this.projects);
+    //console.log(this.projectNumber);
+    //console.log(this.projects);
   }
   
   onSubmit(){
@@ -91,13 +91,13 @@ export class ProjectsComponent implements OnInit {
   }
 
   save(){
-    console.log( this.projectComponents);
+    //console.log( this.projectComponents);
     // console.log(this.inputProject);
     this.updateProject.emit(this.projectComponents);
   }
 
   getData(){
-    console.log(this.projectComponents);
+    //console.log(this.projectComponents);
     return this.projectComponents;
   }
 }
