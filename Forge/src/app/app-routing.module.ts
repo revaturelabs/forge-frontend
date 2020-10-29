@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { AdminPortViewComponent } from './admin-port-view/admin-port-view.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent,  },
@@ -18,9 +19,11 @@ const routes: Routes = [
   { path:'', component: LoginComponent},
   { path:'project', component: ProjectsComponent },
   { path:'aboutMe', component: AboutMeComponent },
+  { path:'portfolio', component: PortfolioComponent },
   { path:'portfolio/:id', component: PortfolioComponent },
   { path:'navbar', component: NavbarComponent},
-  { path:'admin-home', component: AdminHomeComponent}
+  { path:'admin-home', component: AdminHomeComponent},
+  {path: 'viewPortfolio/:id', component: AdminPortViewComponent}
 ];
 
 

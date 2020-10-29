@@ -1,1 +1,22 @@
-<p>admin-port-view works!</p>
+<div *ngIf="currentPortfolio != undefined"> 
+    <div *ngIf="currentPortfolio['status'] == 'Pending'" class="form-group">
+     <textarea class="form-control" [(ngModel)]="feedbackInfo" placeholder="Feedback Here...." name="textform"></textarea>
+     <button class="btn btn-success" (click)='approveOrDeny("Approved")'>Approve</button>
+     <button class="btn btn-danger" (click)='approveOrDeny("Denied")'>Deny</button>
+    </div>
+  </div> 
+  
+     <div class= "container">
+       <div class= "row">
+        <ul>
+          <li><b></b></li>
+          <li><b>About Me</b></li>
+          <li><b>Education</b></li>
+          <li><b>Industry Equivalency</b></li>
+          <li><b>Skills</b></li>
+          <li><b>Work Experiences</b></li>
+          <li><b>Projects</b></li>
+        </ul>
+       </div>
+     </div>
+  
