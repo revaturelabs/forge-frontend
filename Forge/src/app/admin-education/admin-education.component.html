@@ -79,7 +79,7 @@
 <mat-card class="container">
     <div>
         <mat-card-title class="in">Education</mat-card-title>
-        <mat-icon class="add-button" type="button"  (click)="open(content)" aria-hidden="false" aria-label="add button">add</mat-icon>
+        <!--<mat-icon class="add-button" type="button"  (click)="open(content)" aria-hidden="false" aria-label="add button">add</mat-icon>-->
     </div>
 
     <div *ngIf ="inputEducation !== undefined && inputEducation.length > 0 ">
@@ -91,9 +91,14 @@
         </div>
 
         <div class="indent">
-            <h6>{{inputEducation['0']['university'] ? inputEducation['0']['university']: ''}}, 
-                {{inputEducation['0']['graduation']  ? inputEducation['0']['graduation']: ''}}
-            </h6>
+            <h6 *ngIf="inputEducation['0']['university']">{{inputEducation['0']['university']}}</h6> 
+                <h6 *ngIf="inputEducation['0']['graduation']">{{inputEducation['0']['graduation'] | date: 'dd/MM/yyyy'}}</h6>
+            
         </div>
     </div>
 </mat-card>
+
+
+<!--<h6>{{inputEducation['0']['university'] ? inputEducation['0']['university']: ''}}, 
+    {{inputEducation['0']['graduation']  ? inputEducation['0']['graduation'] : ''}}
+</h6>-->

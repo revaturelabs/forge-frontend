@@ -29,7 +29,7 @@ export class AdminProjectsComponent implements OnInit {
   }
 
   @Input() inputProject: []; 
-  @Output() updateProject = new EventEmitter<any>();
+  //@Output() updateProject = new EventEmitter<any>();
   
   projects = [];
   projectComponents = [];
@@ -69,7 +69,7 @@ export class AdminProjectsComponent implements OnInit {
         "technologies":"Enter Project Technologies"
       }
     );
-    this.updateProject.emit(this.projectComponents);
+    //this.updateProject.emit(this.projectComponents);
     console.log("THIS IS WHAT I NEED" , this.inputProject);
     // console.log(this.projectNumber);
     // console.log(this.projects);
@@ -89,9 +89,9 @@ export class AdminProjectsComponent implements OnInit {
   }
 
   save(){
-    console.log( this.projectComponents);
+    //console.log( this.projectComponents);
     // console.log(this.inputProject);
-    this.updateProject.emit(this.projectComponents);
+    //this.updateProject.emit(this.projectComponents);
   }
 
   getData(){

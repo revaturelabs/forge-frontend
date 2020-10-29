@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminServiceService } from '../service/admin-service.service';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 
 @Component({
@@ -14,7 +15,9 @@ export class AdminPortViewComponent implements OnInit {
   skillNumber;
   portfolioid;
 
-  constructor(private portfolioService: PotfolioServiceService,private router: Router) { 
+  feedbackInfo: string;
+
+  constructor(private portfolioService: PotfolioServiceService,private router: Router, private adminService: AdminServiceService) { 
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
     this.portfolioid = splitUrl[splitUrl.length -1];
@@ -24,7 +27,8 @@ export class AdminPortViewComponent implements OnInit {
   ngOnInit(): void {
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
-    this.getPortfolio(splitUrl[splitUrl.length -1]);
+    console.log("Split URL: " + splitUrl);
+    this.getPortfolio(this.portfolioid);
     //this.portfolioService.setPortfolio(this.portfolio);
   }
   setSkillsMatrix(){
@@ -45,14 +49,14 @@ export class AdminPortViewComponent implements OnInit {
   getPortfolio(portfolioId){
     this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
       this.portfolio = data;
-      let user;
-
-      this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
+      //let user;
+      console.log("PORTFOLIO DATA: " + JSON.stringify(data));
+      /*this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
         (data) => {
           user = data;
           this.portfolio['myUser'] = user;
           console.log(this.portfolio);
-        });
+        });*/
     })
     this.setSkillsMatrix();
   }
@@ -103,5 +107,39 @@ export class AdminPortViewComponent implements OnInit {
     this.skillNumber--;
     this.skills.pop();
   }
+
+  approveOrDeny(status: string){
+    this.portfolio['status'] = status;
+    let user;
+    this.adminService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
+      (data) => {
+        user = data;
+        this.portfolio['myUser'] = user;
+        var emailToSend = {
+         "userFirstName": user['firstName'],
+         "userEmail": user['email'],
+         "portfolioStatus": this.portfolio['status'],
+         "feedBack": this.feedbackInfo,
+         "portfolioId": this.portfolio['id']
+       }
+ 
+       console.log("Updated portfolio information: " + JSON.stringify(this.portfolio));
+       this.adminService.updatePortfolio(this.portfolio).subscribe(
+         (data) => console.log(data)
+       );
+       
+       //console.log("Email object to send: " + JSON.stringify(emailToSend));
+       //console.log("Portfolio belongs to: " + this.currentPortfolio['belongsTo']);
+    
+       this.adminService.sendEmail(emailToSend).subscribe();
+ 
+       }
+    );
+    
+ 
+    
+    
+  }
+
 }
 

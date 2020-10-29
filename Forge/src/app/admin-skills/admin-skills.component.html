@@ -6,9 +6,7 @@
 <input type="text" class="form-control" placeholder="Enter Skill" [(ngModel)]="skill" required/>
 <input type="number" class="form-control" placeholder="Experience in months" ng-pattern="^[0-9]*$" [(ngModel)]="months" required/>
 
-<button class="btn btn-primary" type="button" (click)="onClick()">
-    +
- </button>
+<button class="btn btn-primary" type="button" (click)="onClick()">+</button>
 
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
     <div contenteditable="true" class="example-box" *ngFor="let item of skillList, let i=index" cdkDrag>Name: {{item.name}}, Exp. in Months {{item.months}}

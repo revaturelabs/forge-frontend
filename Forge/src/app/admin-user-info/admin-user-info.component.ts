@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { PotfolioServiceService } from '../service/potfolio-service.service';
+
 
 @Component({
   selector: 'app-admin-user-info',
@@ -10,11 +12,12 @@ import { FormGroup } from '@angular/forms';
 })
 export class AdminUserInfoComponent implements OnInit {
 
-  @Input() inputUserInfo: [];
+  @Input() belongsTo: string;
 
-  constructor() { }
+  constructor(private portfolioService: PotfolioServiceService) { }
 
   image ='https://i.imgflip.com/2/3txdnl.jpg';
+  inputUserInfo: [];
 
    userForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]),
@@ -26,5 +29,16 @@ export class AdminUserInfoComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.getUserInfo();
+  }
+
+  getUserInfo(){
+    if(this.belongsTo != undefined){
+      this.portfolioService.getUserByEmail(this.belongsTo).subscribe(
+        (data) => {
+          this.inputUserInfo = data;
+          console.log(this.inputUserInfo);
+        });
+    }
   }
 }
