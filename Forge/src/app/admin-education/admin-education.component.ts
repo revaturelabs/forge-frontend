@@ -1,18 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
-
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { Education } from '../models/education';
-import { PotfolioServiceService } from '../service/potfolio-service.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-education',
-  templateUrl: './education.component.html',
-  styleUrls: ['./education.component.css']
+  selector: 'app-admin-education',
+  templateUrl: './admin-education.component.html',
+  styleUrls: ['./admin-education.component.css']
 })
-export class EducationComponent implements OnInit {
-  
+export class AdminEducationComponent implements OnInit {
+
   @Input() inputEducation: []; // decorate the property with @Input()
   @Output() addEducation = new EventEmitter<any>();
 
@@ -22,7 +18,7 @@ export class EducationComponent implements OnInit {
   degrees:string[] = ["Associate's Degree", "Bachelor's Degree", "Master's Degree", "PhD"];
 
   portfolioForm = new FormGroup({
-    degree: new FormControl("Select a Degree", Validators.required),
+    degree: new FormControl("", Validators.required),
     university: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')] ),
     graduation: new FormControl('', Validators.required),
     major: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]),

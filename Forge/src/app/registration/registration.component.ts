@@ -33,12 +33,12 @@ passwordError:String='';
 model: User[]; 
 packageAndShip(){
 
-console.log (this.regForm.controls['email'].value)
-console.log (this.regForm.controls['password'].value)
-console.log (this.regForm.controls['firstname'].value)
-console.log (this.regForm.controls['lastname'].value)
+// console.log (this.regForm.controls['email'].value)
+// console.log (this.regForm.controls['password'].value)
+// console.log (this.regForm.controls['firstname'].value)
+// console.log (this.regForm.controls['lastname'].value)
 
-console.log('shipping?');
+// console.log('shipping?');
 let validSubmission=true;
 if(this.regForm.controls['email'].value=='') {
 validSubmission=false;
@@ -62,7 +62,7 @@ for (let i: number = 0; i < this.model.length; i++) {
 
 if(validSubmission)
 {
-  console.log(this.User);
+  //console.log(this.User);
   this.User["userId"]=0;
   this.User["email"]=this.regForm.controls['email'].value;
   this.User["password"]=this.regForm.controls['password'].value;
@@ -75,12 +75,12 @@ if(validSubmission)
 
   this.regService.sendRegUser(this.User).subscribe(
   data=>{
-  console.log(data);
+  // console.log(data);
   }
 
  );
 } else{
-  console.log("not poggers");
+  // console.log("not poggers");
 }
 }
  
@@ -91,7 +91,7 @@ if(validSubmission)
       data=>{
         this.model=data;
       });
-    console.log(localStorage.getItem('token'));
+    //console.log(localStorage.getItem('token'));
    this.User={
       userId:0,
       email:'',

@@ -33,7 +33,7 @@ returnUrl: string;
   ngOnInit() {  
 
     this.authService.logout();
-    console.log(localStorage.getItem('token'));
+    //console.log(localStorage.getItem('token'));
     this.loginForm = this.formBuilder.group({  
     email: ['', Validators.required],  
     password: ['', Validators.required] 
@@ -41,7 +41,7 @@ returnUrl: string;
   this.regService.getUsers().subscribe(
     data=>{
       this.model=data;
-      console.log(data);
+      //console.log(data);
     }
 
 
@@ -49,9 +49,9 @@ returnUrl: string;
 
   );
   
-  this.returnUrl='./user-home';
+  //this.returnUrl='./user-home';
   this.authService.logoutRequest();
-  console.log(localStorage.getItem('token'));
+  //console.log(localStorage.getItem('token'));
   }
 
   get f() { return this.loginForm.controls; }  
@@ -73,16 +73,16 @@ returnUrl: string;
 
         if (this.model[i]["admin"]==true){
 
-          console.log("Admin Login successful");            
+          //console.log("Admin Login successful");            
           this.authService.loginRequest(this.model[i]).subscribe(
             data => {
-              console.log(data);
+              //console.log(data);
             }
           );
-          localStorage.setItem('loggedIn', "true");
+          localStorage.setItem('isLoggedIn', "true");
           localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
-          console.log(localStorage.getItem('token'));
-          this.router.navigate(['/admin-home']);  
+          //console.log(localStorage.getItem('token'));
+          this.router.navigateByUrl('/admin-home');  
           this.loginError='';
 
         }
@@ -90,16 +90,17 @@ returnUrl: string;
         else if (this.model[i]["admin"]==false)
         
         {
-          console.log("User Login successful");            
+          //console.log("User Login successful");            
           this.authService.loginRequest(this.model[i]).subscribe(
             data => {
-              console.log(data);
+              //console.log(data);
+              this.router.navigateByUrl('/user-home');
             }
           );
-          localStorage.setItem('loggedIn', "true");
+          localStorage.setItem('isLoggedIn', "true");
           localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
-          console.log(localStorage.getItem('token'));
-          this.router.navigate([this.returnUrl]);  
+          //console.log(localStorage.getItem('token'));
+          this.router.navigateByUrl('/user-home');  
           this.loginError='';
        }  
     else {  

@@ -1,14 +1,15 @@
-
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import { EventEmitter, Output } from '@angular/core';
+import { Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 
 @Component({
-  selector: 'app-industry-equivalency',
-  templateUrl: './industry-equivalency.component.html',
-  styleUrls: ['./industry-equivalency.component.css']
+  selector: 'app-admin-industry-equivalnecy',
+  templateUrl: './admin-industry-equivalnecy.component.html',
+  styleUrls: ['./admin-industry-equivalnecy.component.css']
 })
-export class IndustryEquivalencyComponent implements OnInit {
+export class AdminIndustryEquivalnecyComponent implements OnInit {
   @Input() inputIndustryEquivalency: []; // decorate the property with @Input()
   @Output() addindustryEq = new EventEmitter<any>();
 

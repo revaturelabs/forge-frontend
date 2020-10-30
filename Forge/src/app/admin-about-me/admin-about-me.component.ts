@@ -1,15 +1,13 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@syncfusion/ej2-angular-richtexteditor';
-import { PotfolioServiceService } from '../service/potfolio-service.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ToolbarService,HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
-  selector: 'app-about-me',
-  templateUrl: './about-me.component.html',
-  styleUrls: ['./about-me.component.css'],
+  selector: 'app-admin-about-me',
+  templateUrl: './admin-about-me.component.html',
+  styleUrls: ['./admin-about-me.component.css'],
   providers: [ToolbarService,HtmlEditorService]
 })
-export class AboutMeComponent implements OnInit {
-
+export class AdminAboutMeComponent implements OnInit {
   @Input() inputAboutMe: []; // decorate the property with @Input()
   @Output() addAboutMe = new EventEmitter<any>();
   

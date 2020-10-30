@@ -15,20 +15,20 @@ export class PotfolioServiceService {
   aboutMeDescription:string;
   currPortfolio: Object;
 
-
-  setAboutMe(aboutme: string){
-    console.log(aboutme);
-    this.aboutMeDescription = aboutme;
+  createPortfolioServ():Observable<any[]>{
+    //console.log("creating portfolio in service");
+    let userId = localStorage.getItem('token');
+    //console.log(userId);
+    return this.http.get<any>(this.url + "service/createPortfolio?userId="+ userId);
   }
-
-  setPortfolio(portfolio: Object){
-    console.log(portfolio);
-    this.currPortfolio = portfolio;
+  
+  getUserInfoById(portfolioId: number): Observable<any[]>{
+    return this.http.get<any[]>(this.url + "service/getUser?id=" + portfolioId)
   }
 
   getPortfolioById(portfolioId: number): Observable<Object>{
-    console.log('getting portfolio')
-    return this.http.get<Object>(this.url + "service/getPortfolioByID/" + portfolioId)
+    //console.log('getting portfolio')
+    return this.http.get<Object>(this.url + "service/getPortfolioByID/" + portfolioId);
   }
 
   getUserByEmail(email: string): Observable<any> {
@@ -36,20 +36,17 @@ export class PotfolioServiceService {
   }
 
   updatePortfolio(portfolio: any){
-    console.log(portfolio)
+    //console.log(portfolio)
     return this.http.put(this.url + "service/updatePortfolio", portfolio)
   }
 
-  getUserInfoById(portfolioId: number): Observable<any[]>{
-    return this.http.get<any[]>(this.url + "service/getUser?id=" + portfolioId)
-  }
 
   updateUserInfoById(portfolio: any){
     return this.http.put(this.url + "service/updatePortfolio", portfolio)
   }
 
   getAboutMeById(portfolioId: number): Observable<any[]>{
-    console.log('getting about me info')
+    //console.log('getting about me info')
     return this.http.get<any[]>(this.url + "update/getaboutMe?id=" + portfolioId)
   }
 

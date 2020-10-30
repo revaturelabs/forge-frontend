@@ -15,7 +15,7 @@ export class UserServiceService {
   constructor(private http: HttpClient) {}
 
   getPortfolios(): Observable<Portfolio[]>{
-    console.log(this.id);
+    //console.log(this.id);
     return this.http.get<Portfolio[]>(this.getPortfoliosUrl + this.id);
   }
 

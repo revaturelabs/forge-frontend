@@ -10,21 +10,27 @@ import { PotfolioServiceService } from '../service/potfolio-service.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  @Input() inputUserInfo: [];
+  @Input() belongsTo: string;
 
-  constructor() { }
+  constructor(private portfolioService:PotfolioServiceService ) { }
 
   image ='https://i.imgflip.com/2/3txdnl.jpg';
 
-   userForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]),
-    occupation: new FormControl('', [Validators.required, Validators.minLength(3),Validators.pattern('[a-zA-Z ]*')] ),
-    number: new FormControl('', [Validators.required, Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{4}')]),
-    email: new FormControl('', [Validators.required]),
-    github: new FormControl(''),
-    image: new FormControl('')
-  });
+  inputUserInfo: [];
 
   ngOnInit(): void {
+    this.getUserInfo();
+    //console.log(this.inputUserInfo);
+  }
+
+
+  getUserInfo(){
+    if(this.belongsTo != undefined){
+      this.portfolioService.getUserByEmail(this.belongsTo).subscribe(
+        (data) => {
+          this.inputUserInfo = data;
+          //console.log(this.inputUserInfo);
+        });
+    }
   }
 }

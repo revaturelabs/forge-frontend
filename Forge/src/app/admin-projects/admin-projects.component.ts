@@ -1,14 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ToolbarService, HtmlEditorService} from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css'],
-  providers: [ToolbarService,HtmlEditorService]
+  selector: 'app-admin-projects',
+  templateUrl: './admin-projects.component.html',
+  styleUrls: ['./admin-projects.component.css']
 })
-export class ProjectsComponent implements OnInit {
+export class AdminProjectsComponent implements OnInit {
   public tools: object = {
     type: 'Expand',
         items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
@@ -31,7 +29,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   @Input() inputProject: []; 
-  @Output() updateProject = new EventEmitter<any>();
+  //@Output() updateProject = new EventEmitter<any>();
   
   projects = [];
   projectComponents = [];
@@ -71,7 +69,7 @@ export class ProjectsComponent implements OnInit {
         "technologies":"Enter Project Technologies"
       }
     );
-    this.updateProject.emit(this.projectComponents);
+    //this.updateProject.emit(this.projectComponents);
     //console.log("THIS IS WHAT I NEED" , this.inputProject);
     // console.log(this.projectNumber);
     // console.log(this.projects);
@@ -93,7 +91,7 @@ export class ProjectsComponent implements OnInit {
   save(){
     //console.log( this.projectComponents);
     // console.log(this.inputProject);
-    this.updateProject.emit(this.projectComponents);
+    //this.updateProject.emit(this.projectComponents);
   }
 
   getData(){
