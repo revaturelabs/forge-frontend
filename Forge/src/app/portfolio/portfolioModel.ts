@@ -1,4 +1,4 @@
-export interface Portfolio {
+export class Portfolio {
     id: number;
     belongsTo: string;
     status: string;
