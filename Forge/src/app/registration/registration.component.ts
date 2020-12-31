@@ -2,7 +2,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { RegisterUserService } from '../service/reg-user-service.service';
-import {User} from '../User';
+import {User} from '../user';
 
 
 
