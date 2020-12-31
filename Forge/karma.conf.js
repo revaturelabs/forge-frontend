@@ -12,6 +12,21 @@ module.exports = function (config) {
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
+
+    customLaunchers: {
+      ChromeHeadless: {
+        base: 'Chrome',
+        flags: [
+          '--headless',
+          '--disable-gpu',
+          '--no-sandbox',
+          '--remote-debugging-port=9222',
+        ]
+      }
+    },
+    browsers: ['ChromeHeadless'],
+    singleRun: true,
+
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
@@ -29,4 +44,5 @@ module.exports = function (config) {
     singleRun: false,
     restartOnFileChange: true
   });
+
 };
