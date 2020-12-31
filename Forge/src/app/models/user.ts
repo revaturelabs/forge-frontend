@@ -1,3 +1,5 @@
+import { Portfolio } from "./portfolio";
+
 export class User {
     userId: number;
     email: string;
@@ -5,5 +7,5 @@ export class User {
     firstName: string;
     lastName: string;
     is_Admin: boolean;
-    portfolio: Object;
+    portfolio: Object; //portfolio array
 }

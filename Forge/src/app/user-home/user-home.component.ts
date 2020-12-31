@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Portfolio } from '../portfolio/portfolioModel';
+import { Portfolio } from '../models/portfolio';
 import { AuthService } from '../service/auth-service.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { User } from 'src/app/models/user'; 

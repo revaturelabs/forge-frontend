@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { RegisterUserService } from '../service/reg-user-service.service';
 import {User} from '../models/user';
+import { Portfolio } from '../models/portfolio';
 
 
 
@@ -98,7 +99,8 @@ if(validSubmission)
       password:'',
       firstName:'',
       lastName:'',
-      is_Admin:false
+      is_Admin:false,
+      portfolio: [] //should be Portfolio object array
     }
     //this.regService.getListOfUsers().subscribe(data=>{
      // this.userList=data;

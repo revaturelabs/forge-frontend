@@ -67,7 +67,7 @@ export class PortfolioComponent implements OnInit {
       this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
         (data) => {
           user = data;
-          this.portfolio['myUser'] = user;
+          this.portfolio['myUser'] = user; //possible breakpoint
           //console.log(this.portfolio);
         });
     })
@@ -75,7 +75,7 @@ export class PortfolioComponent implements OnInit {
   }
   
   updateEducation(education:any){
-    education['id'] = this.portfolio['education']['0']['id'];
+    education['id'] = this.portfolio['education']['0']['id']; ///what do?
     this.portfolio['education'].splice(0, 1);
     this.portfolio['education'].push(education);
     this.portfolioService.updatePortfolio(this.portfolio).subscribe();    

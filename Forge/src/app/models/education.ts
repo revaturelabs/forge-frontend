@@ -6,7 +6,7 @@ export interface Education{
     major: any,
     minor:any,
     degree:any,
-    portfolio: {
+    portfolio: { /// portfolio id loose coupling changes/mapping
         id: any,
         belongsTo: any,
         status: any,
