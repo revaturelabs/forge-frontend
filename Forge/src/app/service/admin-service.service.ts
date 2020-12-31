@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Portfolio } from '../admin-home/portfolio';
-import { User } from '../admin-home/user';
+import { Portfolio } from '../models/portfolio';
+import { User } from '../models/user';
 
 
 

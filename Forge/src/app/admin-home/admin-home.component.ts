@@ -1,8 +1,8 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Portfolio } from '../admin-home/portfolio';
-import { User } from '../admin-home/user'
+import { Portfolio } from '../models/portfolio';
+import { User } from '../models/user';
 import { AdminPortViewComponent } from '../admin-port-view/admin-port-view.component';
 import { AdminServiceService } from '../service/admin-service.service';
 

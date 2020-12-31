@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {fromEventPattern, Observable} from 'rxjs';
-import { User } from '../user';
+import { User } from '../models/user';
 
 
 @Injectable({
@@ -20,6 +20,7 @@ export class AuthService {
 
   }
 
+  //?????Wrapper class??????
   logoutRequest(): Observable<string>{
 
 

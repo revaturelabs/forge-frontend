@@ -1,6 +1,8 @@
+import { User } from "../models/user";
+
 export interface Portfolio {
     id: number;
-    belongsTo: string;
+    belongsTo: User;
     status: string;
     aboutMe: Object;
     industryEquivalency: Object;

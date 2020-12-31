@@ -5,6 +5,8 @@ import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
 import { Router } from '@angular/router';
 
+//change to property access (.) instead of property binding([])
+
 @Component({
   selector: 'app-portfolio',
   templateUrl: './portfolio.component.html',
