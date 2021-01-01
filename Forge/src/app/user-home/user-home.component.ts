@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Portfolio } from '../portfolio/portfolioModel';
+import { Portfolio } from '../models/portfolio';
 import { AuthService } from '../service/auth-service.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
-import { UserHome } from 'src/app/user-home/userModel';
+import { User } from 'src/app/models/user'; 
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 
 @Component({
