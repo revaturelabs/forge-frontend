@@ -7,5 +7,5 @@ export class User {
     firstName: string;
     lastName: string;
     is_Admin: boolean;
-    portfolio: Object; //portfolio array
+    portfolio: Object; // should be portfolio array but is hotfixed as
 }

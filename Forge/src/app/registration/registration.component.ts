@@ -100,7 +100,7 @@ if(validSubmission)
       firstName:'',
       lastName:'',
       is_Admin:false,
-      portfolio: [] //should be Portfolio object array
+      portfolio: []  //should be Portfolio object array
     }
     //this.regService.getListOfUsers().subscribe(data=>{
      // this.userList=data;

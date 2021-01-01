@@ -13,6 +13,8 @@ import { PotfolioServiceService } from '../service/potfolio-service.service';
 export class UserHomeComponent implements OnInit {
 
   portfolios: Portfolio[] = [];
+  portfolio: Portfolio= new Portfolio();
+
   constructor(private authService:AuthService, private userService: UserServiceService, 
     private PortfolioService: PotfolioServiceService ) { }
 
@@ -28,5 +30,10 @@ export class UserHomeComponent implements OnInit {
           }
         });
     });
+  }
+
+  //stub
+  newPortfolio(){
+    
   }
 }
