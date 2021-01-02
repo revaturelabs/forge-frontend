@@ -10,7 +10,7 @@ export class PotfolioServiceService {
 
   constructor(private http: HttpClient) { }
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
-  private url = "http://localhost:8200/";
+   url = "http://localhost:8200/";
 
   aboutMeDescription:string;
   currPortfolio: Object;
@@ -76,6 +76,11 @@ export class PotfolioServiceService {
 
   updateProjectById(portfolio: any){
     return this.http.put(this.url + "update/updateproject", portfolio)
+  }
+
+  getCriteriaById(criteriaId : number){
+    return this.http.get<any>(this.url +"service/criteria/" + criteriaId)
+
   }
 
 }
