@@ -19,12 +19,14 @@ export class UserHomeComponent implements OnInit {
   user: User;
   submitted = false;
   id: number;
+  belongs_to: string;
 
   constructor(private authService:AuthService, private userService: UserServiceService, 
     private PortfolioService: PotfolioServiceService, private route: Router ) { }
 
   ngOnInit(): void {
-
+    //added updateList route 
+    //this.updateList();
     this.authService.infoRequest().subscribe(
       data=>{/*console.log(data)*/;
         this.userService.setId(data.userId);
@@ -32,9 +34,11 @@ export class UserHomeComponent implements OnInit {
         this.userService.getPortfolios().subscribe(data =>
           {for(let element of data){
             this.portfolios.push(element);
+            
           }
         });
     });
+   
   }
 
   createPortfolio(){
@@ -50,36 +54,34 @@ export class UserHomeComponent implements OnInit {
       
       this.user = data; 
       console.log(data);
-  
-    this.PortfolioService.createPortfolio(this.portfolio).subscribe( //throws error 
+  this.id = Number(this.user.userId);
+  console.log(this.id);
+    this.PortfolioService.createPortfolio(this.portfolio, this.id).subscribe( 
       data => {
+        
         console.log(data);
         this.portfolio = data;
         console.log(this.portfolio);
+        //this.updateList();
       }
     )
-    // this.userService.getPortfolios().subscribe( (data) =>{
-    //   console.log(data);
-    //   this.portfolios = data;
-      
-      
-    // })
   },
   error => console.log(error));
   }
-  // newPortfolio(): void {
-  //   console.log('in newPortfolio()');
-  //   this.submitted = false;
-  //   this.portfolio = new Portfolio();
-  //   console.log('this is the portfolio being created' +this.portfolio);
-    
-  //  // this.portfolio.belongsTo= this.user.email;
-
-  // }
+  
   //bug fix team add function to use for create porfolio button in user home html 
   onSubmit() {
     console.log("in on submit");
     this.createPortfolio();
+    //this.ngOnInit();
+    this.updateList();
   }
+  updateList() {
+    console.log("in reload");
+    //this.ngOnInit();
+    this.route.navigate(['/user-home']);
+
+  }
+
 
 }
