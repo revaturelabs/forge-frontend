@@ -11,6 +11,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminPortViewComponent } from './admin-port-view/admin-port-view.component';
+import { AdminCriteriaComponent } from './admin-criteria/admin-criteria.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent,  },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path:'portfolio/:id', component: PortfolioComponent, canActivate: [AuthGuard]},
   { path:'navbar', component: NavbarComponent, canActivate: [AuthGuard]},
   { path:'admin-home', component: AdminHomeComponent, canActivate: [AuthGuard]},
-  { path: 'viewPortfolio/:id', component: AdminPortViewComponent, canActivate: [AuthGuard]}
+  { path: 'viewPortfolio/:id', component: AdminPortViewComponent, canActivate: [AuthGuard]},
+  { path: 'admin-criteria', component: AdminCriteriaComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

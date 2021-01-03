@@ -1,0 +1,128 @@
+<mat-accordion class="example-headers-align">
+	<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				About Me
+			</mat-panel-title>
+
+			<mat-panel-description>
+				Enter Criteria Value
+				<mat-icon>account_circle</mat-icon>
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+		<mat-form-field>
+			<mat-label>Minimum word count</mat-label>
+			<input #wordCount matInput type="number" min="50" max="500" step="50" (input)="addCriteria(wordCount.value,'about_me')">
+    </mat-form-field>
+			<!-- #docregion action-bar -->
+			<mat-action-row>
+				<button mat-button color="primary" (click)="nextStep()">Next</button>
+			</mat-action-row>
+			<!-- #enddocregion action-bar -->
+	</mat-expansion-panel>
+
+
+	<!-- start -->
+	<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Education
+			</mat-panel-title>
+
+			<mat-panel-description>
+				Enter Criteria Value
+				<mat-icon>account_circle</mat-icon>
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+		<mat-form-field>
+			<mat-label>Minimum entries</mat-label>
+			<input #education matInput type="number" min="1" max="10" (input)="addCriteria(education.value,'education')">
+    </mat-form-field>
+			<!-- #docregion action-bar -->
+			<mat-action-row>
+				<button mat-button color="primary" (click)="nextStep()">Next</button>
+			</mat-action-row>
+			<!-- #enddocregion action-bar -->
+	</mat-expansion-panel>
+	<!-- End -->
+
+	<!-- start -->
+	<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Industry Equivalancy
+			</mat-panel-title>
+
+			<mat-panel-description>
+				Enter Criteria Value
+				<mat-icon>account_circle</mat-icon>
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+		<mat-form-field>
+			<mat-label>Minimum entries</mat-label>
+			<input #industry matInput type="number" min="1" max="10" (input)="addCriteria(industry.value,'industry_equivalancy')">
+    </mat-form-field>
+			<!-- #docregion action-bar -->
+			<mat-action-row>
+				<button mat-button color="primary" (click)="nextStep()">Next</button>
+			</mat-action-row>
+			<!-- #enddocregion action-bar -->
+	</mat-expansion-panel>
+	<!-- End -->
+
+	<!-- start -->
+	<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Previous Projects
+			</mat-panel-title>
+
+			<mat-panel-description>
+				Enter Criteria Value
+				<mat-icon>account_circle</mat-icon>
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+		<mat-form-field>
+			<mat-label>Minimum number of Projects</mat-label>
+			<input #project matInput type="number" min="1" max="10" (input)="addCriteria(project.value,'projects')">
+    </mat-form-field>
+			<!-- #docregion action-bar -->
+			<mat-action-row>
+				<button mat-button color="primary" (click)="nextStep()">Next</button>
+			</mat-action-row>
+			<!-- #enddocregion action-bar -->
+	</mat-expansion-panel>
+	<!-- End -->
+
+	<!-- start -->
+	<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Skill Matrix
+			</mat-panel-title>
+
+			<mat-panel-description>
+				Enter Criteria Value
+				<mat-icon>account_circle</mat-icon>
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+		<mat-form-field>
+			<mat-label>Minimum number of Skills</mat-label>
+			<input #skill matInput type="number" min="1" max="10" (input)="addCriteria(skill.value,'skill_matrix')">
+    </mat-form-field>
+			<!-- #docregion action-bar -->
+			<mat-action-row>
+				<button mat-button color="primary" (click)="nextStep()">Next</button>
+			</mat-action-row>
+			<!-- #enddocregion action-bar -->
+	</mat-expansion-panel>
+	<!-- End -->
+
+
+
+</mat-accordion>
+
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
