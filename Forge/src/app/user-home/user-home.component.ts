@@ -21,16 +21,33 @@ export class UserHomeComponent implements OnInit {
   id: number;
   belongs_to: string;
 
+
   constructor(private authService:AuthService, private userService: UserServiceService, 
     private PortfolioService: PotfolioServiceService, private route: Router ) { }
 
   ngOnInit(): void {
+    
+    this.loadData();
     //added updateList route 
-    //this.updateList();
+    // this.updateList();
+    // this.authService.infoRequest().subscribe(
+    //   data=>{/*console.log(data)*/;
+    //     this.userService.setId(data.userId);
+
+    //     this.userService.getPortfolios().subscribe(data =>
+    //       {for(let element of data){
+    //         this.portfolios.push(element);
+            
+    //       }
+    //     });
+    // });
+   
+  }
+  loadData() {
     this.authService.infoRequest().subscribe(
       data=>{/*console.log(data)*/;
         this.userService.setId(data.userId);
-
+        this.portfolios = [];
         this.userService.getPortfolios().subscribe(data =>
           {for(let element of data){
             this.portfolios.push(element);
@@ -38,7 +55,7 @@ export class UserHomeComponent implements OnInit {
           }
         });
     });
-   
+
   }
 
   createPortfolio(){
@@ -56,12 +73,15 @@ export class UserHomeComponent implements OnInit {
       console.log(data);
   this.id = Number(this.user.userId);
   console.log(this.id);
-    this.PortfolioService.createPortfolio(this.portfolio, this.id).subscribe( 
+  this.portfolio = new Portfolio();
+    this.PortfolioService.createPortfolio(this.portfolio, this.id)
+    .subscribe( 
       data => {
         
-        console.log(data);
+        //console.log(data);
         this.portfolio = data;
         console.log(this.portfolio);
+        this.loadData();
         //this.updateList();
       }
     )
@@ -74,7 +94,7 @@ export class UserHomeComponent implements OnInit {
     console.log("in on submit");
     this.createPortfolio();
     //this.ngOnInit();
-    this.updateList();
+    //this.updateList();
   }
   updateList() {
     console.log("in reload");

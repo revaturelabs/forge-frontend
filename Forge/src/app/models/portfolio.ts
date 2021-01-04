@@ -10,4 +10,5 @@ export class Portfolio {
     projects: Object;
     education: Object;
     skillMatrix: Object;
+   
 }
