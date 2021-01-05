@@ -49,3 +49,5 @@
 [1026/175932.129:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\emwan\AppData\Local\Temp\karma-71739174\Crashpad\attachments\2892a630-7818-4c65-816e-232ab4892ddd: The system cannot find the path specified. (0x3)
 >>>>>>> 91966dc885daa54ecba29dc6ccf5d85240b6d28a
 [1027/155934.058:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0105/150038.874:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0105/160001.623:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
