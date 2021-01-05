@@ -21,6 +21,11 @@ export class PotfolioServiceService {
     //console.log(userId);
     return this.http.get<any>(this.url + "service/createPortfolio?userId="+ userId);
   }
+  //bugfix adding create porfolio function 
+   //new method 
+   createPortfolio(portfolio: object, id: number) : Observable<any> {
+    return this.http.post(this.url + "service/createPortfolio/" + `${id}`, portfolio, {withCredentials: true});
+  }
   
   getUserInfoById(portfolioId: number): Observable<any[]>{
     return this.http.get<any[]>(this.url + "service/getUser?id=" + portfolioId)
