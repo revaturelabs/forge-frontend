@@ -13,7 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
-  portfolio:Object;
+  //changed from Object to Portfolio[]
+  portfolio: Portfolio[];
 
   skills: any = [];
   skillNumber;

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { PortfolioComponent } from './portfolio.component';
+import { PotfolioServiceService } from '../service/potfolio-service.service';
+import { By } from 'protractor';
 
 describe('PortfolioComponent', () => {
   let component: PortfolioComponent;
@@ -23,4 +25,12 @@ describe('PortfolioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should add portfolioItem when button is clicked', () => {
+    fixture.detectChanges();
+
+  })
+
 });
+
+
