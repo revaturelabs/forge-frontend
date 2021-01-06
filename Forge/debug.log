@@ -51,3 +51,11 @@
 [1027/155934.058:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [0105/150038.874:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [0105/160001.623:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0106/113154.003:ERROR:file_io_win.cc(162)] CreateFile C:\Users\Owner\AppData\Local\Temp\karma-47341635\Crashpad\settings.dat: The system cannot find the path specified. (0x3)
+[0106/113154.004:ERROR:file_io_win.cc(171)] CreateFile C:\Users\Owner\AppData\Local\Temp\karma-47341635\Crashpad\reports\d5cf1659-b5b9-4acb-90be-4accafcd75ee.dmp: The system cannot find the path specified. (0x3)
+[0106/113154.004:ERROR:crash_report_exception_handler.cc(99)] PrepareNewCrashReport failed
+[0106/121105.143:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0106/131651.432:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0106/133710.535:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0106/141215.138:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0106/143952.085:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
