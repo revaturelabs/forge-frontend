@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 
 describe('PotfolioServiceService', () => {
   let service: PotfolioServiceService;
-  // let dummyPortfolio;
+  let portfolio: Portfolio;
   let httpMock: HttpTestingController;
   let httpClientSpy: { get: jasmine.Spy };
 
@@ -20,27 +20,26 @@ describe('PotfolioServiceService', () => {
     httpMock = TestBed.inject(HttpTestingController);
   });
 
-  beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    service = new PotfolioServiceService(httpClientSpy as any);
-  })
-
   it('should return portfolio by id', () => {
+    const expectedId = 1;
     const expectedPortfolio = {
       id: 1,
       status: "pending",
       userId: 1,
       portfolioSection: [
         {
-          title: "Education",
+          portfolioItemId: 1,
+          portfolioId: 1,
           priority: 1,
+          title: "Education",
           items: [{
             id: 1,
             university: "Something",
             graduation: "1999",
             major: "Clowning",
             minor: "",
-            degree: "Masters"
+            degree: "Masters",
+            portfolioItemsId: 1
           },
           {
             id: 2,
@@ -48,24 +47,28 @@ describe('PotfolioServiceService', () => {
             graduation: "2232",
             major: "Tech",
             minor: "",
-            degree: "Masters"
+            degree: "Masters",
+            portfolioItemsId: 2
           }
           ]
         }
       ]
     }
-    httpClientSpy.get.and.returnValue(of(expectedPortfolio));
-    service.getPortfolioById(-1).subscribe(portfolio => expect(portfolio).toEqual(expectedPortfolio, 'expectedPortfolio'),
-      fail
-    );
-    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
-    // service = TestBed.inject(PotfolioServiceService);
-    // expect(service.getPortfolioById(1)).toBe(dummyPortfolio);
+    service.getPortfolioById(expectedId).subscribe(portfolio => {
+      console.log("the portfolio"); 
+      console.log(portfolio);
+      expect(expectedId).toEqual(portfolio.id);
+    })
+    const request = httpMock.expectOne(`${service.url}service/getPortfolioByID/${expectedId}`);
+    console.log(request);
+    expect(request.request.method).toBe('GET');
+    request.flush(expectedPortfolio);
   })
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   })
+
   it('should return criteria by id ', () => {
     const criteriaId = 1;
     const dummyValue: Criteria = { id: 1, criteriaName: 'education', criteriaValue: 1 };

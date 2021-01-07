@@ -33,9 +33,9 @@ export class PotfolioServiceService {
     return this.http.get<any[]>(this.url + "service/getUser?id=" + portfolioId)
   }
 
-  getPortfolioById(portfolioId: number): Observable<any>{ //changed Observable<Object> to Observable<any> 
+  getPortfolioById(portfolioId: number): Observable<Portfolio>{ //changed Observable<Object> to Observable<any> then to Observable<Portfolio>
     //console.log('getting portfolio')
-    return this.http.get<any>(this.url + "service/getPortfolioByID/" + portfolioId);
+    return this.http.get<Portfolio>(this.url + "service/getPortfolioByID/" + portfolioId);
   }
   //no email anymore
   getUserByEmail(email: string): Observable<any> {

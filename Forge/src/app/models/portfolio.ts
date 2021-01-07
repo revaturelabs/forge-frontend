@@ -5,5 +5,5 @@ export class Portfolio {
     id: number;
     status: string;
     userId: number; 
-    portfolioSection?: PortfolioItems[]; 
+    portfolioSection: PortfolioItems[]; 
 }

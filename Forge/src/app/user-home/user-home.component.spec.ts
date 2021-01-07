@@ -25,11 +25,10 @@ describe('UserHomeComponent', () => {
   });
 
   //bug fix test to see if portfolio object was created
-  // it ('should create portfolio object on createPortfolio()', () => {
-  //   expect(component.portfolio).toBeDefined();
-  //   component.newPortfolio();
-  //   expect(component.newPortfolio()).toBeDefined();
-  //   expect(component.portfolio).toBeTruthy();
-  // });
+  it('should create new portfolio', () => {
+    let portfolio = component.createPortfolio;
+   expect(portfolio).toBeTruthy();
+  });
+
 
 });
