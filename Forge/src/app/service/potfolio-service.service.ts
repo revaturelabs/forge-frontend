@@ -52,7 +52,7 @@ export class PotfolioServiceService {
 
   getAboutMeById(portfolioId: number): Observable<any[]>{
     //console.log('getting about me info')
-    return this.http.get<any[]>(this.url + "update/getaboutMe?id=" + portfolioId)
+    return this.http.get<any[]>(`${this.url}update/getaboutMe/?id=${portfolioId}`);
   }
 
   updateAboutMeById(portfolio: any){

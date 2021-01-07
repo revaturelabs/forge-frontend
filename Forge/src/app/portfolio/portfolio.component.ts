@@ -3,7 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
-import { Router } from '@angular/router';
+//import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router} from '@angular/router';
 
 //change to property access (.) instead of property binding([])
 
@@ -19,13 +20,18 @@ export class PortfolioComponent implements OnInit {
   skillNumber;
   portfolioid;
 
-  constructor(private portfolioService: PotfolioServiceService,private router: Router) { 
+  constructor(private portfolioService: PotfolioServiceService,private _route: ActivatedRoute,
+    private router: Router) { 
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
     this.portfolioid = splitUrl[splitUrl.length -1];
   }
 
   ngOnInit(): void {
+    // this._route.params.subscribe(params => {
+    //   //this.getPortfolio(params['id']);
+    //   console.log("this is the id from the router thing: " + params['id']);
+    // });
     //console.log(this.portfolioid);
     if(this.portfolioid =='portfolio'){
       //console.log("Creating portfolio");
