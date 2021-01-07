@@ -2,10 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Portfolio } from '../models/portfolio';
 import { AuthService } from '../service/auth-service.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
-import { User } from 'src/app/models/user'; 
+import { User } from 'src/app/models/user';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AboutMe } from '../models/aboutMe';
+import { Education } from '../models/education';
+import { IndustryEquivalency } from '../models/industryEquivalency';
+import { SkillMatrix } from '../models/skillMatrix';
+import { Project } from '../models/project';
 @Component({
   selector: 'app-user-home',
   templateUrl: './user-home.component.html',
@@ -14,7 +19,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UserHomeComponent implements OnInit {
 
   portfolios: Portfolio[] = [];
-  portfolio: Portfolio= new Portfolio();
+  portfolio: Portfolio = new Portfolio();
+  aboutMe: AboutMe;
+  education: Education;
+  industryEquivalency: IndustryEquivalency;
+  skillMatrix: SkillMatrix;
+  project: Project; 
   //1/1 bugfix team 
   user: User;
   submitted = false;
@@ -23,27 +33,27 @@ export class UserHomeComponent implements OnInit {
   
 
 
-  constructor(private authService:AuthService, private userService: UserServiceService, 
-    private PortfolioService: PotfolioServiceService, private route: Router ) { }
+  constructor(private authService: AuthService, private userService: UserServiceService,
+    private PortfolioService: PotfolioServiceService, private route: Router) { }
 
   ngOnInit(): void {
-    
+
     this.loadData();
    
    
   }
   loadData() {
     this.authService.infoRequest().subscribe(
-      data=>{/*console.log(data)*/;
+      data => {/*console.log(data)*/;
         this.userService.setId(data.userId);
         this.portfolios = [];
-        this.userService.getPortfolios().subscribe(data =>
-          {for(let element of data){
+        this.userService.getPortfolios().subscribe(data => {
+          for (let element of data) {
             this.portfolios.push(element);
-            
+
           }
         });
-    });
+      });
 
   }
 

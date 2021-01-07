@@ -14,14 +14,17 @@ import { ActivatedRoute, Params, Router} from '@angular/router';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
-  portfolio:Object;
+  //changed from Object to Portfolio
+  portfolio: Portfolio;
 
   skills: any = [];
   skillNumber;
   portfolioid;
 
+
   constructor(private portfolioService: PotfolioServiceService,private _route: ActivatedRoute,
     private router: Router) { 
+
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
     this.portfolioid = splitUrl[splitUrl.length -1];
@@ -58,8 +61,9 @@ export class PortfolioComponent implements OnInit {
     this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
   }
 
+  //change to createPortfolio(portfolio, id)
   createPortfolio(){
-    this.portfolioService.createPortfolioServ().subscribe( (data) =>{
+    this.portfolioService.createPortfolio(this.portfolio, this.portfolioid).subscribe( (data) =>{
       //console.log(data);
       this.portfolio = data;
     })
@@ -69,7 +73,7 @@ export class PortfolioComponent implements OnInit {
     this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
       this.portfolio = data;
       let user;
-
+      //possible can delete
       this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
         (data) => {
           user = data;
