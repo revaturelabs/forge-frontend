@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   model: User[];   
-    user: User= new User;
+  user: User= new User;
   loginError:String='';
   
 
@@ -95,7 +95,7 @@ returnUrl: string;
           this.user = this.model[i];
           console.log("this is model i " + this.model[i].userId);
           console.log("this is model[i] "+ JSON.stringify(this.model[i]));          
-          this.authService.loginRequest(this.user).subscribe(
+          this.authService.loginRequest(this.model[i]).subscribe(
             data => {
 
               console.log("this is the date" + data);

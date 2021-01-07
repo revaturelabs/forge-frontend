@@ -12,12 +12,11 @@ export class AuthService {
   constructor(private myHttpClient: HttpClient) { }
 
   loginRequest(User: User): Observable<User> {
-
+    console.log(User);
+    
     return this.myHttpClient.post<User>('http://localhost:8200/session/login', User,
     {withCredentials:true}
     );
-
-
   }
 
   //?????Wrapper class??????
