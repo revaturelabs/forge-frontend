@@ -36,6 +36,7 @@ import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
 import { AdminCriteriaComponent } from './admin-criteria/admin-criteria.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -82,6 +83,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ButtonsModule,
     MatExpansionModule,
     MatFormFieldModule,
+    MatInputModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [ToolbarService],

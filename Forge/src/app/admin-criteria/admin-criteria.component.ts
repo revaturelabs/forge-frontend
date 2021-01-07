@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Criteria } from '../models/criteria';
 import { AdminServiceService } from '../service/admin-service.service';
+import { Observable } from 'rxjs';
+
+
 
 
 
@@ -10,14 +13,17 @@ import { AdminServiceService } from '../service/admin-service.service';
   styleUrls: ['./admin-criteria.component.css']
 })
 export class AdminCriteriaComponent implements OnInit {
-    criteria : Criteria;
+  criteria: Criteria = new Criteria();
     step = 0;
-    
-    addCriteria(value : number, name : string): void{
-      this.criteria.criteriaValue = value;
-      this.criteria.criteriaName = name;
+     
+    addCriteria(id: number, criteriaValue: number, criteriaName: string) {
+      this.nextStep();
+      console.log(criteriaValue);
+      this.criteria.id=id;
+      this.criteria.criteriaValue=criteriaValue;
+      this.criteria.criteriaName=criteriaName;
+      console.log(this.criteria.criteriaValue);
       this.adminService.updateCriteria(this.criteria);
-
     }
   
     setStep(index: number) {
@@ -32,7 +38,7 @@ export class AdminCriteriaComponent implements OnInit {
       this.step--;
     }
   
-  constructor(private adminService : AdminServiceService) { }
+  constructor(private adminService : AdminServiceService, ) { }
 
   ngOnInit(): void {
   }

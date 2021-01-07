@@ -1,7 +1,9 @@
 
 
-export interface Criteria{
-    id: number,
-    criteriaName: string,
-    criteriaValue: number
+export class Criteria{
+    id: number;
+    criteriaValue: number;
+    criteriaName: string;
+    
+   
 }
