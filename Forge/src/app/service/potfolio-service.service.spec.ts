@@ -4,6 +4,7 @@ import { PotfolioServiceService } from './potfolio-service.service';
 import { Criteria } from '../models/criteria';
 import { Portfolio } from '../models/portfolio';
 import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 describe('PotfolioServiceService', () => {
   let service: PotfolioServiceService;
@@ -13,8 +14,8 @@ describe('PotfolioServiceService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [PotfolioServiceService]
+      imports: [ HttpClientTestingModule ],
+      providers: [PotfolioServiceService, HttpClient]
     });
     service = TestBed.inject(PotfolioServiceService);
     httpMock = TestBed.inject(HttpTestingController);

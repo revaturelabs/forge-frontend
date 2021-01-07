@@ -30,6 +30,7 @@ export class UserHomeComponent implements OnInit {
   submitted = false;
   id: number;
   belongs_to: string;
+  
 
 
   constructor(private authService: AuthService, private userService: UserServiceService,
@@ -38,20 +39,8 @@ export class UserHomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.loadData();
-    //added updateList route 
-    // this.updateList();
-    // this.authService.infoRequest().subscribe(
-    //   data=>{/*console.log(data)*/;
-    //     this.userService.setId(data.userId);
-
-    //     this.userService.getPortfolios().subscribe(data =>
-    //       {for(let element of data){
-    //         this.portfolios.push(element);
-
-    //       }
-    //     });
-    // });
-
+   
+   
   }
   loadData() {
     this.authService.infoRequest().subscribe(
@@ -68,47 +57,41 @@ export class UserHomeComponent implements OnInit {
 
   }
 
-  createPortfolio() {
-    console.log("in create porfolio");
-    //add getUser function 12/31 
+  createPortfolio(){
+    console.log("in create porfolio"); 
     console.log(localStorage.getItem('token'));
     this.user = new User();
     this.id = Number(localStorage.getItem('token')); //turns cookie into number and id = cookie
     console.log(this.id);
     this.userService.getUser(this.id).subscribe(data => { //id is 1 when it gets here and prints all data
-      console.log(this.id) //prints correct id number
-      console.log(data) //prints whole user table
 
-      this.user = data;
-      console.log(data);
-      this.id = Number(this.user.userId);
-      console.log(this.id);
-      this.portfolio = new Portfolio();
-      this.PortfolioService.createPortfolio(this.portfolio, this.id)
-        .subscribe(
-          data => {
-
-            //console.log(data);
-            this.portfolio = data;
-            console.log(this.portfolio);
-            this.loadData();
-            //this.updateList();
-          }
-        )
-    },
-      error => console.log(error));
+      this.user = data; 
+  
+  this.id = Number(this.user.userId);
+  console.log(this.id);
+  this.portfolio = new Portfolio();
+    this.PortfolioService.createPortfolio(this.portfolio, this.id)
+    .subscribe( 
+      data => {
+        
+       
+        this.portfolio = data;
+        console.log(this.portfolio);
+        this.loadData();
+        
+      }
+    )
+  },
+  error => console.log(error));
   }
-
-  //bug fix team add function to use for create porfolio button in user home html 
+  
+  //bug fix team added function to use for create porfolio button in user home html 
   onSubmit() {
     console.log("in on submit");
     this.createPortfolio();
-    //this.ngOnInit();
-    //this.updateList();
   }
   updateList() {
     console.log("in reload");
-    //this.ngOnInit();
     this.route.navigate(['/user-home']);
 
   }

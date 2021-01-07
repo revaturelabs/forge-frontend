@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserInfoComponent } from './user-info.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('UserInfoComponent', () => {
   let component: UserInfoComponent;
@@ -8,6 +10,7 @@ describe('UserInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule,HttpClientTestingModule],
       declarations: [ UserInfoComponent ]
     })
     .compileComponents();
