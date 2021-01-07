@@ -15,8 +15,6 @@ export class AuthService {
     return this.myHttpClient.post<User>('http://localhost:8200/session/login', User,
     {withCredentials:true}
     );
-
-
   }
 
   //?????Wrapper class??????

@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   model: User[];   
-
+  user: User= new User;
   loginError:String='';
   
 
@@ -41,7 +41,7 @@ returnUrl: string;
   this.regService.getUsers().subscribe(
     data=>{
       this.model=data;
-      //console.log(data);
+      console.log(data);
     }
 
 
@@ -90,16 +90,21 @@ returnUrl: string;
         else if (this.model[i]["admin"]==false)
         
         {
-          //console.log("User Login successful");            
+          console.log("User Login successful");  
+          //this is not working 
+          this.user = this.model[i];
+          console.log("this is model i " + this.model[i].userId);
+          console.log("this is model[i] "+ JSON.stringify(this.model[i]));          
           this.authService.loginRequest(this.model[i]).subscribe(
             data => {
-              //console.log(data);
+
+              console.log("this is the date" + data);
               this.router.navigateByUrl('/user-home');
             }
           );
           localStorage.setItem('isLoggedIn', "true");
           localStorage.setItem('token', JSON.stringify(this.model[i]["userId"]));
-          //console.log(localStorage.getItem('token'));
+          console.log(localStorage.getItem('token'));
           this.router.navigateByUrl('/user-home');  
           this.loginError='';
        }  

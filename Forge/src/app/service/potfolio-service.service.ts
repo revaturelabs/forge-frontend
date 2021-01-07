@@ -57,7 +57,9 @@ export class PotfolioServiceService {
 
   getAboutMeById(portfolioItemId: number): Observable<PortfolioItems>{
     //console.log('getting about me info')
+
     return this.http.get<PortfolioItems>(this.url + "update/getaboutMe?id=" + portfolioItemId);
+
   }
 
   updateAboutMeById(portfolioItems: PortfolioItems){
