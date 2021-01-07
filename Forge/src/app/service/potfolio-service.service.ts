@@ -15,12 +15,14 @@ export class PotfolioServiceService {
   aboutMeDescription:string;
   currPortfolio: Object;
 
-  createPortfolioServ():Observable<any[]>{
-    //console.log("creating portfolio in service");
-    let userId = localStorage.getItem('token');
-    //console.log(userId);
-    return this.http.get<any>(this.url + "service/createPortfolio?userId="+ userId);
-  }
+  // createPortfolioServ():Observable<any[]>{
+  //   //console.log("creating portfolio in service");
+  //   let userId = localStorage.getItem('token');
+  //   //console.log(userId);
+  //   //make POST
+  //   return this.http.get<any>(this.url + "service/createPortfolio?userId="+ userId);
+  // }
+  
   //bugfix adding create porfolio function 
    //new method 
    createPortfolio(portfolio: object, id: number) : Observable<any> {
@@ -35,7 +37,7 @@ export class PotfolioServiceService {
     //console.log('getting portfolio')
     return this.http.get<any>(this.url + "service/getPortfolioByID/" + portfolioId);
   }
-
+  //no email anymore
   getUserByEmail(email: string): Observable<any> {
     return this.http.get<any>(this.getUserByEmailUrl + email);
   }
@@ -44,7 +46,6 @@ export class PotfolioServiceService {
     //console.log(portfolio)
     return this.http.put(this.url + "service/updatePortfolio", portfolio)
   }
-
 
   updateUserInfoById(portfolio: any){
     return this.http.put(this.url + "service/updatePortfolio", portfolio)
@@ -83,6 +84,7 @@ export class PotfolioServiceService {
     return this.http.put(this.url + "update/updateproject", portfolio)
   }
 
+  //save
   getCriteriaById(criteriaId : number){
     return this.http.get<any>(this.url +"service/criteria/" + criteriaId)
 

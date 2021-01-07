@@ -6,6 +6,7 @@ export class Education{
       major: any;
       minor:any;
       degree:any;
+      portfolioItemsId: number;
     // portfolio: { /// portfolio id loose coupling changes/mapping
     //     id: any,
     //     belongsTo: any,

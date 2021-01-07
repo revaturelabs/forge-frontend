@@ -21,12 +21,12 @@ describe('PotfolioServiceService', () => {
   });
 
   beforeEach(() => {
-   httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-   service = new PotfolioServiceService(httpClientSpy as any);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    service = new PotfolioServiceService(httpClientSpy as any);
   })
 
   it('should return portfolio by id', () => {
-   const expectedPortfolio = {
+    const expectedPortfolio = {
       id: 1,
       status: "pending",
       userId: 1,
@@ -55,8 +55,8 @@ describe('PotfolioServiceService', () => {
       ]
     }
     httpClientSpy.get.and.returnValue(of(expectedPortfolio));
-    service.getPortfolioById(-1).subscribe( portfolio => expect(portfolio).toEqual(expectedPortfolio, 'expectedPortfolio'),
-    fail
+    service.getPortfolioById(-1).subscribe(portfolio => expect(portfolio).toEqual(expectedPortfolio, 'expectedPortfolio'),
+      fail
     );
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
     // service = TestBed.inject(PotfolioServiceService);

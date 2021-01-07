@@ -1,9 +1,9 @@
 import { User } from "../models/user";
-import { PortfolioItem } from '../models/portfolio-item';
+import { PortfolioItems } from './portfolio-items';
 
 export class Portfolio {
     id: number;
     status: string;
-    userId: number; //check name on java side
-    portfolioSection?: PortfolioItem[]; 
+    userId: number; 
+    portfolioSection?: PortfolioItems[]; 
 }
