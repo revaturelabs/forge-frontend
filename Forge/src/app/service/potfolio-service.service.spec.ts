@@ -5,33 +5,44 @@ import { Criteria } from '../models/criteria';
 import { Portfolio } from '../models/portfolio';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { PortfolioItems } from '../models/portfolio-items';
 
 describe('PotfolioServiceService', () => {
   let service: PotfolioServiceService;
   let portfolio: Portfolio;
   let httpMock: HttpTestingController;
   let httpClientSpy: { get: jasmine.Spy };
+  let expectedId;
+  let expectedPortfolio;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
+      imports: [HttpClientTestingModule],
       providers: [PotfolioServiceService, HttpClient]
     });
     service = TestBed.inject(PotfolioServiceService);
     httpMock = TestBed.inject(HttpTestingController);
-  });
-
-  it('should return portfolio by id', () => {
-    const expectedId = 1;
-    const expectedPortfolio = {
+    expectedId = 1;
+    expectedPortfolio = {
       id: 1,
       status: "pending",
       userId: 1,
       portfolioSection: [
         {
-          portfolioItemId: 1,
+          portfolioItemsId: 1,
           portfolioId: 1,
           priority: 1,
+          title: "AboutMe",
+          items: [{
+            id: 1,
+            description: "Hello Bald man",
+            portfolioItemsId: 1
+          }]
+        },
+        {
+          portfolioItemsId: 2,
+          portfolioId: 1,
+          priority: 2,
           title: "Education",
           items: [{
             id: 1,
@@ -40,7 +51,7 @@ describe('PotfolioServiceService', () => {
             major: "Clowning",
             minor: "",
             degree: "Masters",
-            portfolioItemsId: 1
+            portfolioItemsId: 2
           },
           {
             id: 2,
@@ -55,15 +66,34 @@ describe('PotfolioServiceService', () => {
         }
       ]
     }
+
+  });
+
+  it('should return portfolio by id', () => {
     service.getPortfolioById(expectedId).subscribe(portfolio => {
-      console.log("the portfolio"); 
+      console.log("the portfolio");
       console.log(portfolio);
       expect(expectedId).toEqual(portfolio.id);
     })
-    const request = httpMock.expectOne(`${service.url}service/getPortfolioByID/${expectedId}`);
+    const request = httpMock.expectOne(`${service.url}service/getPortfolioByID?id=${expectedId}`);
     console.log(request);
     expect(request.request.method).toBe('GET');
     request.flush(expectedPortfolio);
+  })
+
+  it('should return education portfolioItems by id', () => {
+    service.getEducationById(2).subscribe(data =>{
+      console.log("education items");
+      console.log(data);
+      let educationItems = new PortfolioItems;
+      educationItems = data;
+      console.log("expectPortfolioItemId");
+      console.log(expectedPortfolio.portfolioSection[1]);
+      expect(2).toEqual(expectedPortfolio.portfolioSection[1].portfolioItemsId);
+    })
+    const request = httpMock.expectOne(`${service.url}update/geteducation?id=${2}`);
+    expect(request.request.method).toBe('GET');
+    request.flush(expectedPortfolio.portfolioSection[1].portfolioItemsId); //do we even need this???
   })
 
   it('should be created', () => {
