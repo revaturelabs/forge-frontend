@@ -20,7 +20,7 @@ export class PortfolioComponent implements OnInit {
   skills: any = [];
   skillNumber;
   portfolioid;
-
+  userId: number;
 
   constructor(private portfolioService: PotfolioServiceService,private _route: ActivatedRoute,
     private router: Router) { 
@@ -73,11 +73,13 @@ export class PortfolioComponent implements OnInit {
     this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
       this.portfolio = data;
       let user;
+      this.userId = Number(localStorage.getItem('token'));
+      console.log("this is the userId " + this.userId);
       //possible can delete
-      this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
+      this.portfolioService.getUserById(this.userId).subscribe(
         (data) => {
           user = data;
-          this.portfolio['myUser'] = user; //possible breakpoint
+          this.portfolio['User'] = user; //possible breakpoint
           //console.log(this.portfolio);
         });
     })

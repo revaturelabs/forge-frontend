@@ -12,8 +12,7 @@ import { ActivatedRoute, Params, Router} from '@angular/router';
 })
 export class AboutMeComponent implements OnInit {
 
-  //portfolio: Object;
-  port: Portfolio;
+
   portfolioItemId: number;
   id: number;
   description: string;
@@ -32,17 +31,16 @@ export class AboutMeComponent implements OnInit {
     'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
     }; 
   
-  //aboutMe = [];
-  //bug fix team making empty string 
    
 
   constructor(private PortfolioService: PotfolioServiceService, private _route: ActivatedRoute,
     private _router: Router) { }
 
   ngOnInit(): void {
-    
+    //this grabs portfolio id from router 
     this._route.params.subscribe(params => {
       this.getAboutMe(params['id']);
+      
     });
 
   }
@@ -52,25 +50,26 @@ export class AboutMeComponent implements OnInit {
  
 
   save(){
-    
-    this.PortfolioService.updateAboutMeById(this.port).subscribe( data => {
-      this.port = new Portfolio();
-      console.log(data);
-    })
-    //this.addAboutMe.emit(this.content);
-    //console.log(this.content);
+     this.portfolioItemId=1;
+     this.PortfolioService.updateAboutMeById(this.portfolioItemId).subscribe( data => {
+     
+       console.log(data);
+     })
+    this.addAboutMe.emit(this.description);
+    console.log(this.description);
   }
 
   getAboutMe(id: number){
     
     this.PortfolioService.getPortfolioById(this.id);
-    // //this.id = this.port.id;
-    // console.log(this.id);
-    this.port = new Portfolio();
-    this.PortfolioService.getAboutMeById(id).subscribe( data => {
-      console.log(data);
+    console.log(this.id);
+    // this.port = new Portfolio();
+   
+   
+    this.PortfolioService.getAboutMeById(1).subscribe( data => {
+       console.log(data);
       console.log(id);
-     //this.port = data;
-    })
+    //  //this.port = data;
+     })
   }
 }

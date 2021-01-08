@@ -31,8 +31,8 @@ export class PotfolioServiceService {
     return this.http.post<Portfolio>(this.url + "service/createPortfolio/" + `${id}`, portfolio, {withCredentials: true});
   }
   
-  getUserInfoById(portfolioId: number): Observable<any[]>{
-    return this.http.get<any[]>(this.url + "service/getUser?id=" + portfolioId)
+  getUserById(userId: number): Observable<any[]>{
+    return this.http.get<any[]>(this.url + "service/getUser?id=" + userId);
   }
   //check later
   getPortfolioById(portfolioId: number): Observable<Portfolio>{ //changed Observable<Object> to Observable<any> then to Observable<Portfolio>
@@ -62,8 +62,8 @@ export class PotfolioServiceService {
 
   }
 
-  updateAboutMeById(portfolioItems: PortfolioItems){
-    return this.http.put(this.url + "update/aboutMe", portfolioItems);
+  updateAboutMeById(portfolioItemId: number){
+    return this.http.put(this.url + "update/aboutMe", portfolioItemId);
   }
   
   getEducationById(portfolioItemId: number): Observable<PortfolioItems>{
