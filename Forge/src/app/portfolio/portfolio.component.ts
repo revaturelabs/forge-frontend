@@ -93,10 +93,10 @@ export class PortfolioComponent implements OnInit {
     this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
   }
 
-  updateAboutMe(aboutMeInfo:any){
-    this.portfolio['aboutMe']['description'] = aboutMeInfo;
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
-  }
+  // updateAboutMe(aboutMeInfo:any){
+  //   this.portfolio['aboutMe']['description'] = aboutMeInfo;
+  //   this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
+  // }
 
   updateIndustryEq(industryEq:any){
     let projectLength = this.portfolio['industryEquivalency'].length;

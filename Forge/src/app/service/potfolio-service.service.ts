@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Portfolio } from '../models/portfolio';
 import { PortfolioItems } from '../models/portfolio-items';
+import { AboutMe } from '../models/aboutMe';
 
 @Injectable({
   providedIn: 'root'
@@ -55,15 +56,15 @@ export class PotfolioServiceService {
     return this.http.put(this.url + "service/updatePortfolio", portfolio);
   }
 
-  getAboutMeById(portfolioItemId: number): Observable<PortfolioItems>{
-    //console.log('getting about me info')
-
-    return this.http.get<PortfolioItems>(this.url + "update/getaboutMe?id=" + portfolioItemId);
+  getAboutMeById(portfolioItemId: number): Observable<AboutMe>{
+    console.log('in getAboutMeById in the potfolio service this is the item id '+ portfolioItemId);
+    return this.http.get<AboutMe>(`${this.url}update/getaboutMe/${portfolioItemId}`);
 
   }
 
-  updateAboutMeById(portfolioItemId: number){
-    return this.http.put(this.url + "update/aboutMe", portfolioItemId);
+  updateAboutMeById(portfolioItemId: number, description: string){
+    console.log('in the portfolio service update about me pot id '+ portfolioItemId + description);
+    return this.http.put(`${this.url}update/aboutMe/${portfolioItemId}`, description);
   }
   
   getEducationById(portfolioItemId: number): Observable<PortfolioItems>{

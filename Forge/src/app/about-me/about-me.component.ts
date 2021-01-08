@@ -3,6 +3,9 @@ import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@sync
 import { Portfolio } from '../models/portfolio';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 import { ActivatedRoute, Params, Router} from '@angular/router';
+import { AboutMe } from '../models/aboutMe';
+import { PortfolioItems } from '../models/portfolio-items';
+import { JsonpClientBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-about-me',
@@ -12,7 +15,7 @@ import { ActivatedRoute, Params, Router} from '@angular/router';
 })
 export class AboutMeComponent implements OnInit {
 
-
+  aboutMe: AboutMe;
   portfolioItemId: number;
   id: number;
   description: string;
@@ -38,9 +41,10 @@ export class AboutMeComponent implements OnInit {
 
   ngOnInit(): void {
     //this grabs portfolio id from router 
+    this.portfolioItemId = 1;
     this._route.params.subscribe(params => {
-      this.getAboutMe(params['id']);
-      
+      this.getAboutMe(this.portfolioItemId);
+      console.log("in oninit in about me comp "+ this.portfolioItemId);
     });
 
   }
@@ -50,26 +54,23 @@ export class AboutMeComponent implements OnInit {
  
 
   save(){
-     this.portfolioItemId=1;
-     this.PortfolioService.updateAboutMeById(this.portfolioItemId).subscribe( data => {
-     
-       console.log(data);
+    
+     this.PortfolioService.updateAboutMeById(this.portfolioItemId, this.description).subscribe( data => {
+      console.log(this.description); //prints new 
+      console.log(data); // print old 
+
      })
     this.addAboutMe.emit(this.description);
-    console.log(this.description);
+    console.log(this.description); //prints new 
   }
 
-  getAboutMe(id: number){
-    
-    this.PortfolioService.getPortfolioById(this.id);
-    console.log(this.id);
-    // this.port = new Portfolio();
+  getAboutMe(portfolioItemId: number){
    
-   
-    this.PortfolioService.getAboutMeById(1).subscribe( data => {
+    this.PortfolioService.getAboutMeById(portfolioItemId).subscribe( data => {
        console.log(data);
-      console.log(id);
-    //  //this.port = data;
+      this.aboutMe = data;
+      this.description = data.description;
+
      })
   }
 }
