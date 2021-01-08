@@ -4,6 +4,6 @@ import { PortfolioItems } from './portfolio-items';
 export class Portfolio {
     id: number;
     status: string;
-    userId: number; 
+    user: User; 
     portfolioSections: PortfolioItems[]; 
 }

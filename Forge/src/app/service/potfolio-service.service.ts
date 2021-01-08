@@ -94,7 +94,6 @@ export class PotfolioServiceService {
   //save
   getCriteriaById(criteriaId : number){
     return this.http.get<any>(this.url +"service/criteria/" + criteriaId);
-
   }
 
 }
