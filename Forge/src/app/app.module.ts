@@ -36,6 +36,12 @@ import { AdminIndustryEquivalnecyComponent } from './admin-industry-equivalnecy/
 import { AdminSkillsComponent } from './admin-skills/admin-skills.component';
 import { AdminProjectsComponent } from './admin-projects/admin-projects.component';
 import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
+import { AdminCriteriaComponent } from './admin-criteria/admin-criteria.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
+
 
 @NgModule({
   declarations: [
@@ -60,7 +66,8 @@ import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
     AdminIndustryEquivalnecyComponent,
     AdminSkillsComponent,
     AdminProjectsComponent,
-    NavbarAdminComponent
+    NavbarAdminComponent,
+    AdminCriteriaComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +85,9 @@ import { NavbarAdminComponent } from './navbar-admin/navbar-admin.component';
     NavbarModule,
     WavesModule,
     ButtonsModule,
-    // FormBuilder,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [ToolbarService],
