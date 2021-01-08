@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ToolbarService,HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
+import { ToolbarService,HtmlEditorService} from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
   selector: 'app-admin-about-me',

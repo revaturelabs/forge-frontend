@@ -1,6 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@syncfusion/ej2-angular-richtexteditor';
-import { PotfolioServiceService } from '../service/potfolio-service.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ToolbarService, HtmlEditorService} from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
   selector: 'app-about-me',
