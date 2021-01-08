@@ -4,7 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
@@ -19,7 +20,9 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
 import { ProjectsComponent } from './projects/projects.component';
 import { AdminPortViewComponent } from './admin-port-view/admin-port-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardHeader, MatCardModule} from '@angular/material/card';
+// import { MatCardHeader, MatCardModule} from '@angular/material/card';
+import {  MatCardModule} from '@angular/material/card';
+
 import { RichTextEditorAllModule, ToolbarService} from '@syncfusion/ej2-angular-richtexteditor';
 import { MatIconModule } from '@angular/material/icon';
 import { ChartsModule } from 'ng2-charts';
@@ -74,9 +77,10 @@ import {MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     DragDropModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    RichTextEditorAllModule,
+    MatCardModule, 
     MatIconModule,
+    // MatCardHeader,
+    RichTextEditorAllModule,
     ChartsModule,
     NavbarModule,
     WavesModule,
@@ -84,6 +88,7 @@ import {MatInputModule} from '@angular/material/input';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
+    // FormBuilder,
     MDBBootstrapModule.forRoot()
   ],
   providers: [ToolbarService],

@@ -1,14 +1,9 @@
 import { User } from "../models/user";
+import { PortfolioItems } from './portfolio-items';
 
 export class Portfolio {
     id: number;
-    belongsTo: string;
     status: string;
-    aboutMe: Object;
-    industryEquivalency: Object;
-    myUser?: User;
-    projects: Object;
-    education: Object;
-    skillMatrix: Object;
-   
+    user: User; 
+    portfolioSections: PortfolioItems[]; 
 }
