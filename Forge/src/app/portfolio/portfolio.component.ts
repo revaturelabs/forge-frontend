@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 export class PortfolioComponent implements OnInit {
   //changed from Object to Portfolio
   portfolio: Portfolio;
-
   skills: any = [];
   skillNumber;
   portfolioid;
@@ -111,6 +110,18 @@ export class PortfolioComponent implements OnInit {
 
     //console.log(projects);
     //console.log(this.portfolio);
+  }
+
+  //added by StaticRequirement group
+  getCriteriaByName(criteriaName: string){
+    this.portfolioService.getCriteriaByName(criteriaName).subscribe(
+      data => {
+        let criteria = data;
+        this.portfolio.requirements = criteria.requirements;
+        this.portfolio.entryAmount = criteria.entryAmount;
+      }
+    );
+
   }
 
   

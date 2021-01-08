@@ -92,8 +92,8 @@ export class PotfolioServiceService {
   }
 
   //save
-  getCriteriaById(criteriaId : number){
-    return this.http.get<any>(this.url +"service/criteria/" + criteriaId);
+  getCriteriaByName(criteriaName : string){
+    return this.http.get<any>(this.url +"criteria/" + criteriaName);
   }
 
 }

@@ -1,8 +1,7 @@
 export class PortfolioItems {
     portfolioItemId: number;
     portfolioId: number;
-    priority: number;
-    //make a new field (requirements)
+    priority: number; // how many entries
     title: string;
     items: any[];
 }

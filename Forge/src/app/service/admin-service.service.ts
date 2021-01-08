@@ -16,7 +16,7 @@ export class AdminServiceService {
   private sendEmailUrl = "http://localhost:8200/email/sendEmail";
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
   private updatePortfolioUrl = "http://localhost:8200/service/updatePortfolio";
-  private updateCriteriaUrl= "http://localhost:8200/criteria";
+          updateCriteriaUrl= "http://localhost:8200/criteria/update";
 
   constructor(private http: HttpClient) { 
   }
@@ -48,7 +48,6 @@ export class AdminServiceService {
   }
 
   updateCriteria(criteria: Criteria) : Observable<any>{
-    console.log(criteria.criteriaValue);
     console.log(`${this.updateCriteriaUrl}/${criteria.id}`);
     console.log(criteria);
    return this.http.post<any>(`${this.updateCriteriaUrl}/${criteria.id}`, criteria);
