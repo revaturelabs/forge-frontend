@@ -6,19 +6,17 @@ import { Portfolio } from '../models/portfolio';
 import { User } from '../models/user';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class AdminServiceService {
-          baseUrl="http://localhost:8200/";
   private getPortfoliosUrl: string = "http://localhost:8200/service/getAllPortfolios";
   private getUsersUrl: string = "http://localhost:8200/service/getAllUsers";
   private getPortfolioByIdUrl = "http://localhost:8200/service/getPortfolioByID/";
   private sendEmailUrl = "http://localhost:8200/email/sendEmail";
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
   private updatePortfolioUrl = "http://localhost:8200/service/updatePortfolio";
-           updateCriteriaUrl= this.baseUrl+"criteria";
+  private updateCriteriaUrl= "http://localhost:8200/criteria";
 
   constructor(private http: HttpClient) { 
   }
@@ -54,6 +52,5 @@ export class AdminServiceService {
     console.log(`${this.updateCriteriaUrl}/${criteria.id}`);
     console.log(criteria);
    return this.http.post<any>(`${this.updateCriteriaUrl}/${criteria.id}`, criteria);
-
   }
 }

@@ -2,7 +2,7 @@
 
 export class Criteria{
     id: number;
-    criteriaValue: number;
+    criteriaValue: string;
     criteriaName: string;
     
    
