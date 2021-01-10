@@ -1,9 +1,6 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-//attempt to configure Chrome path for Puppeteer
-//process.env.CHROME_BIN=require('puppeteer').executablePath()
-
 module.exports = function (config) {
   config.set({
     basePath: '',
@@ -13,23 +10,10 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
+      require('@angular/material'),
+      require('@angular/material/icon'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
-
-    customLaunchers: {
-      ChromeHeadless: {
-        base: 'Chrome',
-        flags: [
-          '--headless',
-          '--disable-gpu',
-          '--no-sandbox',
-          '--remote-debugging-port=9222',
-        ]
-      }
-    },
-    browsers: ['ChromeHeadless'],
-    singleRun: true,
-
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
@@ -47,5 +31,4 @@ module.exports = function (config) {
     singleRun: false,
     restartOnFileChange: true
   });
-
 };
