@@ -1,8 +1,9 @@
 export class Project{
+    itemType: "Project";
     id: number;
+    priority: number;
     name: string;
     description: string;
-    portfolioItemsId: number;
-    projectResponsibilities: any[];
-    projectTechnologies: any[];
+    projectResponsibilities: string;
+    projectTechnologies: string;
 }

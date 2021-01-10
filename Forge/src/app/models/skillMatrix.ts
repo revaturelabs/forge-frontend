@@ -1,6 +1,8 @@
 export class SkillMatrix{
+    itemType: "SkillMatrix";
     id: number;
+    priority: number;
     title: string;
     portfolioItemsId: number;
-    skillMatrixItem: any[];
+    skillMatrixItem: Object[];
 }
