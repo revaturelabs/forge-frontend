@@ -72,7 +72,8 @@ password
 </pre>
 
 ### Setting up Angular
- ```sh
+ ```shnpm install
 ng add @angular/material 
+npm install
 ng serve -o
  ```
