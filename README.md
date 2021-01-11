@@ -87,7 +87,7 @@ password
 
 [4] Misc Info
 <a href="http://localhost:8200/session/loggers "> http://localhost:8200/session/loggers  </a>
-<a href="http://localhost:8200/service/getUserByEmail/"> http://localhost:8200/service/getUserByEmail/ </a> (doesn't ork)
+<a href="http://localhost:8200/service/getUserByEmail/"> http://localhost:8200/service/getUserByEmail/ </a> (doesn't work)
 </pre>
 
 ### Setting up Angular
