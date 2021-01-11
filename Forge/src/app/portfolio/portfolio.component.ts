@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Criteria } from '../models/criteria';
 import { CriteriaService } from '../service/criteria.service';
 
+import { User } from '../models/user';
 
 //change to property access (.) instead of property binding([])
 
@@ -22,21 +23,28 @@ export class PortfolioComponent implements OnInit {
   skillNumber;
   portfolioid;
   wordCount: number;
+  
+  user: User = new User;
+  userId: number;
+  firstName: string;
+  lastName: string;
 
   //add UserServiceService
   constructor(private portfolioService: PotfolioServiceService,private router: Router, private criteriaService:CriteriaService) { 
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
     this.portfolioid = splitUrl[splitUrl.length -1];
+    this.userId = parseInt(localStorage.getItem('token'));
   }
 
   ngOnInit(): void {
     //console.log(this.portfolioid);
     if(this.portfolioid =='portfolio'){
-      //console.log("Creating portfolio");
+      console.log("Creating portfolio");
       this.createPortfolio();
     }else{
-      //console.log("we have an id");
+      console.log("we have an id");
+      localStorage.setItem('portId', this.portfolioid);
       this.getPortfolio(this.portfolioid);
     }
     //this.portfolioService.setPortfolio(this.portfolio);
@@ -124,12 +132,13 @@ export class PortfolioComponent implements OnInit {
   getPortfolio(portfolioId){
     this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
       this.portfolio = data;
-      let user;
+      console.log(data);
       //possible can delete
-      this.portfolioService.getUserByEmail(this.portfolio['belongsTo']).subscribe(
-        (data) => {
-          user = data;
-          this.portfolio['myUser'] = user; //possible breakpoint
+      this.portfolioService.getUser(this.userId).subscribe(
+        (data2) => {
+          this.user = data2;
+          console.log(data2);
+          this.portfolio['user'] = this.user; //possible breakpoint
           //console.log(this.portfolio);
         });
     })

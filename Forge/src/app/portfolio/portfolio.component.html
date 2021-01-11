@@ -2,6 +2,7 @@
 <div *ngIf="portfolio != undefined">
 <app-user-info [belongsTo]="portfolio['belongsTo']"></app-user-info>
 <app-about-me  (addAboutMe)="updateAboutMe($event)" [wordCount]='wordCount' [inputAboutMe] = "portfolio['aboutMe']"></app-about-me>
+<app-user-info></app-user-info>
 <app-education (addEducation)="updateEducation($event)" [inputEducation] = "portfolio['education']"></app-education>
 <app-industry-equivalency (addindustryEq)="updateIndustryEq($event)" [inputIndustryEquivalency]="portfolio['industryEquivalency']"></app-industry-equivalency>
 <div class="container">

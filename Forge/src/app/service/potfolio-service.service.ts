@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Portfolio } from '../models/portfolio';
-import { PortfolioItems } from '../models/portfolio-items';
-import { Criteria } from '../models/criteria';
+import { Education } from '../models/education';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,43 +12,37 @@ export class PotfolioServiceService {
 
   constructor(private http: HttpClient) { }
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
-   url = "http://localhost:8200/";
+  url = "http://localhost:8200/service";
 
   aboutMeDescription:string;
   currPortfolio: Object;
-
-  // createPortfolioServ():Observable<any[]>{
-  //   //console.log("creating portfolio in service");
-  //   let userId = localStorage.getItem('token');
-  //   //console.log(userId);
-  //   //make POST
-  //   return this.http.get<any>(this.url + "service/createPortfolio?userId="+ userId);
-  // }
   
+  //this service can be consolidate later
+
   //bugfix adding create porfolio function 
    //new method 
-   //changed portfolio: Object to portfolio: Portfolio & Observable<Portfolio> & post<Portfolio>
    createPortfolio(portfolio: Portfolio, id: number) : Observable<Portfolio> {
-    return this.http.post<Portfolio>(this.url + "service/createPortfolio/" + `${id}`, portfolio, {withCredentials: true});
+    return this.http.post<Portfolio>(this.url + "/createPortfolio/" + `${id}`, portfolio, {withCredentials: true});
+  }
+
+  getUser(id: number): Observable<any> {
+    return this.http.get(`${this.url}/getUserById/${id}`);
+
   }
   
   getUserInfoById(portfolioId: number): Observable<any[]>{
     return this.http.get<any[]>(this.url + "service/getUser?id=" + portfolioId)
   }
-  //check later
-  getPortfolioById(portfolioId: number): Observable<Portfolio>{ //changed Observable<Object> to Observable<any> then to Observable<Portfolio>
-    //console.log('getting portfolio')
-     //changed /getPortfolioByID/ to /getPortfolioById?id=
-    return this.http.get<Portfolio>(this.url + "service/getPortfolioByID?id=" + portfolioId);
+  
+  getPortfolioById(portfolioId: number): Observable<Portfolio>{ 
+    return this.http.get<Portfolio>(`${this.url}/getPortfolioByID/${portfolioId}`);
   }
-  //no email anymore
+  //no email anymore getUserById now
   getUserByEmail(email: string): Observable<any> {
     return this.http.get<any>(this.getUserByEmailUrl + email);
   }
 
-  //changed portfolio: any to portfolio: Portfolio
   updatePortfolio(portfolio: Portfolio){
-    //console.log(portfolio)
     return this.http.put(this.url + "service/updatePortfolio", portfolio);
   }
 
@@ -56,40 +50,36 @@ export class PotfolioServiceService {
     return this.http.put(this.url + "service/updatePortfolio", portfolio);
   }
 
-  getAboutMeById(portfolioItemId: number): Observable<PortfolioItems>{
-    //console.log('getting about me info')
-    return this.http.get<PortfolioItems>(this.url + "update/getaboutMe?id=" + portfolioItemId);
+  getAboutMeById(portfolioItemId: number): Observable<Object>{
+    return this.http.get<Object>(this.url + "update/getPortfolioItemsById?id=" + portfolioItemId);
   }
 
-  updateAboutMeById(portfolioItems: PortfolioItems){
-    return this.http.put(this.url + "update/aboutMe", portfolioItems);
+  updateAboutMeById(portfolioItems: Object){
+    return this.http.put(this.url + "update/updatePortfolioItems", portfolioItems);
   }
   
-  getEducationById(portfolioItemId: number): Observable<PortfolioItems>{
-    // changed update/geteducation/id?= to "update/geteducation?id=
-    return this.http.get<PortfolioItems>(this.url + "update/geteducation?id=" + portfolioItemId);
+  getEducationById(portfolioItemId: number): Observable<Education>{
+    return this.http.get<Education>(this.url + "update/getPortfolioItemsById?id=" + portfolioItemId);
   }
 
-  updateEducationById(portfolioItems: PortfolioItems){
-    return this.http.put(this.url + "update/education", portfolioItems);
+  updateEducationById(portfolioItems: Education){
+    return this.http.put(this.url + "update/updatePortfolioItems", portfolioItems);
   }
 
-  getIndustryEquivalencyById(portfolioId: number): Observable<PortfolioItems>{
-  //changed update/getindustryEquivalency/id?= to update/getindustryEquivalency?id=
-    return this.http.get<PortfolioItems>(this.url + "update/getindustryEquivalency?id=" + portfolioId);
+  getIndustryEquivalencyById(portfolioId: number): Observable<Object>{
+    return this.http.get<Object>(this.url + "update/getPortfolioItemsById?id=" + portfolioId);
   }
 
-  updateIndustryEquivalencyById(portfolioItems: PortfolioItems){
-    return this.http.put(this.url + "update/industryEquivalency", portfolioItems);
+  updateIndustryEquivalencyById(portfolioItems: Object){
+    return this.http.put(this.url + "update/updatePortfolioItems", portfolioItems);
   }
 
-  getProjectById(portfolioId: number): Observable<PortfolioItems>{
- // changed update/getProject/id?= to update/getProject?id=
-    return this.http.get<PortfolioItems>(this.url + "update/getProject?id=" + portfolioId);
+  getProjectById(portfolioId: number): Observable<Object>{
+    return this.http.get<Object>(this.url + "update/getPortfolioItemsById?id=" + portfolioId);
   }
 
-  updateProjectById(portfolioItems: PortfolioItems){
-    return this.http.put(this.url + "update/updateproject", portfolioItems);
+  updateProjectById(portfolioItems: Object){
+    return this.http.put(this.url + "update/updatePortfolioItems", portfolioItems);
   }
 
   

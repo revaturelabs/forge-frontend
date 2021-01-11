@@ -1,10 +1,8 @@
-import { AboutMeItems } from './aboutMeItems';
-import { Portfolio } from './portfolio';
-
 export class AboutMe{
+    itemType: "AboutMe";
     id: 1;
+    priority: number;
     description: "Hello Bald man";
-    portfolioItemsId: number;
     // aboutMeItems:AboutMeItems
     // portfolio: Portfolio
     requirements: string; //added this staticRequirement group
