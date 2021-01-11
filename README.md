@@ -57,7 +57,7 @@ password
 [4.1] <a href="http://localhost:4200/portfolio/{id}"> http://localhost:4200/portfolio/{id} </a>
 </pre>
 
-##### [5] Items
+##### [5.3] Portfolio Items
 <pre>
 [5.1] <a href="http://localhost:4200/project"> http://localhost:4200/aboutMe </a>
 [5.2] <a href="http://localhost:4200/education"> http://localhost:4200/education </a>
@@ -66,38 +66,38 @@ password
 [5.5] <a href="http://localhost:4200/skillMatrix"> http://localhost:4200/skillMatrix </a> (doesn't work)
 </pre>
 
-##### [5.3] Misc
+##### [5.4] Misc
 <pre>
 [1] <a href="http://localhost:4200/navbar"> http://localhost:4200/navbar </a>
 </pre>
 
-##### [5.3] STS BACK-END (JSON)
+#### [6] STS BACK-END (JSON)
 
-[1] Login Info:
+##### [6.1] Login Info:
 <pre>
 <a href="http://localhost:8200/service/getAllUsers"> http://localhost:8200/service/getAllUsers </a>
 <a href="http://localhost:8200/service/getUser/{1}"> http://localhost:8200/service/getUser/{id}</a>
 </pre>
 
-[2] Portfolio Info:
+##### [6.2] Portfolio Info:
 <pre>
 <a href="http://localhost:8200/service/getAllPortfolios"> http://localhost:8200/service/getAllPortfolios  </a>
 <a href="http://localhost:8200/service/getPortfolioByID/{id}"> http://localhost:8200/service/getPortfolioByID/{id}}</a> (doesn't work)
 </pre>
 
-[3] Criteria Info:
+##### [6.3] Criteria Info:
 <pre>
 <a href="http://localhost:8200/service/getAllCriteria"> http://localhost:8200/service/getAllCriteria </a>
 <a href="http://localhost:8200/service/criteria/{1}"> http://localhost:8200/service/criteria/{id} </a>
 </pre>
 
-[4] Misc Info
+##### [6.4]  Misc Info
 <pre>
 <a href="http://localhost:8200/session/loggers "> http://localhost:8200/session/loggers  </a>
 <a href="http://localhost:8200/service/getUserByEmail/"> http://localhost:8200/service/getUserByEmail/ </a> (doesn't work)
 </pre>
 
-### Setting up Angular
+#### [7] Setting up Angular
  ```sh
 ng add @angular/material (optional)
 npm install
