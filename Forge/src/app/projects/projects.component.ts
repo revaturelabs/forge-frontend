@@ -28,6 +28,12 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.setProjectComponent();
+
+    // if(this.inputProject.length != 0){    
+    //   this.setProjectComponent();
+    // } else{
+    //   this.addProject();
+    // }
   }
 
   @Input() inputProject: []; 
