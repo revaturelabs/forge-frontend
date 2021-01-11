@@ -11,7 +11,7 @@ export class PotfolioServiceService {
 
   constructor(private http: HttpClient) { }
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
-  url = "http://localhost:8200/";
+  url = "http://localhost:8200/service";
 
   aboutMeDescription:string;
   currPortfolio: Object;
@@ -21,7 +21,12 @@ export class PotfolioServiceService {
   //bugfix adding create porfolio function 
    //new method 
    createPortfolio(portfolio: Portfolio, id: number) : Observable<Portfolio> {
-    return this.http.post<Portfolio>(this.url + "service/createPortfolio/" + `${id}`, portfolio, {withCredentials: true});
+    return this.http.post<Portfolio>(this.url + "/createPortfolio/" + `${id}`, portfolio, {withCredentials: true});
+  }
+
+  getUser(id: number): Observable<any> {
+    return this.http.get(`${this.url}/getUserById/${id}`);
+
   }
   
   getUserInfoById(portfolioId: number): Observable<any[]>{
@@ -29,7 +34,7 @@ export class PotfolioServiceService {
   }
   
   getPortfolioById(portfolioId: number): Observable<Portfolio>{ 
-    return this.http.get<Portfolio>(this.url + "service/getPortfolioByID?id=" + portfolioId);
+    return this.http.get<Portfolio>(`${this.url}/getPortfolioByID/${portfolioId}`);
   }
   //no email anymore getUserById now
   getUserByEmail(email: string): Observable<any> {

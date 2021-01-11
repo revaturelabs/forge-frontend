@@ -31,7 +31,7 @@
               
               <td class="col-md-3">{{portfolio.status}}</td>
               <td class="col-md-3 text-right">
-              <button type="button" class="btn btn-secondary"  id="viewButton" data-toggle="modal" data-target="#staticBackdrop" routerLink="/portfolio/{{portfolio['id']}}">View</button>
+              <button (click)="onViewClick()" type="button" class="btn btn-secondary"  id="viewButton" data-toggle="modal" data-target="#staticBackdrop" routerLink="/portfolio/{{portfolio['id']}}">View</button>
               <button type="button" class="btn btn-secondary"  id="viewButton" data-toggle="modal" data-target="#staticBackdrop" >PDF</button>
             </td>
             </tr>

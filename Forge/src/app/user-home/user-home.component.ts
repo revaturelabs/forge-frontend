@@ -30,16 +30,15 @@ export class UserHomeComponent implements OnInit {
   submitted = false;
   id: number;
   belongs_to: string;
-  
+  portId: number;
 
 
   constructor(private authService: AuthService, private userService: UserServiceService,
     private PortfolioService: PotfolioServiceService, private route: Router) { }
 
   ngOnInit(): void {
-
+    localStorage.removeItem('portId');
     this.loadData();
-   
    
   }
   loadData() {
@@ -50,10 +49,10 @@ export class UserHomeComponent implements OnInit {
         this.userService.getPortfolios().subscribe(data => {
           console.log(data);
           this.portfolios = data;
-          for (let element of data) {
-            this.portfolios.push(element);
+          //for (let element of data) {
+            //this.portfolios.push(element);
 
-          }
+          //}
         });
       });
 
