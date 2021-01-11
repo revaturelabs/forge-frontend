@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Criteria } from '../models/criteria';
 import { AdminServiceService } from '../service/admin-service.service';
+import { CriteriaService } from '../service/criteria.service';
 
 @Component({
   selector: 'app-admin-criteria',
@@ -18,9 +19,9 @@ export class AdminCriteriaComponent implements OnInit {
       this.criteria.entryAmount=entryAmount;
       this.criteria.criteriaName=criteriaName;
       this.criteria.requirements=requirements;
-      console.log(this.criteria.entryAmount);
-      this.adminService.updateCriteria(this.criteria).subscribe(data=>{
-        console.log(data);
+      
+      this.criteriaService.updateCriteria(this.criteria).subscribe(data=>{
+        console.log(data)
         this.criteria=data;
       }, error => console.log(error));
     }
@@ -37,7 +38,7 @@ export class AdminCriteriaComponent implements OnInit {
       this.step--;
     }
   
-  constructor(private adminService : AdminServiceService, ) { }
+  constructor(private criteriaService : CriteriaService, ) { }
 
   ngOnInit(): void {
   }

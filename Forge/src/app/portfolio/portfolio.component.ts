@@ -4,6 +4,9 @@ import { PotfolioServiceService } from '../service/potfolio-service.service';
 import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
 import { Router } from '@angular/router';
+import { Criteria } from '../models/criteria';
+import { CriteriaService } from '../service/criteria.service';
+
 
 //change to property access (.) instead of property binding([])
 
@@ -18,9 +21,10 @@ export class PortfolioComponent implements OnInit {
   skills: any = [];
   skillNumber;
   portfolioid;
+  wordCount: number;
 
   //add UserServiceService
-  constructor(private portfolioService: PotfolioServiceService,private router: Router) { 
+  constructor(private portfolioService: PotfolioServiceService,private router: Router, private criteriaService:CriteriaService) { 
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
     this.portfolioid = splitUrl[splitUrl.length -1];
@@ -50,6 +54,26 @@ export class PortfolioComponent implements OnInit {
   }
 
   submitPortfolio(){
+    if(this.wordCount < this.portfolio['aboutMe'].requirements){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['aboutMe'].requirements +' words in the About Me.';
+      return;
+    }
+    if(this.portfolio['education'].items.length < this.portfolio['education'].entryAmount){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['education'].entryAmount +' Education entries.';
+      return;
+    }
+    if(this.portfolio['industryEquivalency'].items.length < this.portfolio['industryEquivalency'].entryAmount){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['industryEquivalency'].entryAmount +' Industry Equivalency entries.';
+      return;
+    }
+    if(this.portfolio['skillMatrix'].items.length < this.portfolio['skillMatrix'].entryAmount){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['skillMatrix'].entryAmount +' Skill Matrix entries.';
+      return;
+    }
+    if(this.portfolio['projects'].items.length < this.portfolio['projects'].entryAmount){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['projects'].entryAmount +' Project entries.';
+      return;
+    }
     this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
   }
 
@@ -57,8 +81,44 @@ export class PortfolioComponent implements OnInit {
   createPortfolio(){
     this.portfolioService.createPortfolio(this.portfolio, this.portfolioid).subscribe( (data) =>{
       //console.log(data);
-      this.portfolio = data;
+      this.portfolio = data; 
     })
+     //added by StaticRequirement group
+    this.criteriaService.getCriteriaByName('projects').subscribe(
+      data => {
+        let criteria: Criteria = data;
+        this.portfolio['projects'].requirements = criteria.requirements;
+        this.portfolio['projects'].entryAmount = criteria.entryAmount;
+      }
+    );
+    this.criteriaService.getCriteriaByName('industryEquivalency').subscribe(
+      data => {
+        let criteria: Criteria = data;
+        this.portfolio['industryEquivalency'].requirements = criteria.requirements;
+        this.portfolio['industryEquivalency'].entryAmount = criteria.entryAmount;
+      }
+    ); 
+    this.criteriaService.getCriteriaByName('aboutMe').subscribe(
+      data => {
+        let criteria:Criteria = data;
+        this.portfolio['aboutMe'].requirements = criteria.requirements;
+        this.portfolio['aboutMe'].entryAmount = criteria.entryAmount;
+      }
+    );
+    this.criteriaService.getCriteriaByName('education').subscribe(
+      data => {
+        let criteria: Criteria = data;
+        this.portfolio['education'].requirements = criteria.requirements;
+        this.portfolio['education'].entryAmount = criteria.entryAmount;
+      }
+    );
+    this.criteriaService.getCriteriaByName('skillMatrix').subscribe(
+      data => {
+        let criteria: Criteria = data;
+        this.portfolio['skillMatrix'].requirements = criteria.requirements;
+        this.portfolio['skillMatrix'].entryAmount = criteria.entryAmount;
+      }
+    );    
   }
 
   getPortfolio(portfolioId){
@@ -80,12 +140,12 @@ export class PortfolioComponent implements OnInit {
     education['id'] = this.portfolio['education']['0']['id']; ///what do?
     this.portfolio['education'].splice(0, 1);
     this.portfolio['education'].push(education);
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
   }
 
   updateAboutMe(aboutMeInfo:any){
     this.portfolio['aboutMe']['description'] = aboutMeInfo;
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();     
   }
 
   updateIndustryEq(industryEq:any){
@@ -98,7 +158,7 @@ export class PortfolioComponent implements OnInit {
   
     //console.log('This is the current Portfolio');
     //console.log(this.portfolio);
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();
   }
   
   updateProject(projects){
@@ -107,23 +167,9 @@ export class PortfolioComponent implements OnInit {
     this.portfolio['projects'] = projects;
     this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
     setTimeout(() => this.getPortfolio(this.portfolioid), 500);
-
     //console.log(projects);
     //console.log(this.portfolio);
   }
-
-  //added by StaticRequirement group
-  getCriteriaByName(criteriaName: string){
-    this.portfolioService.getCriteriaByName(criteriaName).subscribe(
-      data => {
-        let criteria = data;
-        this.portfolio.requirements = criteria.requirements;
-        this.portfolio.entryAmount = criteria.entryAmount;
-      }
-    );
-
-  }
-
   
   addSkill(){
     this.skillNumber++;

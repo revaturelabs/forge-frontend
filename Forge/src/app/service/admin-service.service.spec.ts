@@ -6,34 +6,18 @@ import { Criteria } from '../models/criteria';
 
 
 describe('AdminServiceService', () => {
-  let service: AdminServiceService,
-  httpMock: HttpTestingController;
+  let service: AdminServiceService;
   
-
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      providers: [AdminServiceService]
+     
     });
     service = TestBed.inject(AdminServiceService);
-    httpMock = TestBed.inject(HttpTestingController);
+    
   });
 
-  afterEach(() => {
-    httpMock.verify();
-  });
-
-  it('should update the criteria value ', () => {
-    const criteria = {id: 1,criteriaName:'education',entryAmount: '1', requirements: '1'};
-    const dummyValue : Criteria = {id: 1,criteriaName:'education',entryAmount: '1', requirements: '1'};
-
-    service.updateCriteria(criteria).subscribe(criteria1 => {
-      expect(criteria).toEqual(criteria1);
-
-    })
-    const request = httpMock.expectOne(`${service.updateCriteriaUrl}`);
-    expect(request.request.method).toBe('POST');
-    request.flush(dummyValue);
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
 
 });

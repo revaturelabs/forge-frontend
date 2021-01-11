@@ -100,17 +100,6 @@ describe('PotfolioServiceService', () => {
     expect(service).toBeTruthy();
   })
 
-  it('should return criteria by id ', () => {
-    const criteriaId = 1;
-    const dummyValue: Criteria = { id: 1, criteriaName: 'education', criteriaValue: 1 };
-
-    service.getCriteriaById(criteriaId).subscribe(criteria1 => {
-      expect(dummyValue).toEqual(criteria1);
-
-    })
-    const request = httpMock.expectOne(`${service.url}service/criteria/${criteriaId}`);
-    expect(request.request.method).toBe('GET');
-    request.flush(dummyValue);
-  });
+  
 
 });

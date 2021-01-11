@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Portfolio } from '../models/portfolio';
 import { PortfolioItems } from '../models/portfolio-items';
+import { Criteria } from '../models/criteria';
 
 @Injectable({
   providedIn: 'root'
@@ -91,9 +92,6 @@ export class PotfolioServiceService {
     return this.http.put(this.url + "update/updateproject", portfolioItems);
   }
 
-  //save
-  getCriteriaByName(criteriaName : string){
-    return this.http.get<any>(this.url +"criteria/" + criteriaName);
-  }
+  
 
 }

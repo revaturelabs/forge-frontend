@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div *ngIf="portfolio != undefined">
 <app-user-info [belongsTo]="portfolio['belongsTo']"></app-user-info>
-<app-about-me  (addAboutMe)="updateAboutMe($event)"   [inputAboutMe] = "portfolio['aboutMe']"></app-about-me>
+<app-about-me  (addAboutMe)="updateAboutMe($event)" [wordCount]='wordCount' [inputAboutMe] = "portfolio['aboutMe']"></app-about-me>
 <app-education (addEducation)="updateEducation($event)" [inputEducation] = "portfolio['education']"></app-education>
 <app-industry-equivalency (addindustryEq)="updateIndustryEq($event)" [inputIndustryEquivalency]="portfolio['industryEquivalency']"></app-industry-equivalency>
 <div class="container">
@@ -17,6 +17,7 @@
 <app-projects (updateProject)="updateProject($event)" [inputProject]="portfolio['projects']"></app-projects>
 
 <div class="d-flex justify-content-center">
+    <h5 id="message" style="color: red;"></h5>
     <button type="button" (click)="submitPortfolio()" class="btn btn-secondary" routerLink="/user-home">Submit</button>
 </div>
 </div>

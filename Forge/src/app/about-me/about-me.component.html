@@ -4,7 +4,24 @@
         <mat-icon class="right-button" type="button" (click)="save()" aria-hidden="false" aria-label="save button">save</mat-icon>    
         <!-- <mat-icon type="button" (click)="check()" aria-hidden="false" aria-label="check button">save</mat-icon> -->
     </div>   
-    <mat-card-content>
-        <textarea [(ngModel)]="content"></textarea>
-    </mat-card-content>   
+    <mat-card-content> <!--Added by Static Requirement group to keep track of word count-->
+        <form [formGroup]="textareaForm">
+            <textarea [(ngModel)]="content" formControlName="textinput"
+            (keyup)="wordCounter()"
+            id="wmd-input"
+            name="post-text"
+            class="wmd-input s-input bar0 js-post-body-field processed"
+            data-post-type-id="2"
+            cols="92"
+            rows="15"
+            tabindex="101"
+            data-min-length=""
+            oncopy="return false;"
+            onpaste="return false;"
+            oncut="return false;"></textarea>
+        </form>
+    </mat-card-content>
+    <div style="font-style: italic;">
+        {{ wordCount}} words...
+    </div>   
 </mat-card>

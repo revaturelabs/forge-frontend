@@ -7,4 +7,6 @@ export class AboutMe{
     portfolioItemsId: number;
     // aboutMeItems:AboutMeItems
     // portfolio: Portfolio
+    requirements: string; //added this staticRequirement group
+    entryAmount: string;  //added this staticRequirement group 
 }
