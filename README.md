@@ -9,6 +9,11 @@ Link: <a href="http://localhost:8200/swagger-ui.html#/"> http://localhost:8200/s
 <pre>
 Link: <a href="https://material.angular.io/"> https://material.angular.io/ </a>
 </pre>
+#### [2.1] Angular Mockups 
+- Test Angular code before implementation
+<pre>
+Link: <a href="https://stackblitz.com/angular/bvrlbqdyaod?file=src/app/expansion-steps-example.html"> https://stackblitz.com/angular/bvrlbqdyaod?file=src/app/expansion-steps-example.html</a>
+</pre>
 
 #### [3] Trello 
 <pre>
