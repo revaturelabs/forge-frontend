@@ -103,7 +103,7 @@ password
 </pre>
 
 #### [7] Setting up Angular
- ```sh
+ ```java
 ng add @angular/material (optional)
 npm install
 ng serve -o
