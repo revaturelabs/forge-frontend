@@ -41,30 +41,52 @@ password
 
 #### [5] Angular FRONT-END
 
-##### [5.1] Admin
+##### [5.1] Admin Team
 <pre>
 [1] <a href="http://localhost:4200/login"> http://localhost:4200/login </a>
 [2] <a href="http://localhost:4200/admin-home"> http://localhost:4200/admin-home </a>
-[3] <a href="http://localhost:4200/project"> http://localhost:4200/project </a>
-[4] <a href="http://localhost:4200/viewPortfolio/{id}"> http://localhost:4200/viewPortfolio/{id} </a>
-[5] <a href="http://localhost:4200/navbar"> http://localhost:4200/navbar </a>
+[3] <a href="http://localhost:4200/admin-criteria"> http://localhost:4200/admin-criteria </a>
 </pre>
 
-##### [5.2] User
+##### [5.2] User Team
 <pre>
-[1] <a href="http://localhost:4200/login"> http://localhost:4200/login </a>
-[2] <a href="http://localhost:4200/user-home"> http://localhost:4200/user-home</a>
-[3] <a href="http://localhost:4200/registration"> http://localhost:4200/registration </a> 
+[1] <a href="http://localhost:4200/registration"> http://localhost:4200/registration </a> 
+[2] <a href="http://localhost:4200/login"> http://localhost:4200/login </a>
+[3] <a href="http://localhost:4200/user-home"> http://localhost:4200/user-home</a>
+
+[4] <a href="http://localhost:4200/portfolio/"> http://localhost:4200/portfolio</a>
+[4.1] <a href="http://localhost:4200/portfolio/{id}"> http://localhost:4200/portfolio/{id} </a>
+</pre>
+
+##### [5] Items
+<pre>
+[5.1] <a href="http://localhost:4200/project"> http://localhost:4200/aboutMe </a>
+[5.2] <a href="http://localhost:4200/education"> http://localhost:4200/education </a>
+[5.3] <a href="http://localhost:4200/industryEquivalency"> http://localhost:4200/industryEquivalency </a> (doesn't work)
+[5.4] <a href="http://localhost:4200/project"> http://localhost:4200/project </a> 
+[5.5] <a href="http://localhost:4200/skillMatrix"> http://localhost:4200/skillMatrix </a> (doesn't work)
+</pre>
+
+##### [5.3] Misc
+<pre>
+[1] <a href="http://localhost:4200/navbar"> http://localhost:4200/navbar </a>
 </pre>
  
  ```sh
  Click > Create Portfolio > 
  ```
- 
-##### [5.3] STS BACK-END
+##### [5.3] STS BACK-END (JSON)
 <pre>
-<a href="http://localhost:8200/service/getAllPortfolios"> http://localhost:8200/service/getAllPortfolios  </a> 
+[1] Login Info:
 <a href="http://localhost:8200/service/getAllUsers"> http://localhost:8200/service/getAllUsers </a>
+<a href="http://localhost:8200/service//getUser/{1}"> http://localhost:8200/service//getUser/{id}
+[2] Portfolio Info:
+<a href="http://localhost:8200/service/getAllPortfolios"> http://localhost:8200/service/getAllPortfolios  </a> 
+
+[3] Criteria Info:
+<a href="http://localhost:8200/service/getAllCriteria"> http://localhost:8200/service/getAllCriteria
+<a href="http://localhost:8200/service//criteria/{1}"> http://localhost:8200/service//criteria/{id}
+
 <a href="http://localhost:8200/service/getPortfolioByID/"> http://localhost:8200/service/getPortfolioByID </a>
 <a href="http://localhost:8200/email/sendEmail"> http://localhost:8200/email/sendEmail </a>
 <a href="http://localhost:8200/service/getUserByEmail/"> http://localhost:8200/service/getUserByEmail/ </a>
