@@ -86,11 +86,9 @@ export class PortfolioComponent implements OnInit {
     this.setSkillsMatrix();
   }
   
-  updateEducation(education:any){
-    education['id'] = this.portfolio['education']['0']['id']; ///what do?
-    this.portfolio['education'].splice(0, 1);
-    this.portfolio['education'].push(education);
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
+  updateEducation(education:Education){
+    this.portfolio.portfolioSections.push(education);
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();
   }
 
   updateAboutMe(aboutMeInfo:any){

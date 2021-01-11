@@ -12,7 +12,7 @@ export class PotfolioServiceService {
 
   constructor(private http: HttpClient) { }
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
-  url = "http://localhost:8200/service";
+  url = "http://localhost:8200";
 
   aboutMeDescription:string;
   currPortfolio: Object;
@@ -22,11 +22,11 @@ export class PotfolioServiceService {
   //bugfix adding create porfolio function 
    //new method 
    createPortfolio(portfolio: Portfolio, id: number) : Observable<Portfolio> {
-    return this.http.post<Portfolio>(this.url + "/createPortfolio/" + `${id}`, portfolio, {withCredentials: true});
+    return this.http.post<Portfolio>(`${this.url}/service/createPortfolio/${id}`, portfolio, {withCredentials: true});
   }
 
   getUser(id: number): Observable<any> {
-    return this.http.get(`${this.url}/getUserById/${id}`);
+    return this.http.get(`${this.url}/service/getUserById/${id}`);
 
   }
   
@@ -35,7 +35,7 @@ export class PotfolioServiceService {
   }
   
   getPortfolioById(portfolioId: number): Observable<Portfolio>{ 
-    return this.http.get<Portfolio>(`${this.url}/getPortfolioByID/${portfolioId}`);
+    return this.http.get<Portfolio>(`${this.url}/service/getPortfolioByID/${portfolioId}`);
   }
   //no email anymore getUserById now
   getUserByEmail(email: string): Observable<any> {
@@ -55,15 +55,17 @@ export class PotfolioServiceService {
   }
 
   updateAboutMeById(portfolioItems: Object){
-    return this.http.put(this.url + "update/updatePortfolioItems", portfolioItems);
+    return this.http.post(this.url + "update/updatePortfolioItems", portfolioItems);
   }
   
   getEducationById(portfolioItemId: number): Observable<Education>{
-    return this.http.get<Education>(this.url + "update/getPortfolioItemsById?id=" + portfolioItemId);
+    return this.http.get<Education>(`${this.url}/update/getPortfolioItemsById` + portfolioItemId);
   }
 
-  updateEducationById(portfolioItems: Education){
-    return this.http.put(this.url + "update/updatePortfolioItems", portfolioItems);
+  updateEducationById(education: Education){
+    let portfolioId = localStorage.getItem('portId');
+    console.log(portfolioId);
+    return this.http.post(`${this.url}/service/createEducationItem/${portfolioId}`, education);
   }
 
   getIndustryEquivalencyById(portfolioId: number): Observable<Object>{
