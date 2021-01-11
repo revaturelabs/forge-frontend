@@ -36,13 +36,15 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit(): void {
     //console.log(this.portfolioid);
+    
     if(this.portfolioid =='portfolio'){
       console.log("Creating portfolio");
-      this.createPortfolio();
+      //this.createPortfolio();
     }else{
       console.log("we have an id");
       localStorage.setItem('portId', this.portfolioid);
       this.getPortfolio(this.portfolioid);
+      
     }
     //this.portfolioService.setPortfolio(this.portfolio);
   }
@@ -63,12 +65,12 @@ export class PortfolioComponent implements OnInit {
   }
 
   //change to createPortfolio(portfolio, id)
-  createPortfolio(){
-    this.portfolioService.createPortfolio(this.portfolio, this.portfolioid).subscribe( (data) =>{
-      //console.log(data);
-      this.portfolio = data;
-    })
-  }
+  // createPortfolio(){
+  //   this.portfolioService.createPortfolio(this.portfolio).subscribe( (data) =>{
+  //     //console.log(data);
+  //     this.portfolio = data;
+  //   })
+  // }
 
   getPortfolio(portfolioId){
     this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
@@ -93,9 +95,11 @@ export class PortfolioComponent implements OnInit {
     this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
   }
 
-  updateAboutMe(aboutMeInfo:any){
-    this.portfolio['aboutMe']['description'] = aboutMeInfo;
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
+  updateAboutMe(portfolio: Portfolio){
+   // this.portfolio['aboutMe']['description'] = portfolio;
+    portfolio = this.portfolio;
+    console.log(this.portfolio);
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();
   }
 
   updateIndustryEq(industryEq:any){

@@ -1,6 +1,8 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@syncfusion/ej2-angular-richtexteditor';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
+import { AboutMe } from '../models/aboutMe';
+import { ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-about-me',
@@ -24,24 +26,40 @@ export class AboutMeComponent implements OnInit {
     'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
     }; 
   
-  aboutMe = [];
-  content: string = "Potatoes";
+    aboutMe: AboutMe;
+  portfolioId: number;
+  id: number;
+  description: string;
 
-  constructor() { }
+
+  constructor(private PortfolioService: PotfolioServiceService, private _route: ActivatedRoute,
+    private _router: Router) { }
 
   ngOnInit(): void {
-
+//this grabs portfolio id from router 
+//this.PortfolioService.getPortfolioById(this.portfolioId) ;
+this._route.params.subscribe(params => {
+  this.getAboutMe(params['id']);
+  console.log("in oninit in about me comp "+ params['id']);
+});
   }
-  ngOnChanges(){
-    this.content = this.inputAboutMe['description'];
-  }
+  // ngOnChanges(){
+  //   this.content = this.inputAboutMe['description'];
+  // }
 
   save(){
-    this.addAboutMe.emit(this.content);
-    //console.log(this.content);
+    console.log('in about me component save()')
+    this.PortfolioService.updateAboutMeById(this.portfolioId, this.aboutMe);
+    this.addAboutMe.emit(this.description);
+    console.log('this is the description after update method' + this.description);
   }
 
-  getData(){
-    return this.content;
+  getAboutMe(portfolioId: number){
+    this.PortfolioService.getAboutMeById(portfolioId).subscribe( data => {
+      console.log(data);
+     this.aboutMe = data;
+     this.description = data.description;
+
+    })
   }
 }
