@@ -5,7 +5,6 @@ import { Criteria } from '../models/criteria';
 import { Portfolio } from '../models/portfolio';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { PortfolioItems } from '../models/portfolio-items';
 
 describe('PotfolioServiceService', () => {
   let service: PotfolioServiceService;

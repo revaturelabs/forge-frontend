@@ -16,6 +16,9 @@ export class EducationComponent implements OnInit {
   @Input() inputEducation: []; // decorate the property with @Input()
   @Output() addEducation = new EventEmitter<any>();
 
+  education: Education;
+  portfolioItemId: number;
+
   maxdate = new Date();
   mindate = new Date(1973, 0, 1);
 
@@ -30,6 +33,15 @@ export class EducationComponent implements OnInit {
   });
     
   onSubmit(){
+    // Trying to create a new education and updating 
+    console.log("in onSubmit of education component");
+    this.PortfolioService.getEducationById(this.portfolioItemId).subscribe(data => 
+    {
+      this.education = data;
+      console.log(data);
+    });
+    this.PortfolioService.updateEducationById(this.education);
+    // What is this doing?
     this.addEducation.emit(this.portfolioForm.value);
     this.portfolioForm.reset();
   }
@@ -38,7 +50,7 @@ export class EducationComponent implements OnInit {
 
   }
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private PortfolioService: PotfolioServiceService) {}
   
   open(content) {
     this.modalService.open(content, { size: 'lg' });
