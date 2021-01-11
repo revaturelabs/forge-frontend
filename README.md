@@ -53,7 +53,6 @@ password
 [1] <a href="http://localhost:4200/registration"> http://localhost:4200/registration </a> 
 [2] <a href="http://localhost:4200/login"> http://localhost:4200/login </a>
 [3] <a href="http://localhost:4200/user-home"> http://localhost:4200/user-home</a>
-
 [4] <a href="http://localhost:4200/portfolio/"> http://localhost:4200/portfolio</a>
 [4.1] <a href="http://localhost:4200/portfolio/{id}"> http://localhost:4200/portfolio/{id} </a>
 </pre>
@@ -79,23 +78,24 @@ password
 <pre>
 [1] Login Info:
 <a href="http://localhost:8200/service/getAllUsers"> http://localhost:8200/service/getAllUsers </a>
-<a href="http://localhost:8200/service//getUser/{1}"> http://localhost:8200/service//getUser/{id}
+<a href="http://localhost:8200/service/getUser/{1}"> http://localhost:8200/service/getUser/{id}</a>
+
 [2] Portfolio Info:
-<a href="http://localhost:8200/service/getAllPortfolios"> http://localhost:8200/service/getAllPortfolios  </a> 
+<a href="http://localhost:8200/service/getAllPortfolios"> http://localhost:8200/service/getAllPortfolios  </a>
+<a href="http://localhost:8200/service/getPortfolioByID/{id}"> http://localhost:8200/service/getPortfolioByID/{id}}</a> (doesn't work)
 
 [3] Criteria Info:
-<a href="http://localhost:8200/service/getAllCriteria"> http://localhost:8200/service/getAllCriteria
-<a href="http://localhost:8200/service//criteria/{1}"> http://localhost:8200/service//criteria/{id}
-
-<a href="http://localhost:8200/service/getPortfolioByID/"> http://localhost:8200/service/getPortfolioByID </a>
-<a href="http://localhost:8200/email/sendEmail"> http://localhost:8200/email/sendEmail </a>
-<a href="http://localhost:8200/service/getUserByEmail/"> http://localhost:8200/service/getUserByEmail/ </a>
-<a href="http://localhost:8200/service/updatePortfolio"> http://localhost:8200/service/updatePortfolio </a>
+<a href="http://localhost:8200/service/getAllCriteria"> http://localhost:8200/service/getAllCriteria </a>
+<a href="http://localhost:8200/service/criteria/{1}"> http://localhost:8200/service/criteria/{id} </a>
 </pre>
 
+[4] Misc Info
+<a href="http://localhost:8200/session/loggers "> http://localhost:8200/session/loggers  </a>
+<a href="http://localhost:8200/service/getUserByEmail/"> http://localhost:8200/service/getUserByEmail/ </a> (doesn't ork)
+
 ### Setting up Angular
- ```shnpm install
-ng add @angular/material 
+ ```sh
+ng add @angular/material (optional)
 npm install
 ng serve -o
  ```
