@@ -70,10 +70,7 @@ password
 <pre>
 [1] <a href="http://localhost:4200/navbar"> http://localhost:4200/navbar </a>
 </pre>
- 
- ```sh
- Click > Create Portfolio > 
- ```
+
 ##### [5.3] STS BACK-END (JSON)
 <pre>
 [1] Login Info:
