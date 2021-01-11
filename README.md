@@ -72,20 +72,27 @@ password
 </pre>
 
 ##### [5.3] STS BACK-END (JSON)
-<pre>
+
 [1] Login Info:
+<pre>
 <a href="http://localhost:8200/service/getAllUsers"> http://localhost:8200/service/getAllUsers </a>
 <a href="http://localhost:8200/service/getUser/{1}"> http://localhost:8200/service/getUser/{id}</a>
+</pre>
 
 [2] Portfolio Info:
+<pre>
 <a href="http://localhost:8200/service/getAllPortfolios"> http://localhost:8200/service/getAllPortfolios  </a>
 <a href="http://localhost:8200/service/getPortfolioByID/{id}"> http://localhost:8200/service/getPortfolioByID/{id}}</a> (doesn't work)
+</pre>
 
 [3] Criteria Info:
+<pre>
 <a href="http://localhost:8200/service/getAllCriteria"> http://localhost:8200/service/getAllCriteria </a>
 <a href="http://localhost:8200/service/criteria/{1}"> http://localhost:8200/service/criteria/{id} </a>
+</pre>
 
 [4] Misc Info
+<pre>
 <a href="http://localhost:8200/session/loggers "> http://localhost:8200/session/loggers  </a>
 <a href="http://localhost:8200/service/getUserByEmail/"> http://localhost:8200/service/getUserByEmail/ </a> (doesn't work)
 </pre>
