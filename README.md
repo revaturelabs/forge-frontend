@@ -84,11 +84,11 @@ password
 [3] Criteria Info:
 <a href="http://localhost:8200/service/getAllCriteria"> http://localhost:8200/service/getAllCriteria </a>
 <a href="http://localhost:8200/service/criteria/{1}"> http://localhost:8200/service/criteria/{id} </a>
-</pre>
 
 [4] Misc Info
 <a href="http://localhost:8200/session/loggers "> http://localhost:8200/session/loggers  </a>
 <a href="http://localhost:8200/service/getUserByEmail/"> http://localhost:8200/service/getUserByEmail/ </a> (doesn't ork)
+</pre>
 
 ### Setting up Angular
  ```sh
