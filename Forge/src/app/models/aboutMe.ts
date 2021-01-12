@@ -1,6 +1,6 @@
 export class AboutMe{
     itemType: "AboutMe";
-    id: 1;
+    id: number;
     priority: number;
-    description: "Hello Bald man";
+    description: string;
 }
