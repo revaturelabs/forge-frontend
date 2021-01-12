@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
 import { IndustryEquivalency } from '../models/industryEquivalency';
+import { Project } from '../models/project';
 import { AboutMe } from '../models/aboutMe';
 
 
@@ -24,6 +25,7 @@ export class PotfolioServiceService {
 
   //bugfix adding create porfolio function 
   //new method 
+
   createPortfolio(id: number): Observable<Portfolio> {
     return this.http.post<Portfolio>(this.url + "/createPortfolio/" + `${id}`, { withCredentials: true });
   }
@@ -84,11 +86,14 @@ export class PotfolioServiceService {
   }
 
   getProjectById(portfolioId: number): Observable<Object> {
-    return this.http.get<Object>(this.url + "/getPortfolioItemsById?id=" + portfolioId);
+    return this.http.get<Object>(this.url + "update/getPortfolioItemsById?id=" + portfolioId);
   }
 
-  updateProjectById(portfolioItems: Object) {
-    return this.http.put(this.url + "/updatePortfolioItems", portfolioItems);
+  updateProjectById(project: Project): Observable<Project> {
+    let portfolioId = localStorage.getItem('portId');
+    console.log("updateProjectById portfolioId: ", portfolioId);
+    console.log("updateProjectById project: ", project);
+    return this.http.post<Project>(`${this.url}/update/createProjectItem/${portfolioId}`, project);
   }
 
   getCriteriaById(criteriaId: number) {
