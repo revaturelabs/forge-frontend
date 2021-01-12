@@ -20,7 +20,8 @@ export class PotfolioServiceService {
 
   //bugfix adding create porfolio function 
    //new method 
-   createPortfolio(portfolio: Portfolio, id: number) : Observable<Portfolio> {
+  
+  createPortfolio(portfolio: Portfolio, id: number) : Observable<Portfolio> {
     return this.http.post<Portfolio>(this.url + "/createPortfolio/" + `${id}`, portfolio, {withCredentials: true});
   }
 
@@ -82,7 +83,7 @@ export class PotfolioServiceService {
   }
 
   getCriteriaById(criteriaId : number){
-    return this.http.get<any>(this.url +"service/criteria/" + criteriaId);
+    return this.http.get<any>(`${this.url}service/criteria/${criteriaId}`);
   }
 
 }

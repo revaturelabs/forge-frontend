@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { Education } from '../models/education';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
