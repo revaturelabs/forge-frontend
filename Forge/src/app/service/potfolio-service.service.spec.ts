@@ -5,6 +5,7 @@ import { Criteria } from '../models/criteria';
 import { Portfolio } from '../models/portfolio';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Education } from '../models/education';
 
 describe('PotfolioServiceService', () => {
   let service: PotfolioServiceService;
@@ -74,7 +75,7 @@ describe('PotfolioServiceService', () => {
       console.log(portfolio);
       expect(expectedId).toEqual(portfolio.id);
     })
-    const request = httpMock.expectOne(`${service.url}service/getPortfolioByID?id=${expectedId}`);
+    const request = httpMock.expectOne(`${service.url}/service/getPortfolioByID/${expectedId}`);
     console.log(request);
     expect(request.request.method).toBe('GET');
     request.flush(expectedPortfolio);
@@ -84,13 +85,13 @@ describe('PotfolioServiceService', () => {
     service.getEducationById(2).subscribe(data =>{
       console.log("education items");
       console.log(data);
-      let educationItems = new PortfolioItems;
+      let educationItems = new Education;
       educationItems = data;
       console.log("expectPortfolioItemId");
       console.log(expectedPortfolio.portfolioSection[1]);
       expect(2).toEqual(expectedPortfolio.portfolioSection[1].portfolioItemsId);
     })
-    const request = httpMock.expectOne(`${service.url}update/geteducation?id=${2}`);
+    const request = httpMock.expectOne(`${service.url}/update/getPortfolioItemsById/${2}`);
     expect(request.request.method).toBe('GET');
     request.flush(expectedPortfolio.portfolioSection[1].portfolioItemsId); //do we even need this???
   })
@@ -107,7 +108,7 @@ describe('PotfolioServiceService', () => {
       expect(dummyValue).toEqual(criteria1);
 
     })
-    const request = httpMock.expectOne(`${service.url}service/criteria/${criteriaId}`);
+    const request = httpMock.expectOne(`${service.url}/service/criteria/${criteriaId}`);
     expect(request.request.method).toBe('GET');
     request.flush(dummyValue);
   });
