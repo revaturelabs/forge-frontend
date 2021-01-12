@@ -97,16 +97,11 @@ export class PortfolioComponent implements OnInit {
   }
 
   updateIndustryEq(industryEq:any){
-    let projectLength = this.portfolio['industryEquivalency'].length;
+    this.portfolio.portfolioSections.push(industryEq);
+    this.portfolioService.updateIndustryEquivalencyById(industryEq);
 
-    //console.log(industryEq);
-
-    this.portfolio['industryEquivalency'].splice(0,projectLength-1);
-    this.portfolio['industryEquivalency'] = industryEq;
-  
-    //console.log('This is the current Portfolio');
-    //console.log(this.portfolio);
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
+    //not working
+    // this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
   }
   
   updateProject(projects){
