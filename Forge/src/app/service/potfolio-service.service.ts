@@ -43,11 +43,11 @@ export class PotfolioServiceService {
 
   updatePortfolio(portfolio: Portfolio) {
     let portfolioId = localStorage.getItem('portId');
-    return this.http.put(`${this.url}/service/updatePortfolio`, portfolio);
+    return this.http.put(`${this.url}/updatePortfolio`, portfolio);
   }
 
   updateUserInfoById(portfolio: Portfolio) {
-    return this.http.put(this.url + "service/updatePortfolio", portfolio);
+    return this.http.put(this.url + "/updatePortfolio", portfolio);
   }
 
   getAboutMeById(portfolioItemId: number): Observable<AboutMe> {
@@ -57,19 +57,20 @@ export class PotfolioServiceService {
   updateAboutMeById(portfolioId: number, portfolioItems: Object) {
     return this.http.put(`${this.updateUrl}/updateAboutMe/${portfolioId}`, portfolioItems);
   }
+
   getEducationById(portfolioItemId: number): Observable<Education> {
-    return this.http.get<Education>(`${this.url}/update/getPortfolioItemsById` + portfolioItemId);
+    return this.http.get<Education>(`${this.url}/getPortfolioItemsById` + portfolioItemId);
   }
   //education to portfolio
   updateEducationById(education: Education): Observable<Education> {
     let portfolioId = localStorage.getItem('portId');
     console.log(portfolioId);
     console.log(education);
-    return this.http.post<Education>(`${this.url}/service/createEducationItem/${portfolioId}`, education);
+    return this.http.post<Education>(`${this.url}/createEducationItem/${portfolioId}`, education);
   }
 
-  getIndustryEquivalencyById(portfolioId: number): Observable<IndustryEquivalency> {
-    return this.http.get<IndustryEquivalency>(`${this.url}/getIndustryItems/${portfolioId}`);
+  getIndustryEquivalencyById(portfolioId: number): Observable<IndustryEquivalency[]> {
+    return this.http.get<IndustryEquivalency[]>(`${this.updateUrl}/getIndustryItems/${portfolioId}`);
   }
 
    //no email anymore getUserById now
@@ -77,21 +78,21 @@ export class PotfolioServiceService {
     return this.http.get<any>(this.getUserByEmailUrl + email);
   }
 
-  updateIndustryEquivalencyById(industryEquivalency: IndustryEquivalency): Observable<IndustryEquivalency> {
+  updateIndustryEquivalencyById(industryEquivalency: IndustryEquivalency[]) {
     let portfolioId = localStorage.getItem('portId');
-    return this.http.post<IndustryEquivalency>(`${this.url}/updateIndustryItem/${portfolioId}`, industryEquivalency);
+    return this.http.post(`${this.updateUrl}/updateIndustryItem/${portfolioId}`, industryEquivalency);
   }
 
   getProjectById(portfolioId: number): Observable<Object> {
-    return this.http.get<Object>(this.url + "/update/getPortfolioItemsById?id=" + portfolioId);
+    return this.http.get<Object>(this.url + "/getPortfolioItemsById?id=" + portfolioId);
   }
 
   updateProjectById(portfolioItems: Object) {
-    return this.http.put(this.url + "/update/updatePortfolioItems", portfolioItems);
+    return this.http.put(this.url + "/updatePortfolioItems", portfolioItems);
   }
 
   getCriteriaById(criteriaId: number) {
-    return this.http.get<any>(this.url + "service/criteria/" + criteriaId);
+    return this.http.get<any>(this.url + "/criteria/" + criteriaId);
   }
 
 }

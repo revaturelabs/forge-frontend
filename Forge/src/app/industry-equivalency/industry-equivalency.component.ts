@@ -1,7 +1,7 @@
 
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label, BaseChartDirective } from 'ng2-charts';
 import { IndustryEquivalency } from '../models/industryEquivalency';
 import { Portfolio } from '../models/portfolio';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
@@ -14,16 +14,18 @@ import { PotfolioServiceService } from '../service/potfolio-service.service';
 export class IndustryEquivalencyComponent implements OnInit {
   @Input() inputIndustryEquivalency: []; // decorate the property with @Input()
   @Output() addindustryEq = new EventEmitter<any>();
+  @ViewChild(BaseChartDirective)
+  public baseChart: BaseChartDirective;
 
   technology: string;
   // skill: string;
   months: number
   // experience: number;
 
-  equivalency: IndustryEquivalency;
+  equivalency: IndustryEquivalency[];
+  equi: IndustryEquivalency;
   portfolio: Portfolio;
   portfolioId = Number(localStorage.getItem('portId'));
-
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -39,9 +41,9 @@ export class IndustryEquivalencyComponent implements OnInit {
   barChartType: ChartType = 'bar';
   barChartLegend = true;
   barChartPlugins = [];
-//'Java', 'HTML', 'SQL'
+  //'Java', 'HTML', 'SQL'
   barChartLabels: Label[] = [];
-//14, 12, 10
+  //14, 12, 10
   barChartData: ChartDataSets[] = [
     { data: [], label: 'Months Experience' }
   ];
@@ -52,16 +54,18 @@ export class IndustryEquivalencyComponent implements OnInit {
       this.barChartLabels.push(this.technology);
       data.push(this.months);
 
-      this.equivalency = {
+      this.equi = {
         "itemType": "IndustryEquivalency",
         "id": 3,
         "priority": 3,
         "months": this.months,
         "technology": this.technology
       };
-        // this.portfolio.portfolioSections.push(this.equivalency);
-        // data.push(this.equivalency.months);
-  
+
+      this.equivalency.push(this.equi);
+      console.log(this.equivalency);
+      // this.portfolio.portfolioSections.push(this.equivalency);
+
     }
   }
 
@@ -75,6 +79,7 @@ export class IndustryEquivalencyComponent implements OnInit {
   constructor(private portfolioService: PotfolioServiceService) { }
 
   ngOnInit(): void {
+    this.getData();
   }
 
   ngOnChanges(): void {
@@ -109,20 +114,30 @@ export class IndustryEquivalencyComponent implements OnInit {
 
 
     // this.portfolio.portfolioSections.push(this.equivalency);
-  this.portfolioService.updateIndustryEquivalencyById(this.equivalency).subscribe(
-    data =>{    
-      console.log(data);
-});
-
+    this.portfolioService.updateIndustryEquivalencyById(this.equivalency).subscribe();
 
     this.addindustryEq.emit(this.equivalency);
   }
 
   getData() {
-    this.portfolioService.getIndustryEquivalencyById(this.portfolioId).subscribe(data =>{
+    this.portfolioService.getIndustryEquivalencyById(this.portfolioId).subscribe(data => {
       console.log(data);
       this.equivalency = data;
-    })
+
+      var x: IndustryEquivalency;
+      for (this.equi of this.equivalency){
+        
+          this.barChartLabels.push(this.equi.technology);
+          this.barChartData[0].data.push(this.equi.months);
+          this.baseChart.ngOnChanges;
+          //or
+          // this.months = this.equi.months;
+          // this.technology = this.equi.technology;
+          // this.addLabel();
+        
+      }
+
+  })
     return this.equivalency;
   }
 }
