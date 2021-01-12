@@ -6,7 +6,7 @@
     </div>   
     <mat-card-content> <!--Added by Static Requirement group to keep track of word count-->
         <form [formGroup]="textareaForm">
-            <textarea [(ngModel)]="content" formControlName="textinput"
+            <textarea [(ngModel)]="description" formControlName="textinput"
             (keyup)="wordCounter()"
             id="wmd-input"
             name="post-text"

@@ -77,7 +77,7 @@ export class UserHomeComponent implements OnInit {
       2 education - this.portfolio.portfolioSection[1] - add 2 items
       */
 
-    this.PortfolioService.createPortfolio(this.portfolio, this.id)
+    this.PortfolioService.createPortfolio(this.id)
     .subscribe( 
       data => {
         this.portfolio = data;

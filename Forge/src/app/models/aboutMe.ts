@@ -1,8 +1,8 @@
 export class AboutMe{
     itemType: "AboutMe";
-    id: 1;
+    id: number;
     priority: number;
-    description: "Hello Bald man";
+    description: string;
     // aboutMeItems:AboutMeItems
     // portfolio: Portfolio
     requirements: string; //added this staticRequirement group
