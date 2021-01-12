@@ -27,7 +27,20 @@ export class ProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.setProjectComponent();
+    /** -NOTE FROM: Sprint 2 Bug Smasher
+     * -PROBLEM: All tests refering to projects.compnents.ts appear to be failing.
+     * -PROBLEM SOURCE: Inherrited from Sprint 1
+     * -PROBLEM DETAILS: setProjectComponent() calls the length from inputProject
+     * However, it does not appear that it is being input from anywhere 
+     * at the moment, nor is it clear to us where inputProject was supposed to
+     * be input from.
+     * 
+     *  -TEMP SOLUTION: Tabing out the setProjectComponent logic. We are not using this section
+     * for our sprint, but it will need to be resolved before the final release.
+     */
+
+    // this.setProjectComponent();
+
   }
 
   @Input() inputProject: []; 

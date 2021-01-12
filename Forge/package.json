@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
+    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -13,7 +14,7 @@
   "dependencies": {
     "@angular/animations": "~10.1.1",
     "@angular/cdk": "^10.2.6",
-    "@angular/material": "^10.2.6",
+    "@angular/material": "^10.2.7",
     "@angular/router": "~10.1.1",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0-beta.1",
     "@syncfusion/ej2-angular-popups": "^18.3.35",
@@ -23,7 +24,7 @@
     "g": "^2.0.1",
     "ng2-charts": "^2.4.2",
     "rxjs": "~6.6.0",
-    "tslib": "^2.0.0",
+    "tslib": "^2.1.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
