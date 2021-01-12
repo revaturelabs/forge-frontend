@@ -42,8 +42,7 @@
                     <label for="graduation" class="col-3 col-form-label">Graduation Date <span
                             style="color:red;">*</span></label>
                     <div class="col-9">
-                        <input type="date" class="form-control" formControlName="graduation"
-                            [min]="mindate | date:'y-MM'" [max]="maxdate | date:'y-MM'">
+                        <input type="month" class="form-control" formControlName="graduation">
                     </div>
                 </div>
 
@@ -91,22 +90,21 @@
     <!--ngfor portfolio -> portfoliosections -> for(portfolioSecionts) if (item type) --- send all this to a new array for education stuff
 once you get education stuff display it on the page
 -->
-<div *ngIf ="inputEducation !== undefined && inputEducation.length > 0 "> 
-    <div *ngFor="let portfolioSection of portfolio.portfolioSections">
-        <div *ngIf="itemType==itemType.education">
+<div *ngIf ="eduSections !== undefined && eduSections.length > 0 "> 
+    <div *ngFor="let eduSection of eduSections">
             <div class="indent">
-                <h5>{{inputEducation['0']['degree'] !== undefined ? inputEducation['0']['degree']: ''}} -
-                    Major: {{inputEducation['0']['major'] !== undefined ? inputEducation['0']['major']: '' }}
-                    {{inputEducation['0']['minor'] !== undefined ? inputEducation['0']['minor']: '' }}
-                </h5>
+                <h5>{{eduSection.degree}} - {{eduSection.major}}
+                </h5>    
+                <p>{{eduSection.minor}}</p>
+                
             </div>
 
             <div class="indent">
-                <h6>{{inputEducation['0']['university'] ? inputEducation['0']['university']: ''}},
-                    {{inputEducation['0']['graduation'] ? inputEducation['0']['graduation']: ''}}
+                <h6>
+                    {{eduSection.university}}, {{eduSection.graduation}}
                 </h6>
             </div>
-        </div>
+            <hr>
     </div>
 </div>
 </mat-card>

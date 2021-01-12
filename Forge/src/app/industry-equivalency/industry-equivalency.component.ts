@@ -56,7 +56,7 @@ export class IndustryEquivalencyComponent implements OnInit {
     let data = this.barChartData[0].data;
     this.barChartLabels.pop();
     data.pop();
-    this.equivalency.pop();
+    //this.equivalency.pop();
   }
 
   constructor() { }
@@ -75,7 +75,7 @@ export class IndustryEquivalencyComponent implements OnInit {
         return item['technology'];
       });
 
-      this.equivalency = this.inputIndustryEquivalency;
+      //this.equivalency = this.inputIndustryEquivalency;
       //console.log(this.equivalency);
     }
   }
