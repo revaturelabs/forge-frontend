@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 import { Portfolio } from '../models/portfolio';
@@ -6,8 +6,9 @@ import { Education } from '../models/education';
 import { Router } from '@angular/router';
 import { Criteria } from '../models/criteria';
 import { CriteriaService } from '../service/criteria.service';
-
 import { User } from '../models/user';
+import { AboutMe } from '../models/aboutMe';
+import { AboutMeComponent } from '../about-me/about-me.component';
 
 //change to property access (.) instead of property binding([])
 
@@ -18,19 +19,19 @@ import { User } from '../models/user';
 })
 export class PortfolioComponent implements OnInit {
   //changed from Object to Portfolio
+  aboutMe: AboutMe = JSON.parse(localStorage.getItem("aboutMe"));
+  wordCount: number = + localStorage.getItem("wordCount");
   portfolio: Portfolio;
   skills: any = [];
   skillNumber;
   portfolioid;
-  wordCount: number;
-  
   user: User = new User;
   userId: number;
   firstName: string;
   lastName: string;
 
   //add UserServiceService
-  constructor(private portfolioService: PotfolioServiceService,private router: Router, private criteriaService:CriteriaService) { 
+  constructor(private portfolioService: PotfolioServiceService,private router: Router, private criteriaService:CriteriaService, private aboutMeComponent: AboutMeComponent) { 
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
     this.portfolioid = splitUrl[splitUrl.length -1];
@@ -64,8 +65,12 @@ export class PortfolioComponent implements OnInit {
   }
 
   submitPortfolio(){
-    if(this.wordCount < this.portfolio['aboutMe'].requirements){
-      document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['aboutMe'].requirements +' words in the About Me.';
+    console.log(this.wordCount);
+    console.log(this.aboutMe.requirements);
+    if(this.wordCount < +this.aboutMe.requirements){
+      console.log(this.wordCount);
+      console.log(this.aboutMe.requirements);
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.aboutMeComponent.aboutMe.requirements +' words in the About Me.';
       return;
     }
     if(this.portfolio['education'].items.length < this.portfolio['education'].entryAmount){
@@ -84,7 +89,8 @@ export class PortfolioComponent implements OnInit {
       document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['projects'].entryAmount +' Project entries.';
       return;
     }
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();
+    this.router.navigateByUrl('/user-home'); 
   }
 
   //change to createPortfolio(portfolio, id)

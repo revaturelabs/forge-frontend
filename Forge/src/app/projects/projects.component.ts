@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ToolbarService, HtmlEditorService} from '@syncfusion/ej2-angular-richtexteditor';
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
+
 
 @Component({
   selector: 'app-projects',
@@ -9,10 +11,10 @@ import { ToolbarService, HtmlEditorService} from '@syncfusion/ej2-angular-richte
   providers: [ToolbarService,HtmlEditorService]
 })
 export class ProjectsComponent implements OnInit {
-  bullets = [];
-  bulletComponents = [];
-  public bulletNumber=0;
-  public bulletCount = 0;
+  bullets: number[]= [];
+  bulletComponents: number[] = [];
+  public bulletNumber: number = 0;
+  public bulletCount: number = 0;
 
   public tools: object = {
     type: 'Expand',
@@ -25,11 +27,9 @@ export class ProjectsComponent implements OnInit {
     'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
     };
   form: FormGroup;
-  submitted = false;
+  submitted: boolean = false;
 
-  constructor(
-    private formBuilder: FormBuilder,
-  ) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.setProjectComponent();

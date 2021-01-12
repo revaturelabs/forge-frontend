@@ -17,8 +17,6 @@ import { ActivatedRoute, Params, Router} from '@angular/router';
 export class AboutMeComponent implements OnInit {
   @Input() inputAboutMe: []; // decorate the property with @Input()
   @Output() addAboutMe = new EventEmitter<any>();
-  requirements: string; //added this staticRequirement group
-  entryAmount: string;  //added this staticRequirement group 
   
   public tools: object = {
     type: 'Expand',
@@ -32,8 +30,6 @@ export class AboutMeComponent implements OnInit {
     }; 
   
   criteria: Criteria ;
-  requirement: string;
-  criteriaName: string;
   aboutMe: AboutMe;
   portfolioId: number;
   id: number;
@@ -48,6 +44,8 @@ export class AboutMeComponent implements OnInit {
     //this.remainingWords = this.textareaForm.value ? 100 - this.textareaForm.value.textinput.split(/\s+/).length : 100;
     this.wordCount = this.textareaForm.get.length ? 0 + this.textareaForm.value.textinput.split(/\s+/).length
     : 0 ;
+    localStorage.setItem("wordCount", `${this.wordCount}`);
+    console.log(this.wordCount);
     console.log(this.criteria.requirements);
   }
 
@@ -55,17 +53,16 @@ export class AboutMeComponent implements OnInit {
     private _router: Router) { }
 
   getAboutMeRequirement(){
-    this.criteriaService.getCriteriaByName('1').subscribe(criteria=>{
+    this.criteriaService.getCriteriaByName('aboutMe').subscribe(criteria=>{
       console.log(criteria.requirements);
-      //console.log(this.criteria);
       this.criteria=criteria;
-      this.criteria.requirements=criteria.requirements; 
+      console.log(this.criteria);
     },error => console.log(error));
     
   }
 
   ngOnInit(): void {
-    this.getAboutMeRequirement();
+    
     //this grabs portfolio id from router 
     //this.PortfolioService.getPortfolioById(this.portfolioId) ;
     this._route.params.subscribe(params => {
@@ -89,7 +86,11 @@ export class AboutMeComponent implements OnInit {
       console.log(data);
      this.aboutMe = data;
      this.description = data.description;
-
+     localStorage.setItem("aboutMe", `${this.aboutMe}`);
+     console.log(this.aboutMe);
     })
+    this.getAboutMeRequirement();
+    this.aboutMe.requirements= this.criteria.requirements;
+    
   }
 }

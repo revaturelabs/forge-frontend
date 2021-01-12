@@ -16,49 +16,59 @@
                 <textarea [(ngModel)]="projectComponents[i].name"></textarea>
             </mat-card-content>   
     
+
+
+
+
+
+
+
             <mat-card-header>
                 <mat-card-title>Role / Responsibilities</mat-card-title>
-            </mat-card-header>    
+            </mat-card-header>  
+
             <mat-card-content>
                 <textarea [(ngModel)]="projectComponents[i].responsibilities"></textarea>
             </mat-card-content>
-            <mat-expansion-panel >
-                <mat-expansion-panel-header>
+        
+
+
+
+
+
+
                   <mat-card-title class="subheader-style">Role / Responsibilities</mat-card-title>
           
-                  <div class="add-button button-spacing">
-                   <mat-icon 
-                   
-                    type="button"
-                    value="Add Bullet"
-                    (click)="deleteBullet(i)"
-                    aria-hidden="false"
-                    
-                    >delete </mat-icon>
-                </div>
+                    <div class="add-button button-spacing">
+                        <mat-icon 
+                        type="button"
+                        value="Add Bullet"
+                        (click)="deleteBullet(i)"
+                        aria-hidden="false"
+                        >delete </mat-icon>
+                    </div>
           
-                  <div class="add-button button-spacing">
-                   <mat-icon 
-                   
-                    type="button"
-                    value="Add Bullet"
-                    (click)="allBullets()"
-                    aria-hidden="false"
-                    > add_circle_outline</mat-icon>
-                </div>
-                  </mat-expansion-panel-header>
-          
-                   <mat-card-content>
-                    <mat-list>
-                    <mat-list-item *ngFor="let bullet of bullets, let i = index">
-                      
-                    <ul>
-                      <li [(ngModel)]="bulletComponents[i].bullet">
-                        <input matInput type="text" placeholder="Enter Bullet Points"  /> 
-                      </li>
-                    </ul>
+                    <div class="add-button button-spacing">
+                        <mat-icon 
+                        type="button"
+                        value="Add Bullet"
+                        (click)="allBullets()"
+                        aria-hidden="false"
+                        > add_circle_outline</mat-icon>
+                    </div>
             
-    
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item *ngFor="let bullet of bullets, let i = index"> 
+                            <ul>
+                                <li [(ngModel)]="bulletComponents[i].bullet">
+                                <input matInput type="text" placeholder="Enter Bullet Points"  /> 
+                                </li>
+                            </ul>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+
             <mat-card-header>
                 <mat-card-title>Technologies</mat-card-title>
             </mat-card-header>    
@@ -69,4 +79,6 @@
             <mat-icon type="button" value="Delete project" (click)="deleteProject(i)" aria-hidden="false" aria-label="delete button">delete</mat-icon>
         </div>
     </div>      
+
+
 </mat-card>

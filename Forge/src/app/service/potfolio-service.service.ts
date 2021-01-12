@@ -52,9 +52,9 @@ export class PotfolioServiceService {
     return this.http.put(this.url + "service/updatePortfolio", portfolio);
   }
 
-  getAboutMeById(portfolioItemId: number): Observable<AboutMe>{
+  getAboutMeById(portfolioItemId: number): Observable <any>{
     console.log('in getAboutMeById in the potfolio service this is the item id '+ portfolioItemId);
-    return this.http.get<AboutMe>(`${this.updateUrl}/update/getaboutMe/${portfolioItemId}`);
+    return this.http.get<any>(`${this.updateUrl}/update/getaboutMe/${portfolioItemId}`);
   }
 
   updateAboutMeById(portfolioId: number, portfolioItems: Object){

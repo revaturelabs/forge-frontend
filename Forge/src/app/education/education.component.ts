@@ -33,15 +33,6 @@ export class EducationComponent implements OnInit {
   });
     
   onSubmit(){
-    // Trying to create a new education and updating 
-    console.log("in onSubmit of education component");
-    this.PortfolioService.getEducationById(this.portfolioItemId).subscribe(data => 
-    {
-      this.education = data;
-      console.log(data);
-    });
-    this.PortfolioService.updateEducationById(this.education);
-    // What is this doing?
     this.addEducation.emit(this.portfolioForm.value);
     this.portfolioForm.reset();
   }
