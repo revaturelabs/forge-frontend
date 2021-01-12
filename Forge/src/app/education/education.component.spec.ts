@@ -3,6 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EducationComponent } from './education.component';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
 describe('EducationComponent', () => {
   let component: EducationComponent;
   let fixture: ComponentFixture<EducationComponent>;
@@ -10,7 +13,8 @@ describe('EducationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EducationComponent],
-      imports: [ReactiveFormsModule, FormsModule]
+      // imports: [ReactiveFormsModule, FormsModule]
+      imports: [HttpClientTestingModule,RouterTestingModule,ReactiveFormsModule,FormsModule]
     })
     .compileComponents();
   });

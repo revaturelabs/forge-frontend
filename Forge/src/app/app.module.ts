@@ -26,6 +26,7 @@ import {  MatCardModule} from '@angular/material/card';
 import { RichTextEditorAllModule, ToolbarService} from '@syncfusion/ej2-angular-richtexteditor';
 import { MatIconModule } from '@angular/material/icon';
 import { ChartsModule } from 'ng2-charts';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { MDBBootstrapModule} from 'angular-bootstrap-md';
 import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';

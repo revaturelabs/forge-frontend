@@ -24,7 +24,7 @@
     "g": "^2.0.1",
     "ng2-charts": "^2.4.2",
     "rxjs": "~6.6.0",
-    "tslib": "^2.0.0",
+    "tslib": "^2.1.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
