@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
 import { IndustryEquivalency } from '../models/industryEquivalency';
+import { AboutMe } from '../models/aboutMe';
 
 
 @Injectable({
@@ -13,7 +14,8 @@ export class PotfolioServiceService {
 
   constructor(private http: HttpClient) { }
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
-  url = "http://localhost:8200";
+  url = "http://localhost:8200/service";
+  updateUrl = "http://localhost:8200/update";
 
   aboutMeDescription:string;
   currPortfolio: Object;
@@ -22,8 +24,8 @@ export class PotfolioServiceService {
 
   //bugfix adding create porfolio function 
    //new method 
-  createPortfolio(portfolio: Portfolio, id: number) : Observable<Portfolio> {
-    return this.http.post<Portfolio>(`${this.url}/service/createPortfolio/${id}`, portfolio, {withCredentials: true});
+   createPortfolio(id: number) : Observable<Portfolio> {
+    return this.http.post<Portfolio>(this.url + "/createPortfolio/" + `${id}`,  {withCredentials: true});
   }
 
   getUser(id: number): Observable<any> {
@@ -52,14 +54,13 @@ export class PotfolioServiceService {
     return this.http.put(this.url + "service/updatePortfolio", portfolio);
   }
 
-  getAboutMeById(portfolioItemId: number): Observable<Object>{
-    return this.http.get<Object>(this.url + "update/getPortfolioItemsById?id=" + portfolioItemId);
+  getAboutMeById(portfolioItemId: number): Observable<AboutMe>{
+    return this.http.get<AboutMe>(`${this.updateUrl}/getaboutMe/${portfolioItemId}`);
   }
 
-  updateAboutMeById(portfolioItems: Object){
-    return this.http.post(this.url + "update/updatePortfolioItems", portfolioItems);
-  }
-  
+updateAboutMeById(portfolioId: number, portfolioItems: Object){
+  return this.http.put(`${this.updateUrl}/updateAboutMe/${portfolioId}`, portfolioItems);
+}
   getEducationById(portfolioItemId: number): Observable<Education>{
     return this.http.get<Education>(`${this.url}/update/getPortfolioItemsById` + portfolioItemId);
   }
@@ -81,11 +82,11 @@ export class PotfolioServiceService {
   }
 
   getProjectById(portfolioId: number): Observable<Object>{
-    return this.http.get<Object>(this.url + "update/getPortfolioItemsById?id=" + portfolioId);
+    return this.http.get<Object>(this.url + "/update/getPortfolioItemsById?id=" + portfolioId);
   }
 
   updateProjectById(portfolioItems: Object){
-    return this.http.put(this.url + "update/updatePortfolioItems", portfolioItems);
+    return this.http.put(this.url + "/update/updatePortfolioItems", portfolioItems);
   }
 
   getCriteriaById(criteriaId : number){
