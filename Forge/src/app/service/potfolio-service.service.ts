@@ -62,10 +62,11 @@ export class PotfolioServiceService {
     return this.http.get<Education>(`${this.url}/update/getPortfolioItemsById` + portfolioItemId);
   }
 
-  updateEducationById(education: Education){
+  updateEducationById(education: Education): Observable<Education>{
     let portfolioId = localStorage.getItem('portId');
     console.log(portfolioId);
-    return this.http.post(`${this.url}/service/createEducationItem/${portfolioId}`, education);
+    console.log(education);
+    return this.http.post<Education>(`${this.url}/service/createEducationItem/${portfolioId}`, education);
   }
 
   getIndustryEquivalencyById(portfolioId: number): Observable<Object>{

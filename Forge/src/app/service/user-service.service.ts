@@ -15,7 +15,7 @@ export class UserServiceService {
   private baseUrl: string ="http://localhost:8200/service";
 
   constructor(private http: HttpClient) {}
-  setId(id: number): void {
+  setId(id: number){
     this.id = id;
     }
 

@@ -40,13 +40,19 @@ export class EducationComponent implements OnInit {
     //   this.education = data;
     //   console.log(data);
     // });
+    this.education.itemType = "Education";
+    this.education.education_id = 1;
+    this.education.priority = 2;
     this.education.degree = this.portfolioForm.get('degree').value;
     this.education.graduation = this.portfolioForm.get('graduation').value;
     this.education.major = this.portfolioForm.get('major').value;
     this.education.minor = this.portfolioForm.get('minor').value;
     this.education.university = this.portfolioForm.get('university').value;
     console.log(this.education);
-    this.PortfolioService.updateEducationById(this.education);
+    this.PortfolioService.updateEducationById(this.education).subscribe(
+      data2 => {
+        console.log(data2);
+      });
     // What is this doing?
     // this.addEducation.emit(this.portfolioForm.value);
     this.portfolioForm.reset();
