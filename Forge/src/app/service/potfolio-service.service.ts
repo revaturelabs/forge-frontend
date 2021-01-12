@@ -89,11 +89,11 @@ export class PotfolioServiceService {
     return this.http.get<Object>(this.url + "update/getPortfolioItemsById?id=" + portfolioId);
   }
 
-  updateProjectById(project: Project) {
+  updateProjectById(project: Project): Observable<Project> {
     let portfolioId = localStorage.getItem('portId');
     console.log("updateProjectById portfolioId: ", portfolioId);
     console.log("updateProjectById project: ", project);
-    return this.http.post(`${this.url}/update/createProjectItem/{portfolioId}`, project);
+    return this.http.post<Project>(`${this.url}/update/createProjectItem/{portfolioId}`, project);
   }
 
   getCriteriaById(criteriaId: number) {
