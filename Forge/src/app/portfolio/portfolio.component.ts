@@ -6,6 +6,7 @@ import { Education } from '../models/education';
 //import { Router } from '@angular/router';
 import { ActivatedRoute, Params, Router} from '@angular/router';
 import { User } from '../models/user';
+import { AboutMeComponent } from '../about-me/about-me.component';
 
 //change to property access (.) instead of property binding([])
 
@@ -43,13 +44,15 @@ export class PortfolioComponent implements OnInit {
     //   console.log("this is the id from the router thing: " + params['id']);
     // });
     //console.log(this.portfolioid);
+    
     if(this.portfolioid =='portfolio'){
       console.log("Creating portfolio");
-      this.createPortfolio();
+      //this.createPortfolio();
     }else{
       console.log("we have an id");
       localStorage.setItem('portId', this.portfolioid);
       this.getPortfolio(this.portfolioid);
+      
     }
     //this.portfolioService.setPortfolio(this.portfolio);
   }
@@ -70,12 +73,12 @@ export class PortfolioComponent implements OnInit {
   }
 
   //change to createPortfolio(portfolio, id)
-  createPortfolio(){
-    this.portfolioService.createPortfolio(this.portfolio, this.portfolioid).subscribe( (data) =>{
-      //console.log(data);
-      this.portfolio = data;
-    })
-  }
+  // createPortfolio(){
+  //   this.portfolioService.createPortfolio(this.portfolio).subscribe( (data) =>{
+  //     //console.log(data);
+  //     this.portfolio = data;
+  //   })
+  // }
 
   getPortfolio(portfolioId){
     this.portfolioService.getPortfolioById(portfolioId).subscribe((data) =>{
@@ -100,9 +103,9 @@ export class PortfolioComponent implements OnInit {
     this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
   }
 
-  updateAboutMe(aboutMeInfo:any){
-    this.portfolio['aboutMe']['description'] = aboutMeInfo;
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
+  updateAboutMe(aboutMe: any){
+    console.log(this.portfolio);
+    this.portfolioService.updateAboutMeById(this.portfolioid, aboutMe).subscribe();
   }
 
   updateIndustryEq(industryEq:any){

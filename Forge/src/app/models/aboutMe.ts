@@ -2,9 +2,7 @@ import { Portfolio } from './portfolio';
 
 export class AboutMe{
     itemType: "AboutMe";
-    id: 1;
-
+    id: number;
+    priority: number;
     description: string;
-    portfolioItemId: number;
-
 }

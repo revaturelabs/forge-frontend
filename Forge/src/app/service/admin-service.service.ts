@@ -12,11 +12,11 @@ import { User } from '../models/user';
 })
 export class AdminServiceService {
           baseUrl="http://localhost:8200/";
-  private getPortfoliosUrl: string = "http://localhost:8200/service/getAllPortfolios";
+  private getPortfoliosUrl: string = "http://localhost:8200/service/getPortfolios";
   private getUsersUrl: string = "http://localhost:8200/service/getAllUsers";
   private getPortfolioByIdUrl = "http://localhost:8200/service/getPortfolioByID/";
   private sendEmailUrl = "http://localhost:8200/email/sendEmail";
-  private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
+  private getUserByEmailUrl = "http://localhost:8200/service/getUser/";
   private updatePortfolioUrl = "http://localhost:8200/service/updatePortfolio";
            updateCriteriaUrl= this.baseUrl+"service/updateCriteria";
 
@@ -41,6 +41,7 @@ export class AdminServiceService {
     {headers: new HttpHeaders({'Content-Type': 'application/json'}), responseType: 'text'});
   }
 
+  //replace this  with the by id from userhome
   getUserByEmail(email: string): Observable<User> {
     return this.http.get<User>(this.getUserByEmailUrl + email);
   }
