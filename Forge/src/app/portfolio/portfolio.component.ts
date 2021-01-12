@@ -97,8 +97,6 @@ export class PortfolioComponent implements OnInit {
   }
 
   updateAboutMe(aboutMe: any){
-    //this.portfolio['aboutMe']['description'] = portfolio;
-    
     console.log(this.portfolio);
     this.portfolioService.updateAboutMeById(this.portfolioid, aboutMe).subscribe();
   }

@@ -36,24 +36,18 @@ export class AboutMeComponent implements OnInit {
     private _router: Router) { }
 
   ngOnInit(): void {
-//this grabs portfolio id from router 
-//this.PortfolioService.getPortfolioById(this.portfolioId) ;
+
 this._route.params.subscribe(params => {
   this.getAboutMe(params['id']);
   console.log("in oninit in about me comp "+ params['id']);
 });
   }
-  // ngOnChanges(){
-  //   this.content = this.inputAboutMe['description'];
-  // }
+
 
   save(){
-    console.log('in about me component save()')
     this.aboutMe.description= this.description;
     this.PortfolioService.updateAboutMeById(this.portfolioId, this.aboutMe);
-    
     this.addAboutMe.emit(this.aboutMe);
-    console.log('this is the description after update method' + this.description);
   }
 
   getAboutMe(portfolioId: number){

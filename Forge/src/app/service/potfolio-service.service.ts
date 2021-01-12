@@ -56,8 +56,6 @@ export class PotfolioServiceService {
   }
 
   updateAboutMeById(portfolioId: number, portfolioItems: Object){
-    console.log("what is this "+ portfolioItems);
-    console.log("the portfolio id " + portfolioId);
     return this.http.put(`${this.updateUrl}/updateAboutMe/${portfolioId}`, portfolioItems);
   }
   
