@@ -9,6 +9,11 @@ import { ToolbarService, HtmlEditorService} from '@syncfusion/ej2-angular-richte
   providers: [ToolbarService,HtmlEditorService]
 })
 export class ProjectsComponent implements OnInit {
+  bullets = [];
+  bulletComponents = [];
+  public bulletNumber=0;
+  public bulletCount = 0;
+
   public tools: object = {
     type: 'Expand',
         items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
@@ -28,10 +33,14 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.setProjectComponent();
+    this.setBulletComponent();
   }
 
   @Input() inputProject: []; 
   @Output() updateProject = new EventEmitter<any>();
+  @Input() inputBullet: []; 
+  @Output() updateBullet = new EventEmitter<any>();
+
   
   projects = [];
   projectComponents = [];
@@ -100,4 +109,35 @@ export class ProjectsComponent implements OnInit {
     //console.log(this.projectComponents);
     return this.projectComponents;
   }
+  
+  setBulletComponent(){
+    if(this.inputBullet.length != 0){
+      for(var i = 0;i < this.inputBullet.length;i++ ){
+         this.bulletComponents.push(
+         );
+        this.bulletNumber++;
+        this.bullets.push(this.bulletNumber);
+      }
+    }
+  }
+  addBullet(){
+    this.bulletNumber++;
+    this.bullets.push(this.bulletNumber);
+    this.bulletComponents.push(
+    );
+    this.bulletCount = this.bulletNumber; //<-- Bullet number for Aris
+    console.log(this.bulletCount);
+  }
+
+   deleteBullet(index){
+    this.bullets.splice(index,1);
+    this.bulletComponents.splice(index,1);
+    this.bulletNumber--;
+  }
+  
+  allBullets(){
+        this.addBullet();
+      
+  }
+
 }
