@@ -5,6 +5,7 @@ import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
 //import { Router } from '@angular/router';
 import { ActivatedRoute, Params, Router} from '@angular/router';
+import { User } from '../models/user';
 
 //change to property access (.) instead of property binding([])
 
@@ -21,7 +22,7 @@ export class PortfolioComponent implements OnInit {
   skillNumber;
   portfolioid;
   
-  user: User = new User;
+  user: User;
   userId: number;
   firstName: string;
   lastName: string;

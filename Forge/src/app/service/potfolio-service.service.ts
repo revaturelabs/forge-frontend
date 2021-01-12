@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Portfolio } from '../models/portfolio';
+import { AboutMe } from '../models/aboutMe';
 
 
 @Injectable({
@@ -50,10 +51,10 @@ export class PotfolioServiceService {
     return this.http.put(this.url + "service/updatePortfolio", portfolio);
   }
 
-  getAboutMeById(portfolioItemId: number): Observable<PortfolioItems>{
+  getAboutMeById(portfolioItemId: number): Observable<AboutMe>{
     //console.log('getting about me info')
 
-    return this.http.get<PortfolioItems>(this.url + "update/getaboutMe?id=" + portfolioItemId);
+    return this.http.get<AboutMe>(this.url + "update/getaboutMe?id=" + portfolioItemId);
 
   }
 
