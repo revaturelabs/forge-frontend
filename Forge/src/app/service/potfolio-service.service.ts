@@ -16,7 +16,7 @@ export class PotfolioServiceService {
   aboutMeDescription:string;
   currPortfolio: Object;
   
-  //this service can be consolidate later
+  //this service can be consolidated into four functions later
 
   //bugfix adding create porfolio function 
    //new method 
