@@ -96,11 +96,9 @@ export class PortfolioComponent implements OnInit {
     this.setSkillsMatrix();
   }
   
-  updateEducation(education:any){
-    education['id'] = this.portfolio['education']['0']['id']; ///what do?
-    this.portfolio['education'].splice(0, 1);
-    this.portfolio['education'].push(education);
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
+  updateEducation(education:Education){
+    this.portfolio.portfolioSections.push(education);
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();
   }
 
   updateAboutMe(aboutMe: any){
@@ -109,16 +107,11 @@ export class PortfolioComponent implements OnInit {
   }
 
   updateIndustryEq(industryEq:any){
-    let projectLength = this.portfolio['industryEquivalency'].length;
+    this.portfolio.portfolioSections.push(industryEq);
+    this.portfolioService.updateIndustryEquivalencyById(industryEq);
 
-    //console.log(industryEq);
-
-    this.portfolio['industryEquivalency'].splice(0,projectLength-1);
-    this.portfolio['industryEquivalency'] = industryEq;
-  
-    //console.log('This is the current Portfolio');
-    //console.log(this.portfolio);
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
+    //not working
+    // this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
   }
   
   updateProject(projects){
