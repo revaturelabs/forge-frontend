@@ -5,6 +5,7 @@ import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { AboutMeComponent } from '../about-me/about-me.component';
 
 //change to property access (.) instead of property binding([])
 
@@ -95,11 +96,11 @@ export class PortfolioComponent implements OnInit {
     this.portfolioService.updatePortfolio(this.portfolio).subscribe();    
   }
 
-  updateAboutMe(portfolio: Portfolio){
-   // this.portfolio['aboutMe']['description'] = portfolio;
-    portfolio = this.portfolio;
+  updateAboutMe(aboutMe: any){
+    //this.portfolio['aboutMe']['description'] = portfolio;
+    
     console.log(this.portfolio);
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();
+    this.portfolioService.updateAboutMeById(this.portfolioid, aboutMe).subscribe();
   }
 
   updateIndustryEq(industryEq:any){

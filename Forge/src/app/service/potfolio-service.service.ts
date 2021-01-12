@@ -13,7 +13,7 @@ export class PotfolioServiceService {
   constructor(private http: HttpClient) { }
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
   url = "http://localhost:8200/service";
-  updateUrl = "http://localhost:8200";
+  updateUrl = "http://localhost:8200/update";
 
   aboutMeDescription:string;
   currPortfolio: Object;
@@ -52,12 +52,13 @@ export class PotfolioServiceService {
   }
 
   getAboutMeById(portfolioItemId: number): Observable<AboutMe>{
-    console.log('in getAboutMeById in the potfolio service this is the item id '+ portfolioItemId);
-    return this.http.get<AboutMe>(`${this.updateUrl}/update/getaboutMe/${portfolioItemId}`);
+    return this.http.get<AboutMe>(`${this.updateUrl}/getaboutMe/${portfolioItemId}`);
   }
 
   updateAboutMeById(portfolioId: number, portfolioItems: Object){
-    return this.http.put(`${this.updateUrl}/update/updatePortfolioItems/${portfolioId}`, portfolioItems);
+    console.log("what is this "+ portfolioItems);
+    console.log("the portfolio id " + portfolioId);
+    return this.http.put(`${this.updateUrl}/updateAboutMe/${portfolioId}`, portfolioItems);
   }
   
   getEducationById(portfolioItemId: number): Observable<Object>{

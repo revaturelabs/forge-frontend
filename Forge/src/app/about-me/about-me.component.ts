@@ -49,8 +49,10 @@ this._route.params.subscribe(params => {
 
   save(){
     console.log('in about me component save()')
+    this.aboutMe.description= this.description;
     this.PortfolioService.updateAboutMeById(this.portfolioId, this.aboutMe);
-    this.addAboutMe.emit(this.description);
+    
+    this.addAboutMe.emit(this.aboutMe);
     console.log('this is the description after update method' + this.description);
   }
 
