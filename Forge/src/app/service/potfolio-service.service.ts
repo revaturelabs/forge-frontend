@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
+import { IndustryEquivalency } from '../models/industryEquivalency';
 
 
 @Injectable({
@@ -21,7 +22,7 @@ export class PotfolioServiceService {
 
   //bugfix adding create porfolio function 
    //new method 
-   createPortfolio(portfolio: Portfolio, id: number) : Observable<Portfolio> {
+  createPortfolio(portfolio: Portfolio, id: number) : Observable<Portfolio> {
     return this.http.post<Portfolio>(`${this.url}/service/createPortfolio/${id}`, portfolio, {withCredentials: true});
   }
 
@@ -61,7 +62,7 @@ export class PotfolioServiceService {
   getEducationById(portfolioItemId: number): Observable<Education>{
     return this.http.get<Education>(`${this.url}/update/getPortfolioItemsById` + portfolioItemId);
   }
-
+//education to portfolio
   updateEducationById(education: Education): Observable<Education>{
     let portfolioId = localStorage.getItem('portId');
     console.log(portfolioId);
@@ -73,8 +74,9 @@ export class PotfolioServiceService {
     return this.http.get<Object>(this.url + "update/getPortfolioItemsById?id=" + portfolioId);
   }
 
-  updateIndustryEquivalencyById(portfolioItems: Object){
-    return this.http.put(this.url + "update/updatePortfolioItems", portfolioItems);
+  updateIndustryEquivalencyById(industryEquivalency: IndustryEquivalency): Observable<IndustryEquivalency>{
+    let portfolioId = localStorage.getItem('portId');
+    return this.http.put<IndustryEquivalency>(`${this.url}/service/updateIndustryItem/${portfolioId}`, industryEquivalency);
   }
 
   getProjectById(portfolioId: number): Observable<Object>{

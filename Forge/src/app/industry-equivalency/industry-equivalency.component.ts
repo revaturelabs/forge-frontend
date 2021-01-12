@@ -2,6 +2,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { IndustryEquivalency } from '../models/industryEquivalency';
+import { Portfolio } from '../models/portfolio';
 
 @Component({
   selector: 'app-industry-equivalency',
@@ -12,9 +14,12 @@ export class IndustryEquivalencyComponent implements OnInit {
   @Input() inputIndustryEquivalency: []; // decorate the property with @Input()
   @Output() addindustryEq = new EventEmitter<any>();
 
+  //technology: string;
   skill: string;
+  //months: number
   experience: number;
-  equivalency;
+  equivalency: IndustryEquivalency;
+  portfolio: Portfolio;
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -36,14 +41,14 @@ export class IndustryEquivalencyComponent implements OnInit {
   barChartData: ChartDataSets[] = [
     { data: [14,12,10], label: 'Months Experience' }
   ];
-
+//this.equivalency.technology was this.skill && this.equivalency.months was this.experience
   addLabel(){
-    if (this.skill != undefined && this.experience != undefined && this.skill != "" && this.experience != 0){
+    if (this.equivalency.technology != undefined && this.equivalency.months != undefined && this.equivalency.technology != "" && this.equivalency.months != 0){
       let data = this.barChartData[0].data;
-      this.barChartLabels.push(this.skill);
-      let obj = {"months": this.experience, "technology": this.skill};
-      this.equivalency.push(obj);
-      data.push(this.experience);
+      this.barChartLabels.push(this.equivalency.technology);
+      let obj = {"months": this.experience, "technology": this.equivalency.technology};
+      this.portfolio.portfolioSections.push(obj);
+      data.push(this.equivalency.months);
     }
   }
 

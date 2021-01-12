@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { Education } from '../models/education';
+import { Portfolio } from '../models/portfolio';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class EducationComponent implements OnInit {
   @Output() addEducation = new EventEmitter<any>();
 
   education: Education = new Education();
+  portfolio: Portfolio;
   portfolioItemId: number;
 
   maxdate = new Date();
@@ -52,9 +54,12 @@ export class EducationComponent implements OnInit {
     this.PortfolioService.updateEducationById(this.education).subscribe(
       data2 => {
         console.log(data2);
+        this.education = data2;
+        this.addEducation.emit(this.portfolioForm.value);
       });
     // What is this doing?
-    // this.addEducation.emit(this.portfolioForm.value);
+    //this.portforolioForm.value
+    // this.addEducation.emit(this.portfolio.portfolioSections);
     this.portfolioForm.reset();
   }
 
