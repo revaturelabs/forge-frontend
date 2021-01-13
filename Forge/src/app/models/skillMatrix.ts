@@ -1,8 +1,10 @@
+import { skillMatrixItems } from "./skillMatrixItems";
+
 export class SkillMatrix{
-    itemType: "SkillMatrix";
+    itemType: string;
     id: number;
+    skillMatrixId: number;
     priority: number;
-    title: string;
-    portfolioItemsId: number;
-    skillMatrixItem: Object[];
+    skillTitle: string;
+    skillMatrixItem: any[];
 }
