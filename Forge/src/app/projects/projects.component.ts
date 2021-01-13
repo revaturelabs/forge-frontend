@@ -27,7 +27,8 @@ export class ProjectsComponent implements OnInit {
   @Input() project: Project;
   @Output() projectChange = new EventEmitter<Project>();
 
-  projects: Project[];
+  projects: Project[] = [];
+  portfolioId = Number(localStorage.getItem('portId'));
 
   constructor(
     private portfolioService: PotfolioServiceService
@@ -35,20 +36,26 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.projects = [];
+    this.setProject();
   }
 
-  setProjectId() {
-
+  setProject() {
+    this.portfolioService.getProjectById(this.portfolioId).subscribe(data =>{
+      console.log(data);
+      this.projects = data;
+    })
   }
 
   addProject() {
     this.project = new Project;
     // this.project.id = this.projectNumber;
-    this.project.name = "Enter Project Name";
+    this.project.projectName = "Enter Project Name";
     this.project.description = "Enter Project Description";
     this.project.projectResponsibilities = "Enter Project Responsibilities";
-    this.project.projectTechnologies = "Enter Project Technologies";
+    this.project.projectTech = "Enter Project Technologies";
+    console.log(this.project);
     this.projects.push(this.project);
+    console.log(this.projects);
   }
 
   deleteProject(index) {
@@ -60,6 +67,6 @@ export class ProjectsComponent implements OnInit {
   }
 
   save() {
-    this.portfolioService.updateProjectById(this.project);
+    this.portfolioService.updateProjectById(this.projects).subscribe();
   }
 }

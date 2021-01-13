@@ -1,9 +1,10 @@
 export class Project{
     itemType: "Project";
     id: number;
+    projectId: number;
     priority: number;
-    name: string;
+    projectName: string;
     description: string;
     projectResponsibilities: string;
-    projectTechnologies: string;
+    projectTech: string;
 }
