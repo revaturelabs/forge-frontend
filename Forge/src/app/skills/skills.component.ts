@@ -185,7 +185,6 @@ export class SkillsComponent implements OnInit {
   }
 
   onClick(data2){
-    this.skillList = [];
     this.skillList.push({skillName: data2.skillName, experience: data2.experience});
     console.log(this.skillList);
     this.skillArr.push(data2.skillName);
