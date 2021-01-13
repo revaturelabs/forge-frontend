@@ -86,8 +86,7 @@ import {MatInputModule} from '@angular/material/input';
     MatInputModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [ToolbarService,
-  AboutMeComponent],
+  providers: [ToolbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

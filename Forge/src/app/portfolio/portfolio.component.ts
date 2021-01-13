@@ -8,8 +8,7 @@ import { CriteriaService } from '../service/criteria.service';
 import { User } from '../models/user';
 import { AboutMe } from '../models/aboutMe';
 import { ActivatedRoute, Params, Router} from '@angular/router';
-import { AboutMeComponent } from '../about-me/about-me.component';
-
+ 
 //change to property access (.) instead of property binding([])
 
 @Component({
@@ -76,7 +75,7 @@ export class PortfolioComponent implements OnInit {
     if(this.wordCount < +this.aboutMe.requirements){
       console.log(this.wordCount);
       console.log(this.aboutMe.requirements);
-      document.getElementById('message').innerHTML = 'Must have atleast '+  this.aboutMeComponent.aboutMe.requirements +' words in the About Me.';
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.aboutMe.requirements +' words in the About Me.';
       return;
     }
     if(this.portfolio['education'].items.length < this.portfolio['education'].entryAmount){

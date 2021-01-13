@@ -4,7 +4,6 @@ import { Portfolio } from '../models/portfolio';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 import { FormControl, FormGroup } from "@angular/forms";
 import{ CriteriaService } from  '../service/criteria.service';
-import { Portfolio } from '../models/portfolio';
 import { Criteria } from '../models/criteria';
 import { AboutMe } from '../models/aboutMe';
 import { ActivatedRoute, Params, Router} from '@angular/router';

@@ -11,6 +11,7 @@ import { Project } from '../models/project';
   styleUrls: ['./projects.component.css'],
   providers: [ToolbarService, HtmlEditorService]
 })
+
 export class ProjectsComponent implements OnInit {
   bullets: number[]= [];
   bulletComponents: number[] = [];
