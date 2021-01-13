@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {fromEventPattern, Observable} from 'rxjs';
-import { User } from '../user';
+import { User } from '../models/user';
 
 
 @Injectable({
@@ -12,7 +12,6 @@ export class AuthService {
   constructor(private myHttpClient: HttpClient) { }
 
   loginRequest(User: User): Observable<User> {
-
     return this.myHttpClient.post<User>('http://localhost:8200/session/login', User,
     {withCredentials:true}
     );
@@ -20,6 +19,7 @@ export class AuthService {
 
   }
 
+  //?????Wrapper class??????
   logoutRequest(): Observable<string>{
 
 

@@ -2,7 +2,8 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { RegisterUserService } from '../service/reg-user-service.service';
-import {User} from '../User';
+import {User} from '../models/user';
+import { Portfolio } from '../models/portfolio';
 
 
 
@@ -69,7 +70,7 @@ if(validSubmission)
   this.User["firstName"]=this.regForm.controls['firstname'].value;
   this.User["lastName"]=this.regForm.controls['lastname'].value;
   this.User["is_Admin"]=false;
-   
+  
   
 
 
@@ -98,7 +99,8 @@ if(validSubmission)
       password:'',
       firstName:'',
       lastName:'',
-      is_Admin:false
+      is_Admin:false,
+      portfolios: []  //should be Portfolio object array
     }
     //this.regService.getListOfUsers().subscribe(data=>{
      // this.userList=data;

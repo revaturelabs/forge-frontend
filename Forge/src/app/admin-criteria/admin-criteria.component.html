@@ -1,0 +1,131 @@
+<app-navbar-admin></app-navbar-admin>
+<div style="width: 80%;margin-right: auto;margin-left: auto;margin-top: 20px;">
+<mat-accordion class="example-headers-align">
+	<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				About Me
+			</mat-panel-title>
+
+			<mat-panel-description>
+				Enter Criteria Value
+				<!-- <mat-icon>account_circle</mat-icon> -->
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+		<mat-form-field>
+			<mat-label>Minimum word count</mat-label>
+			<input #aboutMeRequirements matInput type="number" min="50" max="500" step="50">
+		</mat-form-field>
+			<!-- #docregion action-bar -->
+			<mat-action-row>
+				<button mat-button color="primary" (click)="addCriteria(1, '1', aboutMeRequirements.value,'aboutMe')">Submit</button>
+			</mat-action-row>
+			<!-- #enddocregion action-bar -->
+	</mat-expansion-panel>
+
+
+	<!-- start -->
+	<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Education
+			</mat-panel-title>
+
+			<mat-panel-description>
+				Enter Criteria Value
+				<!-- <mat-icon>account_circle</mat-icon> -->
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+		<mat-form-field>
+			<mat-label>Minimum Number of Entries</mat-label>
+			<input #educationEntries matInput type="number" min="1" max="10">
+		</mat-form-field>
+			<!-- #docregion action-bar -->
+			<mat-action-row>
+				<button type ="button" mat-button color="primary" (click)="addCriteria(2, educationEntries.value, '', 'education')">Submit</button>
+			</mat-action-row>
+			<!-- #enddocregion action-bar -->
+	</mat-expansion-panel>
+	<!-- End -->
+
+	<!-- start -->
+	<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Industry Equivalancy
+			</mat-panel-title>
+
+			<mat-panel-description>
+				Enter Criteria Value
+				<!-- <mat-icon>account_circle</mat-icon> -->
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+			<mat-form-field>
+				<mat-label>Minimum Number of Entries</mat-label>
+				<input #industryEntries matInput type="number" min="1" max="10" >
+		</mat-form-field>
+			<!-- #docregion action-bar -->
+			<mat-action-row>
+				<button type ="button" mat-button color="primary" (click)="addCriteria(3, industryEntries.value, '', 'industryEquivalancy')">Submit</button>
+			</mat-action-row>
+			<!-- #enddocregion action-bar -->
+	</mat-expansion-panel>
+	<!-- End -->
+
+	<!-- start -->
+	<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Previous Projects
+			</mat-panel-title>
+
+			<mat-panel-description>
+				Enter Criteria Value
+				<!-- <mat-icon>account_circle</mat-icon> -->
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+		<mat-form-field>
+			<mat-label>Minimum Number of Entries</mat-label>
+			<input #projectEntries matInput type="number" min="1" max="10">
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Minimum number of Bullets</mat-label>
+			<input #projectRequirements matInput type="number" min="1" max="10">
+		</mat-form-field>
+			<!-- #docregion action-bar -->
+			<mat-action-row>
+				<button type ="button" mat-button color="primary" (click)="addCriteria(4,projectEntries.value, projectRequirements.value,'projects')">Submit</button>
+			</mat-action-row>
+			<!-- #enddocregion action-bar -->
+	</mat-expansion-panel>
+	<!-- End -->
+
+	<!-- start -->
+	<mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				Skill Matrix
+			</mat-panel-title>
+
+			<mat-panel-description>
+				Enter Criteria Value
+				<!-- <mat-icon>account_circle</mat-icon> -->
+			</mat-panel-description>
+		</mat-expansion-panel-header>
+		<mat-form-field>
+			<mat-label>Minimum number of Entries</mat-label>
+			<input #skillEntries matInput type="number" min="1" max="10">
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Minimum Number of Subskills</mat-label>
+			<input #skillRequirements matInput type="number" min="1" max="10">
+		</mat-form-field>
+			<!-- #docregion action-bar -->
+			<mat-action-row>
+				<button type ="button" mat-button color="primary" (click)="addCriteria(5, skillEntries.value, skillRequirements.value, 'skillMatrix')">Submit</button>
+			</mat-action-row>
+			<!-- #enddocregion action-bar -->
+	</mat-expansion-panel>
+	<!-- End -->
+</mat-accordion>
+</div>

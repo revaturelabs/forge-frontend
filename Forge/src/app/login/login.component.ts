@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';   
 import { AuthService } from '../service/auth-service.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';  
-import {User} from '../user';
+import {User} from '../models/user';
 import { RegisterUserService } from '../service/reg-user-service.service';
 
 
@@ -93,7 +93,7 @@ returnUrl: string;
           //console.log("User Login successful");            
           this.authService.loginRequest(this.model[i]).subscribe(
             data => {
-              //console.log(data);
+              console.log(data);
               this.router.navigateByUrl('/user-home');
             }
           );

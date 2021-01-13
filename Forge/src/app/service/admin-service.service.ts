@@ -1,22 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Portfolio } from '../admin-home/portfolio';
-import { User } from '../admin-home/user';
-
+import { Criteria } from '../models/criteria';
+import { Portfolio } from '../models/portfolio';
+import { User } from '../models/user';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminServiceService {
-
   private getPortfoliosUrl: string = "http://localhost:8200/service/getAllPortfolios";
   private getUsersUrl: string = "http://localhost:8200/service/getAllUsers";
   private getPortfolioByIdUrl = "http://localhost:8200/service/getPortfolioByID/";
   private sendEmailUrl = "http://localhost:8200/email/sendEmail";
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
   private updatePortfolioUrl = "http://localhost:8200/service/updatePortfolio";
+  private updateCriteriaUrl= "http://localhost:8200/criteria";
 
   constructor(private http: HttpClient) { 
   }
@@ -45,5 +45,12 @@ export class AdminServiceService {
 
   updatePortfolio(portfolio: any) {
     return this.http.put(this.updatePortfolioUrl, portfolio);
+  }
+
+  updateCriteria(criteria: Criteria) : Observable<any>{
+     console.log(criteria.criteriaName);
+    console.log(`${this.updateCriteriaUrl}/${criteria.id}`);
+    console.log(criteria);
+   return this.http.post<any>(`${this.updateCriteriaUrl}/${criteria.id}`, criteria);
   }
 }
