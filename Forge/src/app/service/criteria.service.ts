@@ -22,5 +22,10 @@ export class CriteriaService {
   getCriteriaByName(criteriaName : string): Observable<Criteria>{
     return this.http.get<Criteria>(`${this.criteriaUrl}/${criteriaName}`);
   }
+
+  getAllCriteria(): Observable<any[]>{
+    return this.http.get<any[]>(`${this.criteriaUrl}/getAllCriteria`);
+  }
+  
   
 }

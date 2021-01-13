@@ -18,6 +18,7 @@ export class SkillsComponent implements OnInit {
   skillList = [];
   monthArr = [];
   skillArr = [];
+  subSkillCounter = 0;
   
   ngOnInit(): void {
   }
@@ -68,8 +69,13 @@ export class SkillsComponent implements OnInit {
     });
   }
 
-
+  
   onClick(){
+    if(this.subSkillCounter >= 0){
+      this.subSkillCounter++;
+     // console.log(this.subSkillCounter);
+    }
+    localStorage.setItem("subSkillCounter", `${this.subSkillCounter}`);
     this.skillList.push({name: this.skill, months: this.months});
     this.skillArr.push(this.skill);
     this.monthArr.push(this.months);
@@ -87,6 +93,10 @@ export class SkillsComponent implements OnInit {
   }
 
   remove(event){
+    if(this.subSkillCounter > 0){
+      this.subSkillCounter--;
+      //console.log(this.subSkillCounter);
+    }
     this.skillList.splice(event, 1);
     this.skillArr.splice(event, 1);
     this.monthArr.splice(event, 1);

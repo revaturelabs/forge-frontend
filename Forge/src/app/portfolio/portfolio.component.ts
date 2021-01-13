@@ -2,13 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 import { Portfolio } from '../models/portfolio';
-import { Education } from '../models/education';
+import { Router } from '@angular/router';
 import { Criteria } from '../models/criteria';
 import { CriteriaService } from '../service/criteria.service';
 import { User } from '../models/user';
 import { AboutMe } from '../models/aboutMe';
-import { ActivatedRoute, Params, Router} from '@angular/router';
- 
+import { Education } from '../models/education';
+import { Project } from '../models/project';
+import { IndustryEquivalency } from '../models/industryEquivalency';
+import { SkillMatrix } from '../models/skillMatrix';
 //change to property access (.) instead of property binding([])
 
 @Component({
@@ -19,20 +21,24 @@ import { ActivatedRoute, Params, Router} from '@angular/router';
 export class PortfolioComponent implements OnInit {
   //changed from Object to Portfolio
   aboutMe: AboutMe = JSON.parse(localStorage.getItem("aboutMe"));
+  education: Education = JSON.parse(localStorage.getItem("education"));
+  project: Project = JSON.parse(localStorage.getItem("project"));
+  industryEquivalency: IndustryEquivalency = JSON.parse(localStorage.getItem("industryEquivalency"));
+  skillMatrix: SkillMatrix = JSON.parse(localStorage.getItem("skillMatrix"));
   wordCount: number = + localStorage.getItem("wordCount");
+  bulletCount: number = + localStorage.getItem("bulletCount");
+  subSkillCounter: number = + localStorage.getItem("subSkillCounter");
   portfolio: Portfolio;
   skills: any = [];
   skillNumber;
   portfolioid;
-  
-  user: User;
+  user: User = new User;
   userId: number;
   firstName: string;
   lastName: string;
 
   //add UserServiceService
-  constructor(private portfolioService: PotfolioServiceService,private _route: ActivatedRoute, private router: Router, private criteriaService:CriteriaService) { 
-
+  constructor(private portfolioService: PotfolioServiceService,private router: Router, private criteriaService:CriteriaService) { 
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
     this.portfolioid = splitUrl[splitUrl.length -1];
@@ -40,10 +46,6 @@ export class PortfolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this._route.params.subscribe(params => {
-    //   //this.getPortfolio(params['id']);
-    //   console.log("this is the id from the router thing: " + params['id']);
-    // });
     //console.log(this.portfolioid);
     
     if(this.portfolioid =='portfolio'){
@@ -70,6 +72,22 @@ export class PortfolioComponent implements OnInit {
   }
 
   submitPortfolio(){
+    let educationCounter, projectCounter, industryEquivalencyCounter, skillMatrixCounter = 0;
+    for(var i = 0; i < this.portfolio.portfolioSections.length; i++){
+      if(this.portfolio.portfolioSections[0] == "Education" ){
+        educationCounter++;
+      }
+      if(this.portfolio.portfolioSections[0] == "Project" ){
+        projectCounter++;
+      }
+      if(this.portfolio.portfolioSections[0] == "IndustryEquivalency" ){
+        industryEquivalencyCounter++;
+      }
+      if(this.portfolio.portfolioSections[0] == "SkillMatrix" ){
+        skillMatrixCounter++;
+      }
+    }
+
     console.log(this.wordCount);
     console.log(this.aboutMe.requirements);
     if(this.wordCount < +this.aboutMe.requirements){
@@ -78,20 +96,28 @@ export class PortfolioComponent implements OnInit {
       document.getElementById('message').innerHTML = 'Must have atleast '+  this.aboutMe.requirements +' words in the About Me.';
       return;
     }
-    if(this.portfolio['education'].items.length < this.portfolio['education'].entryAmount){
-      document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['education'].entryAmount +' Education entries.';
+    if(educationCounter < +this.education.entryAmount){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.education.entryAmount +' Education entries.';
       return;
     }
-    if(this.portfolio['industryEquivalency'].items.length < this.portfolio['industryEquivalency'].entryAmount){
-      document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['industryEquivalency'].entryAmount +' Industry Equivalency entries.';
+    if(industryEquivalencyCounter < +this.industryEquivalency.entryAmount){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.industryEquivalency.entryAmount +' Industry Equivalency entries.';
       return;
     }
-    if(this.portfolio['skillMatrix'].items.length < this.portfolio['skillMatrix'].entryAmount){
-      document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['skillMatrix'].entryAmount +' Skill Matrix entries.';
+    if(skillMatrixCounter < +this.skillMatrix.entryAmount){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.skillMatrix.entryAmount +' Skill Matrix entries.';
       return;
     }
-    if(this.portfolio['projects'].items.length < this.portfolio['projects'].entryAmount){
-      document.getElementById('message').innerHTML = 'Must have atleast '+  this.portfolio['projects'].entryAmount +' Project entries.';
+    if(this.subSkillCounter < +this.skillMatrix.requirements){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.skillMatrix.requirements +' sub-skills.';
+      return;
+    }
+    if(projectCounter < +this.project.entryAmount){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.project.entryAmount +' Project entries.';
+      return;
+    }
+    if(this.bulletCount < +this.project.requirements){
+      document.getElementById('message').innerHTML = 'Must have atleast '+  this.project.requirements +' bullets inside of Role/Reponsibilities.';
       return;
     }
     this.portfolioService.updatePortfolio(this.portfolio).subscribe();
@@ -99,48 +125,7 @@ export class PortfolioComponent implements OnInit {
   }
 
   //change to createPortfolio(portfolio, id)
-  createPortfolio(){
-    //this.portfolioService.createPortfolio(this.portfolio, this.portfolioid).subscribe( (data) =>{
-      //console.log(data);
-     // this.portfolio = data; 
-    //})
-     //added by StaticRequirement group
-    this.criteriaService.getCriteriaByName('projects').subscribe(
-      data => {
-        let criteria: Criteria = data;
-        this.portfolio['projects'].requirements = criteria.requirements;
-        this.portfolio['projects'].entryAmount = criteria.entryAmount;
-      }
-    );
-    this.criteriaService.getCriteriaByName('industryEquivalency').subscribe(
-      data => {
-        let criteria: Criteria = data;
-        this.portfolio['industryEquivalency'].requirements = criteria.requirements;
-        this.portfolio['industryEquivalency'].entryAmount = criteria.entryAmount;
-      }
-    ); 
-    this.criteriaService.getCriteriaByName('aboutMe').subscribe(
-      data => {
-        let criteria:Criteria = data;
-        this.portfolio['aboutMe'].requirements = criteria.requirements;
-        this.portfolio['aboutMe'].entryAmount = criteria.entryAmount;
-      }
-    );
-    this.criteriaService.getCriteriaByName('education').subscribe(
-      data => {
-        let criteria: Criteria = data;
-        this.portfolio['education'].requirements = criteria.requirements;
-        this.portfolio['education'].entryAmount = criteria.entryAmount;
-      }
-    );
-    this.criteriaService.getCriteriaByName('skillMatrix').subscribe(
-      data => {
-        let criteria: Criteria = data;
-        this.portfolio['skillMatrix'].requirements = criteria.requirements;
-        this.portfolio['skillMatrix'].entryAmount = criteria.entryAmount;
-      }
-    );    
-  }
+
   // createPortfolio(){
   //   this.portfolioService.createPortfolio(this.portfolio).subscribe( (data) =>{
   //     //console.log(data);
@@ -164,22 +149,31 @@ export class PortfolioComponent implements OnInit {
     this.setSkillsMatrix();
   }
   
-  updateEducation(education:Education){
-    this.portfolio.portfolioSections.push(education);
+  updateEducation(education:any){
+    education['id'] = this.portfolio['education']['0']['id']; ///what do?
+    this.portfolio['education'].splice(0, 1);
+    this.portfolio['education'].push(education);
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
+  }
+
+  updateAboutMe(portfolio: Portfolio){
+   // this.portfolio['aboutMe']['description'] = portfolio;
+    portfolio = this.portfolio;
+    console.log(this.portfolio);
     this.portfolioService.updatePortfolio(this.portfolio).subscribe();
   }
 
-  updateAboutMe(aboutMe: any){
-    console.log(this.portfolio);
-    this.portfolioService.updateAboutMeById(this.portfolioid, aboutMe).subscribe();
-  }
-
   updateIndustryEq(industryEq:any){
-    this.portfolio.portfolioSections.push(industryEq);
-    this.portfolioService.updateIndustryEquivalencyById(industryEq);
+    let projectLength = this.portfolio['industryEquivalency'].length;
 
-    //not working
-    // this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
+    //console.log(industryEq);
+
+    this.portfolio['industryEquivalency'].splice(0,projectLength-1);
+    this.portfolio['industryEquivalency'] = industryEq;
+  
+    //console.log('This is the current Portfolio');
+    //console.log(this.portfolio);
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();
   }
   
   updateProject(projects){

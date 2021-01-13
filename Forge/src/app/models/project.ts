@@ -6,4 +6,6 @@ export class Project{
     description: string;
     projectResponsibilities: string;
     projectTechnologies: string;
+    requirements: string; //added this staticRequirement group
+    entryAmount: string;  //added this staticRequirement group 
 }

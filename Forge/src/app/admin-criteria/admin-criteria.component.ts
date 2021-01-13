@@ -10,9 +10,10 @@ import { CriteriaService } from '../service/criteria.service';
 })
 export class AdminCriteriaComponent implements OnInit {
   criteria: Criteria = new Criteria();
-    step = 0;
+  allCriteria: Criteria[];
+  step = 0;
      
-    addCriteria(id: number, entryAmount: string, requirements: string,criteriaName: string) {
+  addCriteria(id: number, entryAmount: string, requirements: string,criteriaName: string) {
       this.nextStep();
       console.log(entryAmount);
       this.criteria.id=id;
@@ -24,6 +25,12 @@ export class AdminCriteriaComponent implements OnInit {
         console.log(data)
         this.criteria=data;
       }, error => console.log(error));
+    }
+
+    getAllCriteria(){
+      this.criteriaService.getAllCriteria().subscribe(data=>{
+        this.allCriteria = data;
+      })
     }
 
     setStep(index: number) {
@@ -41,6 +48,7 @@ export class AdminCriteriaComponent implements OnInit {
   constructor(private criteriaService : CriteriaService, ) { }
 
   ngOnInit(): void {
+    this.getAllCriteria;
   }
 
 }

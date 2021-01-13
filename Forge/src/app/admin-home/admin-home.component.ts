@@ -5,6 +5,7 @@ import { Portfolio } from '../models/portfolio';
 import { User } from '../models/user';
 import { AdminPortViewComponent } from '../admin-port-view/admin-port-view.component';
 import { AdminServiceService } from '../service/admin-service.service';
+import { Criteria } from '../models/criteria';
 
 
 @Component({
@@ -25,7 +26,6 @@ export class AdminHomeComponent implements OnInit {
   ]
 // variable to get current objects
   currentPortfolio: Object;
-  
   
   portfolios: Portfolio[] = [];
   users: User[] = [];
@@ -48,13 +48,11 @@ export class AdminHomeComponent implements OnInit {
   viewPortfolio(currentPortfolio: Object){
     // this.router.navigate(['viewPortfolio']);
     this.currentPortfolio = currentPortfolio;
-
   }
 
   // returns the current portfolio
   getCurrentPortfolio(): Object{
     return this.currentPortfolio;
-    
   }
 
   getUserName(email: string): string {
@@ -63,11 +61,11 @@ export class AdminHomeComponent implements OnInit {
          return  user.firstName +" "+ user.lastName;
        }
      }
-    
   }
-
 
   accept(){}
 
   deny(){}
+
+
 }
