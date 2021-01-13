@@ -37,7 +37,7 @@ export class PotfolioServiceService {
   //DELETE
 
   createPortfolio(portfolio: Portfolio, id: number) : Observable<Portfolio> {
-    return this.http.post<Portfolio>(`${this.url}/service/createPortfolio/${id}`, portfolio, {withCredentials: true});
+    return this.http.post<Portfolio>(`${this.url}service/createPortfolio/${id}`, portfolio, {withCredentials: true});
   }
 
   getUser(id: number): Observable<any> {
@@ -55,7 +55,7 @@ export class PotfolioServiceService {
 
   updatePortfolio(portfolio: Portfolio) {
     let portfolioId = localStorage.getItem('portId');
-    return this.http.put(`${this.url}service//updatePortfolio`, portfolio);
+    return this.http.put(`${this.url}service/updatePortfolio`, portfolio);
   }
   //what???/
   updateUserInfoById(portfolio: Portfolio) {
@@ -89,12 +89,12 @@ export class PotfolioServiceService {
     let portfolioId = localStorage.getItem('portId');
     console.log(portfolioId);
     console.log(skillMatrix);
-    return this.http.post<SkillMatrix>(`${this.url}/update/createSkillCategory/${portfolioId}`, skillMatrix);
+    return this.http.post<SkillMatrix>(`${this.url}update/createSkillCategory/${portfolioId}`, skillMatrix);
   }
 
   createSkill(skillMatrixItem: skillMatrixItems, portfolioItemId: number): Observable<skillMatrixItems>{
     console.log(skillMatrixItem);
-    return this.http.post<skillMatrixItems>(`${this.url}/update/createSkill/${portfolioItemId}`, skillMatrixItem);
+    return this.http.post<skillMatrixItems>(`${this.url}update/createSkill/${portfolioItemId}`, skillMatrixItem);
   }
 
    //no email anymore getUserById now
@@ -119,7 +119,7 @@ export class PotfolioServiceService {
   }
 
   getCriteriaById(criteriaId: number) {
-    return this.http.get<any>(this.url + "/criteria/" + criteriaId);
+    return this.http.get<any>(this.url + "criteria/" + criteriaId);
   }
 
 }
