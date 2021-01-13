@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
+import { IndustryEquivalency } from '../models/industryEquivalency';
+import { Project } from '../models/project';
 import { AboutMe } from '../models/aboutMe';
 
 
@@ -14,75 +16,84 @@ export class PotfolioServiceService {
   constructor(private http: HttpClient) { }
   private getUserByEmailUrl = "http://localhost:8200/service/getUserByEmail/";
   url = "http://localhost:8200/service";
-  updateUrl = "http://localhost:8200";
+  updateUrl = "http://localhost:8200/update";
 
-  aboutMeDescription:string;
+  aboutMeDescription: string;
   currPortfolio: Object;
-  
+
   //this service can be consolidate later
 
   //bugfix adding create porfolio function 
-   //new method 
-   createPortfolio(id: number) : Observable<Portfolio> {
-    return this.http.post<Portfolio>(this.url + "/createPortfolio/" + `${id}`,  {withCredentials: true});
+  //new method 
+
+  createPortfolio(id: number): Observable<Portfolio> {
+    return this.http.post<Portfolio>(this.url + "/createPortfolio/" + `${id}`, { withCredentials: true });
   }
 
   getUser(id: number): Observable<any> {
     return this.http.get(`${this.url}/getUserById/${id}`);
 
   }
-  
-  getUserInfoById(portfolioId: number): Observable<any[]>{
+
+  getUserInfoById(portfolioId: number): Observable<any[]> {
     return this.http.get<any[]>(this.url + "service/getUser?id=" + portfolioId)
   }
-  
-  getPortfolioById(portfolioId: number): Observable<Portfolio>{ 
+
+  getPortfolioById(portfolioId: number): Observable<Portfolio> {
     return this.http.get<Portfolio>(`${this.url}/getPortfolioByID/${portfolioId}`);
   }
-  //no email anymore getUserById now
-  getUserByEmail(email: string): Observable<any> {
+
+  updatePortfolio(portfolio: Portfolio) {
+    let portfolioId = localStorage.getItem('portId');
+    return this.http.put(`${this.url}/updatePortfolio`, portfolio);
+  }
+
+  updateUserInfoById(portfolio: Portfolio) {
+    return this.http.put(this.url + "/updatePortfolio", portfolio);
+  }
+
+  getAboutMeById(portfolioItemId: number): Observable<AboutMe> {
+    return this.http.get<AboutMe>(`${this.updateUrl}/getaboutMe/${portfolioItemId}`);
+  }
+
+  updateAboutMeById(portfolioId: number, portfolioItems: Object) {
+    return this.http.put(`${this.updateUrl}/updateAboutMe/${portfolioId}`, portfolioItems);
+  }
+
+  getEducationById(portfolioItemId: number): Observable<Education> {
+    return this.http.get<Education>(`${this.url}/getPortfolioItemsById` + portfolioItemId);
+  }
+  //education to portfolio
+  updateEducationById(education: Education): Observable<Education> {
+    let portfolioId = localStorage.getItem('portId');
+    console.log(portfolioId);
+    console.log(education);
+    return this.http.post<Education>(`${this.url}/createEducationItem/${portfolioId}`, education);
+  }
+
+  getIndustryEquivalencyById(portfolioId: number): Observable<IndustryEquivalency[]> {
+    return this.http.get<IndustryEquivalency[]>(`${this.updateUrl}/getIndustryItems/${portfolioId}`);
+  }
+
+   //no email anymore getUserById now
+   getUserByEmail(email: string): Observable<any> {
     return this.http.get<any>(this.getUserByEmailUrl + email);
   }
 
-  updatePortfolio(portfolio: Portfolio){
-    return this.http.put(this.updateUrl + "/service/updatePortfolio", portfolio);
+  updateIndustryEquivalencyById(industryEquivalency: IndustryEquivalency[]) {
+    let portfolioId = localStorage.getItem('portId');
+    return this.http.post(`${this.updateUrl}/updateIndustryItem/${portfolioId}`, industryEquivalency);
   }
 
-  updateUserInfoById(portfolio: Portfolio){
-    return this.http.put(this.url + "service/updatePortfolio", portfolio);
+  getProjectById(portfolioId: number): Observable<Object> {
+    return this.http.get<Object>(this.url + "update/getPortfolioItemsById?id=" + portfolioId);
   }
 
-  getAboutMeById(portfolioItemId: number): Observable <any>{
-    console.log('in getAboutMeById in the potfolio service this is the item id '+ portfolioItemId);
-    return this.http.get<any>(`${this.updateUrl}/update/getaboutMe/${portfolioItemId}`);
-  }
-
-  updateAboutMeById(portfolioId: number, portfolioItems: Object){
-    return this.http.put(`${this.updateUrl}/update/updatePortfolioItems/${portfolioId}`, portfolioItems);
-  }
-  
-  getEducationById(portfolioItemId: number): Observable<Object>{
-    return this.http.get<Object>(this.url + "/update/getPortfolioItemsById?id=" + portfolioItemId);
-  }
-
-  updateEducationById(portfolioItems: Object){
-    return this.http.put(this.url + "/update/updatePortfolioItems", portfolioItems);
-  }
-
-  getIndustryEquivalencyById(portfolioId: number): Observable<Object>{
-    return this.http.get<Object>(this.url + "/update/getPortfolioItemsById?id=" + portfolioId);
-  }
-
-  updateIndustryEquivalencyById(portfolioItems: Object){
-    return this.http.put(this.url + "/update/updatePortfolioItems", portfolioItems);
-  }
-
-  getProjectById(portfolioId: number): Observable<Object>{
-    return this.http.get<Object>(this.url + "/update/getPortfolioItemsById?id=" + portfolioId);
-  }
-
-  updateProjectById(portfolioItems: Object){
-    return this.http.put(this.url + "/update/updatePortfolioItems", portfolioItems);
+  updateProjectById(project: Project): Observable<Project> {
+    let portfolioId = localStorage.getItem('portId');
+    console.log("updateProjectById portfolioId: ", portfolioId);
+    console.log("updateProjectById project: ", project);
+    return this.http.post<Project>(`${this.url}/update/createProjectItem/${portfolioId}`, project);
   }
 
   

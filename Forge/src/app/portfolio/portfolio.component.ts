@@ -3,11 +3,11 @@ import { FormGroup } from '@angular/forms';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
-import { Router } from '@angular/router';
 import { Criteria } from '../models/criteria';
 import { CriteriaService } from '../service/criteria.service';
 import { User } from '../models/user';
 import { AboutMe } from '../models/aboutMe';
+import { ActivatedRoute, Params, Router} from '@angular/router';
 import { AboutMeComponent } from '../about-me/about-me.component';
 
 //change to property access (.) instead of property binding([])
@@ -25,13 +25,15 @@ export class PortfolioComponent implements OnInit {
   skills: any = [];
   skillNumber;
   portfolioid;
-  user: User = new User;
+  
+  user: User;
   userId: number;
   firstName: string;
   lastName: string;
 
   //add UserServiceService
-  constructor(private portfolioService: PotfolioServiceService,private router: Router, private criteriaService:CriteriaService, private aboutMeComponent: AboutMeComponent) { 
+  constructor(private portfolioService: PotfolioServiceService,private _route: ActivatedRoute, private router: Router, private criteriaService:CriteriaService) { 
+
     let url:string = this.router.url;
     let splitUrl =  url.split('/');
     this.portfolioid = splitUrl[splitUrl.length -1];
@@ -39,6 +41,10 @@ export class PortfolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this._route.params.subscribe(params => {
+    //   //this.getPortfolio(params['id']);
+    //   console.log("this is the id from the router thing: " + params['id']);
+    // });
     //console.log(this.portfolioid);
     
     if(this.portfolioid =='portfolio'){
@@ -159,31 +165,22 @@ export class PortfolioComponent implements OnInit {
     this.setSkillsMatrix();
   }
   
-  updateEducation(education:any){
-    education['id'] = this.portfolio['education']['0']['id']; ///what do?
-    this.portfolio['education'].splice(0, 1);
-    this.portfolio['education'].push(education);
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
+  updateEducation(education:Education){
+    this.portfolio.portfolioSections.push(education);
+    this.portfolioService.updatePortfolio(this.portfolio).subscribe();
   }
 
-  updateAboutMe(portfolio: Portfolio){
-   // this.portfolio['aboutMe']['description'] = portfolio;
-    portfolio = this.portfolio;
+  updateAboutMe(aboutMe: any){
     console.log(this.portfolio);
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();
+    this.portfolioService.updateAboutMeById(this.portfolioid, aboutMe).subscribe();
   }
 
   updateIndustryEq(industryEq:any){
-    let projectLength = this.portfolio['industryEquivalency'].length;
+    this.portfolio.portfolioSections.push(industryEq);
+    this.portfolioService.updateIndustryEquivalencyById(industryEq);
 
-    //console.log(industryEq);
-
-    this.portfolio['industryEquivalency'].splice(0,projectLength-1);
-    this.portfolio['industryEquivalency'] = industryEq;
-  
-    //console.log('This is the current Portfolio');
-    //console.log(this.portfolio);
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe();
+    //not working
+    // this.portfolioService.updatePortfolio(this.portfolio).subscribe();  
   }
   
   updateProject(projects){

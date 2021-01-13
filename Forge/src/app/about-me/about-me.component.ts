@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ToolbarService, HtmlEditorService, RichTextEditorComponent} from '@syncfusion/ej2-angular-richtexteditor';
+import { Portfolio } from '../models/portfolio';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 import { FormControl, FormGroup } from "@angular/forms";
 import{ CriteriaService } from  '../service/criteria.service';
@@ -15,6 +16,16 @@ import { ActivatedRoute, Params, Router} from '@angular/router';
   providers: [ToolbarService,HtmlEditorService]
 })
 export class AboutMeComponent implements OnInit {
+
+  aboutMe: AboutMe;
+  port: Portfolio;
+  portfolioItemId: number;
+  id: number;
+  description: string;
+  portfolioId: number;   
+  criteria: Criteria ;
+  
+
   @Input() inputAboutMe: []; // decorate the property with @Input()
   @Output() addAboutMe = new EventEmitter<any>();
   
@@ -27,13 +38,7 @@ export class AboutMeComponent implements OnInit {
     'Outdent', 'Indent', '|',
     'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
     'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
-    }; 
-  
-  criteria: Criteria ;
-  aboutMe: AboutMe;
-  portfolioId: number;
-  id: number;
-  description: string; 
+ }; 
 
   //added by StaticRequirement group
   public wordCount = 0;
@@ -58,27 +63,24 @@ export class AboutMeComponent implements OnInit {
       this.criteria=criteria;
       console.log(this.criteria);
     },error => console.log(error));
-    
   }
 
   ngOnInit(): void {
     
-    //this grabs portfolio id from router 
-    //this.PortfolioService.getPortfolioById(this.portfolioId) ;
     this._route.params.subscribe(params => {
-    this.getAboutMe(params['id']);
-    console.log("in oninit in about me comp "+ params['id']);
+      this.getAboutMe(params['id']);
     });
-  }
-  // ngOnChanges(){
-  //   this.content = this.inputAboutMe['description'];
-  // }
 
+this._route.params.subscribe(params => {
+  this.getAboutMe(params['id']);
+  console.log("in oninit in about me comp "+ params['id']);
+});
+  }
+ 
   save(){
-    console.log('in about me component save()')
+    this.aboutMe.description= this.description;
     this.PortfolioService.updateAboutMeById(this.portfolioId, this.aboutMe);
-    this.addAboutMe.emit(this.description);
-    console.log('this is the description after update method' + this.description);
+    this.addAboutMe.emit(this.aboutMe);
   }
 
   getAboutMe(portfolioId: number){
