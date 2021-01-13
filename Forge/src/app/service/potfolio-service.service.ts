@@ -85,15 +85,15 @@ export class PotfolioServiceService {
     return this.http.post(`${this.updateUrl}/updateIndustryItem/${portfolioId}`, industryEquivalency);
   }
 
-  getProjectById(portfolioId: number): Observable<Object> {
-    return this.http.get<Object>(this.url + "update/getPortfolioItemsById?id=" + portfolioId);
+  getProjectById(portfolioId: number): Observable<Project[]> {
+    return this.http.get<Project[]>(`${this.updateUrl}/getProjectItems/${portfolioId}`);
   }
 
-  updateProjectById(project: Project): Observable<Project> {
+  updateProjectById(projects: Project[])  {
     let portfolioId = localStorage.getItem('portId');
     console.log("updateProjectById portfolioId: ", portfolioId);
-    console.log("updateProjectById project: ", project);
-    return this.http.post<Project>(`${this.url}/update/createProjectItem/${portfolioId}`, project);
+    console.log("updateProjectById project: ", projects);
+    return this.http.post(`${this.updateUrl}/updateProjectItem/${portfolioId}`, projects);
   }
 
   getCriteriaById(criteriaId: number) {

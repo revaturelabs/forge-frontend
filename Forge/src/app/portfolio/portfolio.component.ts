@@ -108,10 +108,13 @@ export class PortfolioComponent implements OnInit {
   }
   
   updateProject(projects){
-    let projectLength = this.portfolio['projects'].length;
-    this.portfolio['projects'].splice(0,projectLength-1);
-    this.portfolio['projects'] = projects;
-    this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
+    // let projectLength = this.portfolio['projects'].length;
+    // this.portfolio['projects'].splice(0,projectLength-1);
+    // this.portfolio['projects'] = projects;
+    // this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
+    this.portfolio.portfolioSections.push(projects);
+    this.portfolioService.updateIndustryEquivalencyById(projects);
+    // this.portfolioService.updatePortfolio(this.portfolio).subscribe(); 
     setTimeout(() => this.getPortfolio(this.portfolioid), 500);
 
     //console.log(projects);

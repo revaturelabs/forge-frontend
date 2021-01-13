@@ -8,14 +8,14 @@
         </mat-icon>
     </div>
 
-        <div *ngFor='let project of projects, let i = index'>
+        <div *ngFor='let project of projects'>
             <hr>
             <div type="project" [attr.name]="project">
                 <mat-card-header>
                     <mat-card-title>Project Name</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <textarea [(ngModel)]="project.name"></textarea>
+                    <textarea [(ngModel)]="project.projectName"></textarea>
                 </mat-card-content>
 
                 <mat-card-header>
@@ -36,7 +36,7 @@
                     <mat-card-title>Technologies</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <textarea [(ngModel)]="project.projectTechnologies"></textarea>
+                    <textarea [(ngModel)]="project.projectTech"></textarea>
                 </mat-card-content>
                 <!-- <input type="button" value="Delete project" (click)="deleteProject(i)"> -->
                 <mat-icon type="button" value="Delete project" (click)="deleteProject(i)" aria-hidden="false"
