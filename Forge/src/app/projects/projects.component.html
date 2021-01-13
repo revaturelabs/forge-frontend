@@ -7,7 +7,7 @@
         <mat-icon class="add-button" type="button" (click)="save()" aria-hidden="false" aria-label="save button">save
         </mat-icon>
     </div>
-</mat-card>
+<!-- </mat-card> -->
 
         <div *ngFor='let project of projects, let i = index'>
             <hr>
@@ -26,14 +26,14 @@
                     <textarea [(ngModel)]="project.description"></textarea>
                 </mat-card-content>
 
-                <mat-card-header>
+                <!-- <mat-card-header>
                     <mat-card-title>Role / Responsibilities</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <textarea [(ngModel)]="project.projectResponsibilities"></textarea>
-                </mat-card-content>
+                </mat-card-content> -->
 
-                <!-- <mat-card-title class="subheader-style">Role / Responsibilities</mat-card-title>
+                <mat-card-title class="subheader-style">Role / Responsibilities</mat-card-title>
           
                     <div class="add-button button-spacing">
                         <mat-icon 
@@ -63,7 +63,7 @@
                             </ul>
                         </mat-list-item>
                     </mat-list>
-                </mat-card-content> -->
+                </mat-card-content>
     
                 <mat-card-header>
                     <mat-card-title>Technologies</mat-card-title>
@@ -78,4 +78,4 @@
         </div>
 
 
-<!-- </mat-card> -->
+</mat-card>
