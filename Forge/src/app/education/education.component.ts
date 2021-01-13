@@ -114,7 +114,7 @@ export class EducationComponent implements OnInit {
     this.education.minor = this.portfolioForm.get('minor').value;
     this.education.university = this.portfolioForm.get('university').value;
     console.log(this.education);
-    this.PortfolioService.updateEducationById(this.education).subscribe(
+    this.PortfolioService.createEducationById(this.education).subscribe(
       data2 => {
         console.log(data2);
         this.education = data2;

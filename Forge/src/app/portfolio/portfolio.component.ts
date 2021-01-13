@@ -82,7 +82,7 @@ export class PortfolioComponent implements OnInit {
         (data2) => {
           this.user = data2;
           console.log(data2);
-          this.portfolio['user'] = this.user; //possible breakpoint
+          this.portfolio.user = this.user; //possible breakpoint
           //console.log(this.portfolio);
         });
     })
