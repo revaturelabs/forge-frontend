@@ -74,6 +74,7 @@ export class IndustryEquivalencyComponent implements OnInit {
     this.barChartLabels.pop();
     data.pop();
     this.portfolio.portfolioSections.pop();
+    //this.equivalency.pop();
   }
 
   constructor(private portfolioService: PotfolioServiceService) { }
@@ -94,6 +95,7 @@ export class IndustryEquivalencyComponent implements OnInit {
       });
 
       this.portfolio.portfolioSections = this.inputIndustryEquivalency;
+      //this.equivalency = this.inputIndustryEquivalency;
       //console.log(this.equivalency);
     }
   }
