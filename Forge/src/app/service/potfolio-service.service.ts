@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Portfolio } from '../models/portfolio';
 import { Education } from '../models/education';
 import { IndustryEquivalency } from '../models/industryEquivalency';
+import { SkillMatrix } from '../models/skillMatrix';
+import { skillMatrixItems } from '../models/skillMatrixItems';
 
 
 @Injectable({
@@ -63,11 +65,23 @@ export class PotfolioServiceService {
     return this.http.get<Education>(`${this.url}/update/getPortfolioItemsById` + portfolioItemId);
   }
 //education to portfolio
-  updateEducationById(education: Education): Observable<Education>{
+  createEducationById(education: Education): Observable<Education>{
     let portfolioId = localStorage.getItem('portId');
     console.log(portfolioId);
     console.log(education);
     return this.http.post<Education>(`${this.url}/service/createEducationItem/${portfolioId}`, education);
+  }
+
+  addSkillCategoryById(skillMatrix: SkillMatrix): Observable<SkillMatrix>{
+    let portfolioId = localStorage.getItem('portId');
+    console.log(portfolioId);
+    console.log(skillMatrix);
+    return this.http.post<SkillMatrix>(`${this.url}/update/createSkillCategory/${portfolioId}`, skillMatrix);
+  }
+
+  createSkill(skillMatrixItem: skillMatrixItems, portfolioItemId: number): Observable<skillMatrixItems>{
+    console.log(skillMatrixItem);
+    return this.http.post<skillMatrixItems>(`${this.url}/update/createSkill/${portfolioItemId}`, skillMatrixItem);
   }
 
   getIndustryEquivalencyById(portfolioId: number): Observable<Object>{
